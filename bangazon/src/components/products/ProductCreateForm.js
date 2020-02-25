@@ -21,14 +21,14 @@ class ProductCreateForm extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-    componentDidMount(){
+    componentDidMount() {
         // Gets all product types, then sets them in state to load the dropdown later
         APIManager.get("producttypes")
-        .then((response) => {
-            this.setState({
-                producttypes: response
+            .then((response) => {
+                this.setState({
+                    producttypes: response
+                })
             })
-        })
     }
 
     saveProduct = evt => {
@@ -44,15 +44,16 @@ class ProductCreateForm extends Component {
         }
 
         if (this.state.Name !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.ProductTypeId !== null) {
-        APIManager.post("products/", product)
-            .then((response) => {
-                console.log(response)
-                this.props.history.push(`/product/${response.id}`)
-            })
+            // Make a post with the product to the API
+            APIManager.post("products/", product)
+                .then((response) => {
+                    // pushes you to product detail for the product just created
+                    this.props.history.push(`/product/${response.id}`)
+                })
         } else {
-
+            // renders and alert based on what is missing from the product form
             if (this.state.Name === "") {
-            alert('Please input a product name.')
+                alert('Please input a product name.')
             } else if (this.state.Quantity === null) {
                 alert('Please input a quantity.')
             } else if (this.state.Price === null) {
@@ -83,12 +84,12 @@ class ProductCreateForm extends Component {
 
 
                         <select id="ProductTypeId" onChange={this.handleFieldChange}>
-                                <option value="">Select a Product Type</option>
+                            <option value="">Select a Product Type</option>
 
-                                {this.state.producttypes.map((product) => {
-                                    return <option key={product.id} value={product.id} >{product.name}</option>
-                                })}
-                            </select>
+                            {this.state.producttypes.map((product) => {
+                                return <option key={product.id} value={product.id} >{product.name}</option>
+                            })}
+                        </select>
                         <button
                             variant="light"
                             type="button"
