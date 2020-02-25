@@ -6,7 +6,7 @@ import Register from "../src/components/auth/Register"
 import Login from "../src/components/auth/Login"
 import ProductCreateForm from '../src/components/products/ProductCreateForm'
 
-ReactDOM.render(<ProductCreateForm />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
