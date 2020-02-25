@@ -173,7 +173,7 @@ class NavBar extends React.Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Log Out</MenuItem>
       </Menu>
     );
 
@@ -184,6 +184,7 @@ class NavBar extends React.Component {
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMobileMenuOpen}
         onClose={this.handleMenuClose}
+        id="userMenu"
       >
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit">
@@ -243,9 +244,6 @@ class NavBar extends React.Component {
               Bangazon Prime
             </Typography>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                {/* <SearchIcon /> */}
-              </div>
               <InputBase
                 placeholder="Product…"
                 classes={{
@@ -255,7 +253,6 @@ class NavBar extends React.Component {
               />
             </div>
             <div className={classes.search}>
-
               <InputBase
                 placeholder="City…"
                 classes={{
@@ -264,9 +261,9 @@ class NavBar extends React.Component {
                 }}
               />
             </div>
-            <button>
+            <IconButton>
                 <SearchIcon />
-            </button>
+            </IconButton>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
@@ -275,9 +272,7 @@ class NavBar extends React.Component {
                 </Badge>
               </IconButton>
               <IconButton color="inherit">
-                <Badge badgeContent={17} color="secondary">
                   <Settings />
-                </Badge>
               </IconButton>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
