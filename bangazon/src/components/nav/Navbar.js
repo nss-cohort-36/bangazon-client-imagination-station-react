@@ -60,12 +60,12 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 1,
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing.unit * 3,
-      width: 'auto',
+      marginLeft: theme.spacing.unit * 1,
+      width: '20%',
     },
   },
   searchIcon: {
@@ -85,7 +85,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
+    paddingLeft: theme.spacing.unit * 3,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -106,7 +106,7 @@ const styles = theme => ({
   },
 
 
-  
+  // for drawer
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
@@ -255,9 +255,7 @@ class NavBar extends React.Component {
               />
             </div>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                {/* <SearchIcon /> */}
-              </div>
+
               <InputBase
                 placeholder="City…"
                 classes={{
