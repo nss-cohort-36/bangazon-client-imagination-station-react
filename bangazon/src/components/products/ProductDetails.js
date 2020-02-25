@@ -13,6 +13,7 @@ import React, { Component } from 'react'
 
 // API
 import APIManager from '../../modules/APIManager'
+import OrderAPIManager from '../../modules/OrderAPIManager'
 
 
 class ProductDetail extends Component {
@@ -34,9 +35,18 @@ class ProductDetail extends Component {
         // sets loadingStatus to true to prevent duplicate adds
         this.setState({ loadingStatus: true })
 
-        APIManager.get("orders")
-
-
+        // GET open order for logged in customer
+        OrderAPIManager.getUserOpenOrder()
+            // then, post order to orderproduct in the database.
+            .then(orderObject => {
+                let newOrderProduct = {
+                    order_id = orderObject.id,
+                    product_id = this.props.productId
+                }
+                APIManager.post("orderproducts", newOrderProduct)
+                    // then, push to the home page or another page
+                    .then(() => this.props.history.push('/'))
+            })
     }
 
     componentDidMount() {
@@ -69,8 +79,6 @@ class ProductDetail extends Component {
                     </ul>
                     <button type="button" onClick={this.handleAddToOrder}>Add to Order</button>
                 </div>
-
-
             </ReactFragment>
         )
     }
