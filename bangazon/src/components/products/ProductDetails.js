@@ -34,6 +34,8 @@ class ProductDetail extends Component {
         // sets loadingStatus to true to prevent duplicate adds
         this.setState({ loadingStatus: true })
 
+        APIManager.get("orders")
+
 
     }
 
@@ -65,7 +67,7 @@ class ProductDetail extends Component {
                         <li>Price: {this.state.price}</li>
                         <li>Quantity available: {this.state.price}</li>
                     </ul>
-                    <button type="button">Add to Order</button>
+                    <button type="button" onClick={this.handleAddToOrder}>Add to Order</button>
                 </div>
 
 
