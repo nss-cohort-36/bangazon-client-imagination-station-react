@@ -1,8 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { search } from "./modules/search"
 
 function App() {
+  const search_obj = {
+      name: "",
+      location: "Nashville"
+  }  
+  console.log(search(search_obj) , 'search results')  
+
   return (
     <div className="App">
       <header className="App-header">

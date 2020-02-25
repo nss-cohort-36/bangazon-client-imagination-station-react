@@ -1,25 +1,25 @@
-import { get } from "../modules/APIManager"
+import APIManager from "../modules/APIManager"
 
 
 
-const search = async (mode, product_search_term, location_search_term) => {
+const search = async (search_terms) => {
 
-    if (mode === 'product') {
+        let search_terms_string = ""
 
-        return await get("products", `?name=${product_search_term}`)
-        
+        if (search_terms.location) {
+            search_terms_string += `?location=${search_terms.location}`
+        }
+
+        if (search_terms.name) {
+            search_terms_string += `?name=${search_terms.name}`
+        }
+
+        if (search_terms.name && search_terms.location) {
+            search_terms_string += `?name=${search_terms.name}&location=${search_terms.location}`
+        }
+
+        return await APIManager.get("products", search_terms_string)
+
     }
 
-    if (mode === 'city') {
-
-        return await get("products", `?location=${location_search_term}`)
-
-    }
-
-    if (mode === 'combo') {
-
-        return await get("products", `?location=${location_search_term}&name=${product_search_term}`)
-
-    }
-
-}
+export { search }
