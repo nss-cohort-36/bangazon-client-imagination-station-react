@@ -1,6 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import ProductCreateForm from "./products/ProductCreateForm";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 // import ProductDetail from './products/ProductDetails'
 // import ProductList from './products/ProductList'
 // import Home from './home/Home'
@@ -17,7 +19,7 @@ export default class ApplicationViews extends Component {
                 <Route
                     exact path="/login" render={props => {
 
-                        return <LogIn
+                        return <Login
                             {...props} {...this.props} />
 
                     }}

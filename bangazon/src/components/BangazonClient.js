@@ -8,7 +8,7 @@ class BangazonClient extends Component {
         return (
             <>
                 <NavBar />
-                {/* <ApplicationViews /> */}
+                <ApplicationViews />
             </>
         )
     }

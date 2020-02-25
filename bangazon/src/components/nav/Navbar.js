@@ -30,6 +30,9 @@ import AttachMoney from '@material-ui/icons/AttachMoney'
 import Store from '@material-ui/icons/Store'
 import './Navbar.css'
 
+import { Link, withRouter } from "react-router-dom"
+
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -172,7 +175,7 @@ class NavBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}><Link className="nav-link link" to="/profile">Profile</Link></MenuItem>
         <MenuItem onClick={this.handleMenuClose}>Log Out</MenuItem>
       </Menu>
     );
@@ -189,15 +192,10 @@ class NavBar extends React.Component {
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
-              <ShoppingCart />
+            <Link className="nav-link link" to="/order"><ShoppingCart /></Link>
             </Badge>
           </IconButton>
-          <p>Messages</p>
-        </MenuItem>
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-          </IconButton>
-          <p>Settings</p>
+          <Link className="nav-link link" to="/order"><p>Orders</p></Link>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <IconButton color="inherit">
@@ -215,15 +213,15 @@ class NavBar extends React.Component {
           <List>
               <ListItem button id="home">
                 <ListItemIcon><Home /></ListItemIcon>
-                <ListItemText>Bangazon Prime</ListItemText>
+                <ListItemText><Link className="nav-link link" to="/home">Bangazon Prime</Link></ListItemText>
               </ListItem>
               <ListItem button id="sellAProduct">
                 <ListItemIcon><AttachMoney /></ListItemIcon>
-                <ListItemText>Sell A Product</ListItemText>
+                <ListItemText><Link className="nav-link link" to="/product/new">Sell A Product</Link></ListItemText>
               </ListItem>
               <ListItem button id="myProducts">
                 <ListItemIcon><Store /></ListItemIcon>
-                <ListItemText>My Products</ListItemText>
+                <ListItemText><Link className="nav-link link" to="/products">My Products</Link></ListItemText>
               </ListItem>
           </List>
         </div>
@@ -265,11 +263,8 @@ class NavBar extends React.Component {
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
                 <Badge badgeContent={4} color="secondary">
-                  <ShoppingCart />
+                <Link className="nav-link link" to="/order"><ShoppingCart /></Link>
                 </Badge>
-              </IconButton>
-              <IconButton color="inherit">
-                  <Settings />
               </IconButton>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
