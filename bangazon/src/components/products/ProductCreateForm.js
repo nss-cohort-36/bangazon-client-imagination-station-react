@@ -34,8 +34,8 @@ class ProductCreateForm extends Component {
             "body": JSON.stringify({
                 name: this.state.Name,
                 description: this.state.Description,
-                price: Number(this.state.Price),
-                quantity: this.state.Quantity,
+                price: this.state.Price,
+                quantity: Number(this.state.Quantity),
                 location: this.state.Location,
                 imagePath: this.state.ImagePath,
                 product_type_id: Number(this.state.ProductTypeId)
