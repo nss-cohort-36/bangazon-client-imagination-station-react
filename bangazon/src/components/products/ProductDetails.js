@@ -24,8 +24,18 @@ class ProductDetail extends Component {
         loadingStatus: true
     }
 
-    // Function to handle click event for add button. Adds product to order in database.
-    // Once completed, re-routes user to order view.
+    handleAddToOrder = () => {
+        /*
+            Function to handle click event for add button. Adds product to order in database.
+        
+            Once completed, re-routes user to order view.
+        */
+
+        // sets loadingStatus to true to prevent duplicate adds
+        this.setState({ loadingStatus: true })
+
+
+    }
 
     componentDidMount() {
         // take id from props, fetch call to get product
