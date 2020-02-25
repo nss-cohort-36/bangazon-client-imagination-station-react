@@ -206,11 +206,39 @@ class NavBar extends React.Component {
       </Menu>
     );
 
-    const drawer = (
-        <div>
-          <div className={classes.toolbar} />
-          <Divider />
-          <List>
+    // const drawer = (
+    //     <div>
+    //       <div className={classes.toolbar} />
+    //       <Divider />
+    //       <List>
+    //           <ListItem button id="home">
+    //             <ListItemIcon><Home /></ListItemIcon>
+    //             <ListItemText><Link className="nav-link link" to="/home">Bangazon Prime</Link></ListItemText>
+    //           </ListItem>
+    //           <ListItem button id="sellAProduct">
+    //             <ListItemIcon><AttachMoney /></ListItemIcon>
+    //             <ListItemText><Link className="nav-link link" to="/product/new">Sell A Product</Link></ListItemText>
+    //           </ListItem>
+    //           <ListItem button id="myProducts">
+    //             <ListItemIcon><Store /></ListItemIcon>
+    //             <ListItemText><Link className="nav-link link" to="/products">My Products</Link></ListItemText>
+    //           </ListItem>
+    //       </List>
+    //     </div>
+    //   );
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="static" id="navBar">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+              <MenuIcon />
+            </IconButton>
+            
+            {/* <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+              Bangazon Prime
+            </Typography> */}
               <ListItem button id="home">
                 <ListItemIcon><Home /></ListItemIcon>
                 <ListItemText><Link className="nav-link link" to="/home">Bangazon Prime</Link></ListItemText>
@@ -223,22 +251,7 @@ class NavBar extends React.Component {
                 <ListItemIcon><Store /></ListItemIcon>
                 <ListItemText><Link className="nav-link link" to="/products">My Products</Link></ListItemText>
               </ListItem>
-          </List>
-        </div>
-      );
-
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position="static" id="navBar">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Bangazon Prime
-            </Typography>
-            <div className={classes.search}>
+                  <div className={classes.search}>
               <InputBase
                 placeholder="Product…"
                 classes={{
@@ -285,7 +298,7 @@ class NavBar extends React.Component {
         <nav className={classes.drawer}>
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
-            <Drawer
+            {/* <Drawer
               container={this.props.container}
               variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -296,10 +309,10 @@ class NavBar extends React.Component {
               }}
             >
               {drawer}
-            </Drawer>
+            </Drawer> */}
           </Hidden>
           <Hidden xsDown implementation="css">
-            <Drawer
+            {/* <Drawer
               classes={{
                 paper: classes.drawerPaper,
               }}
@@ -307,7 +320,7 @@ class NavBar extends React.Component {
               open
             >
               {drawer}
-            </Drawer>
+            </Drawer> */}
           </Hidden>
         </nav>
         {renderMenu}
