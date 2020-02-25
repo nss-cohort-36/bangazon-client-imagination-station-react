@@ -39,7 +39,7 @@ class Register extends Component {
   render() {
     return (
         <form className="form--login" onSubmit={this.handleRegister}>
-          <h1 className="h3 mb-3 font-weight-normal">Register to use Saturday in the Park</h1>
+          <h1>Create your Bangazon account</h1>
           <fieldset>
             <label htmlFor="userName"> Username </label>
             <input onChange={(evt) => this.handleInputChange(evt)}
