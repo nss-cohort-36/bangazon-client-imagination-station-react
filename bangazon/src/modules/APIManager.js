@@ -4,16 +4,32 @@ export default {
   async get(route, id = null) {
     let results;
     if (id !== null) {
-      results = await fetch(`${remoteURL}/${route}/${id}`);
+      results = await fetch(`${remoteURL}/${route}/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
+        }
+      });
     } else {
-      results = await fetch(`${remoteURL}/${route}`);
+      results = await fetch(`${remoteURL}/${route}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
+        }
+      });
     }
     return results.json();
   },
 
   async delete(route, id) {
     const results = await fetch(`${remoteURL}/${route}/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
+      }
     });
     return results.json();
   },
@@ -22,7 +38,8 @@ export default {
     const results = await fetch(`${remoteURL}/${route}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify(newItem)
     });
@@ -33,7 +50,8 @@ export default {
     const results = await fetch(`${remoteURL}/${route}/${id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify(editedItem)
     });
@@ -44,7 +62,8 @@ export default {
     const results = await fetch(`${remoteURL}/${route}/${id}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify(editedItem)
     });
