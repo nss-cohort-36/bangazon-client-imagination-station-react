@@ -196,9 +196,6 @@ class NavBar extends React.Component {
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit">
-            <Badge badgeContent={11} color="secondary">
-              <Settings />
-            </Badge>
           </IconButton>
           <p>Settings</p>
         </MenuItem>
