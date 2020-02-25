@@ -4,6 +4,7 @@ import './index.css';
 import App from "./App"
 import Register from "../src/components/auth/Register"
 import Login from "../src/components/auth/Login"
+import ProductCreateForm from '../src/components/products/ProductCreateForm'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
