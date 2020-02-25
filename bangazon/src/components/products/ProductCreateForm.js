@@ -1,3 +1,6 @@
+import APIManager from '../../modules/APIManager'
+
+
 class ProductCreateForm extends Component {
     state = {
         Description: "",
@@ -17,33 +20,19 @@ class ProductCreateForm extends Component {
 
     saveProduct = evt => {
         evt.preventDefault()
-
-
         const product = {
-
+            name: this.state.Name,
+            description: this.state.Description,
+            price: this.state.Price,
+            quantity: Number(this.state.Quantity),
+            location: this.state.Location,
+            imagePath: this.state.ImagePath,
+            product_type_id: Number(this.state.ProductTypeId)
         }
-
-
-        fetch('http://localhost:8000/products', {
-            "method": "POST",
-            "headers": {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Token ${sessionStorage.getItem("bangazon_token")}`
-            },
-            "body": JSON.stringify({
-                name: this.state.Name,
-                description: this.state.Description,
-                price: this.state.Price,
-                quantity: Number(this.state.Quantity),
-                location: this.state.Location,
-                imagePath: this.state.ImagePath,
-                product_type_id: Number(this.state.ProductTypeId)
-            })
-        })
-            .then(response => response.json())
-            .then(() => {
-                this.props.history.push("/product/")
+        APIManager.post("products", product)
+            .then((response) => {
+                console.log(response)
+                // this.props.history.push("/product/")
             })
 
     }
