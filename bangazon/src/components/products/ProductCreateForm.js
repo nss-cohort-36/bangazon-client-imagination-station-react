@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 
 class ProductCreateForm extends Component {
+
     state = {
         Description: "",
         Name: "",
@@ -11,7 +12,8 @@ class ProductCreateForm extends Component {
         Location: "",
         ImagePath: "./none_pic.jpg",
         ProductTypeId: null,
-        producttypes: []
+        producttypes: [],
+        checkbox: ""
     };
 
     handleFieldChange = evt => {
@@ -20,6 +22,7 @@ class ProductCreateForm extends Component {
         this.setState(stateToChange)
     }
     componentDidMount(){
+        // Gets all product types, then sets them in state to load the dropdown later
         APIManager.get("producttypes")
         .then((response) => {
             this.setState({
@@ -40,7 +43,7 @@ class ProductCreateForm extends Component {
             product_type_id: Number(this.state.ProductTypeId)
         }
 
-        if (this.state.Name !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.Location !== "" && this.state.ProductTypeId !== null) {
+        if (this.state.Name !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.ProductTypeId !== null) {
         APIManager.post("products/", product)
             .then((response) => {
                 console.log(response)
@@ -54,8 +57,6 @@ class ProductCreateForm extends Component {
                 alert('Please input a quantity.')
             } else if (this.state.Price === null) {
                 alert('Please input a price.')
-            } else if (this.state.Location === "" ) {
-                alert('Please input a location.')
             } else if (this.state.ProductTypeId === null) {
                 alert('Please select a product type.')
             }
@@ -75,6 +76,7 @@ class ProductCreateForm extends Component {
 
                         <input placeholder="Enter Quantity" type="number" id="Quantity" onChange={this.handleFieldChange} />
 
+                        <span>If local delivery is available, please specify a city below.</span>
                         <input placeholder="Enter Location" type="text" id="Location" onChange={this.handleFieldChange} />
 
                         <input placeholder="Enter Price" type="number" id="Price" onChange={this.handleFieldChange} />
