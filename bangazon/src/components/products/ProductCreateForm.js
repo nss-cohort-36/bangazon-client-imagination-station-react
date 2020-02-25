@@ -1,21 +1,31 @@
 import APIManager from '../../modules/APIManager'
+import React, { Component } from 'react'
 
 
 class ProductCreateForm extends Component {
     state = {
         Description: "",
         Name: "",
-        Price: "",
+        Price: null,
         Quantity: null,
         Location: "",
         ImagePath: "./none_pic.jpg",
-        ProductTypeId: null
+        ProductTypeId: null,
+        producttypes: []
     };
 
     handleFieldChange = evt => {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
+    }
+    componentDidMount(){
+        APIManager.get("producttypes")
+        .then((response) => {
+            this.setState({
+                producttypes: response
+            })
+        })
     }
 
     saveProduct = evt => {
@@ -26,15 +36,30 @@ class ProductCreateForm extends Component {
             price: this.state.Price,
             quantity: Number(this.state.Quantity),
             location: this.state.Location,
-            imagePath: this.state.ImagePath,
+            image_path: this.state.ImagePath,
             product_type_id: Number(this.state.ProductTypeId)
         }
-        APIManager.post("products", product)
+
+        if (this.state.Name !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.Location !== "" && this.state.ProductTypeId !== null) {
+        APIManager.post("products/", product)
             .then((response) => {
                 console.log(response)
-                // this.props.history.push("/product/")
+                this.props.history.push(`/product/${response.id}`)
             })
+        } else {
 
+            if (this.state.Name === "") {
+            alert('Please input a product name.')
+            } else if (this.state.Quantity === null) {
+                alert('Please input a quantity.')
+            } else if (this.state.Price === null) {
+                alert('Please input a price.')
+            } else if (this.state.Location === "" ) {
+                alert('Please input a location.')
+            } else if (this.state.ProductTypeId === null) {
+                alert('Please select a product type.')
+            }
+        }
     }
 
     render() {
@@ -48,20 +73,20 @@ class ProductCreateForm extends Component {
 
                         <input placeholder="Enter Description" type="text" id="Description" onChange={this.handleFieldChange} />
 
-                        <input placeholder="Enter Quantity" type="text" id="Quantity" onChange={this.handleFieldChange} />
+                        <input placeholder="Enter Quantity" type="number" id="Quantity" onChange={this.handleFieldChange} />
 
                         <input placeholder="Enter Location" type="text" id="Location" onChange={this.handleFieldChange} />
 
-                        <input placeholder="Enter Price" type="text" id="Price" onChange={this.handleFieldChange} />
+                        <input placeholder="Enter Price" type="number" id="Price" onChange={this.handleFieldChange} />
 
 
-                        {/* <select id="projectId" onChange={this.handleFieldChange}>
-                                <option value="">Select a Project</option>
+                        <select id="ProductTypeId" onChange={this.handleFieldChange}>
+                                <option value="">Select a Product Type</option>
 
-                                {this.state.projects.map((project) => {
-                                    return <option key={project.id} value={project.id} >{project.name}</option>
+                                {this.state.producttypes.map((product) => {
+                                    return <option key={product.id} value={product.id} >{product.name}</option>
                                 })}
-                            </select> */}
+                            </select>
                         <button
                             variant="light"
                             type="button"
