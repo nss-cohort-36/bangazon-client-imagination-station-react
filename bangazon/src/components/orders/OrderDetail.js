@@ -1,15 +1,5 @@
 /*
-  OrderDetail
-
-  displays a single open order
-  button for complete order
-  presented payment type on clicking button
-
-
-  user selects payment type
-  user clicks done
-  payment type added to the order at this point
-  user presented with confirmation/thank you screen
+author: Ken "Yeah, sorry, I broke that" Boyd
 */
 
 import React, { useState, useEffect } from "react";
@@ -24,14 +14,26 @@ import {
   ListSubheader,
   Typography
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1)
+  }
+}));
 
 const OrderDetail = () => {
+  const classes = useStyles();
+
   const [orders, setOrders] = useState([]);
-  // const [total, setTotal] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchOrders = async () => {
-    const orders = await APIManager.getAll("orders", "?customer=true&open=true");
+    const orders = await APIManager.getAll(
+      "orders",
+      "?customer=true&open=true"
+    );
     for (const order of orders) {
       const products = await APIManager.getAll(
         "orderproducts",
@@ -92,6 +94,12 @@ const OrderDetail = () => {
                     {product.product.quantity} {product.product.name}: $
                     {product.product.price}
                   </ListItemText>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    startIcon={<DeleteIcon />}
+                  >Begone</Button>
                 </ListItem>
               ))}
               <ListItem style={{ alignItems: "flex-end" }}>
