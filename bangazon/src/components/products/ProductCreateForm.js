@@ -1,8 +1,31 @@
 import APIManager from '../../modules/APIManager'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import AttachMoney from '@material-ui/icons/AttachMoney'
+import './Product.css'
 
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+    },
+    dense: {
+        marginTop: 16,
+    },
+    menu: {
+        width: 200,
+    },
+});
 
-class ProductCreateForm extends Component {
+class ProductCreateForm extends React.Component {
 
     state = {
         Description: "",
@@ -30,6 +53,11 @@ class ProductCreateForm extends Component {
                 })
             })
     }
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value,
+        });
+    };
 
     saveProduct = evt => {
         evt.preventDefault()
@@ -65,37 +93,89 @@ class ProductCreateForm extends Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
             <>
-                <div>
-                    <h3>Sell a Product</h3>
+                <div className="new-product-form-container">
+                    <h2>Sell a Product</h2>
 
-                    <form>
-                        <input type="text" placeholder="Enter Product Name" id="Name" onChange={this.handleFieldChange} />
+                    <form >
+                        <TextField
+                            id="outlined-name"
+                            label="Name"
+                            className={classes.textField}
+                            onChange={this.handleChange('Name')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            id="outlined-name"
+                            label="Description"
+                            className={classes.textField}
+                            onChange={this.handleChange('Description')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            id="outlined-number"
+                            label="Quantity"
+                            onChange={this.handleChange('Quantity')}
+                            type="number"
+                            className={classes.textField}
 
-                        <input placeholder="Enter Description" type="text" id="Description" onChange={this.handleFieldChange} />
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            id="outlined-name"
+                            label="Location"
+                            className={classes.textField}
+                            onChange={this.handleChange('Location')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            id="outlined-number"
+                            label="Price"
+                            onChange={this.handleChange('Price')}
+                            type="number"
+                            className={classes.textField}
 
-                        <input placeholder="Enter Quantity" type="number" id="Quantity" onChange={this.handleFieldChange} />
+                            margin="normal"
+                            variant="outlined"
+                        />
+                       
 
-                        <span>If local delivery is available, please specify a city below.</span>
-                        <input placeholder="Enter Location" type="text" id="Location" onChange={this.handleFieldChange} />
+                        <TextField
+                            id="outlined-select-currency"
+                            select
+                            label="Select"
+                            className={classes.textField}
+                            onChange={this.handleChange('ProductTypeId')}
+                            SelectProps={{
+                                MenuProps: {
+                                    className: classes.menu,
+                                },
+                            }}
+                            helperText="Please select a product type"
+                            margin="normal"
+                            variant="outlined"
+                        >
+                            {this.state.producttypes.map(option => (
+                                <MenuItem key={option.id} value={option.id}>
+                                    {option.name}
+                                </MenuItem>
+                            ))}
+                        </TextField>
 
-                        <input placeholder="Enter Price" type="number" id="Price" onChange={this.handleFieldChange} />
-
-
-                        <select id="ProductTypeId" onChange={this.handleFieldChange}>
-                            <option value="">Select a Product Type</option>
-
-                            {this.state.producttypes.map((product) => {
-                                return <option key={product.id} value={product.id} >{product.name}</option>
-                            })}
-                        </select>
-                        <button
-                            variant="light"
-                            type="button"
-                            disabled={this.state.loadingStatus}
-                            onClick={this.saveProduct}
-                        >Sell</button>
+                       
+                        <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
+                            onClick={this.saveProduct}>
+                            Sell
+                            <AttachMoney className={classes.rightIcon} />
+                        </Button>
+                      
                     </form>
                 </div>
             </>
@@ -103,4 +183,4 @@ class ProductCreateForm extends Component {
     }
 }
 
-export default ProductCreateForm
+export default withStyles(styles)(ProductCreateForm)

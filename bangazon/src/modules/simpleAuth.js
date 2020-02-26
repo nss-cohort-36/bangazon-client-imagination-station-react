@@ -1,7 +1,6 @@
 const isAuthenticated = () => {
     return sessionStorage.getItem("bangazon_token") !== null
 }
-
 const register = (userInfo) => {
     return fetch("http://localhost:8000/register", {
         method: "POST",
@@ -32,6 +31,8 @@ const login = (credentials) => {
         .then(res => {
             if ("valid" in res && res.valid && "token" in res) {
                 sessionStorage.setItem("bangazon_token", res.token)
+            } else {
+                alert('Username or password is incorrect.')
             }
         })
 }

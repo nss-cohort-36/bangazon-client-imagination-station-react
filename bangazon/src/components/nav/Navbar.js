@@ -29,6 +29,11 @@ import Home from '@material-ui/icons/Home'
 import AttachMoney from '@material-ui/icons/AttachMoney'
 import Store from '@material-ui/icons/Store'
 import './Navbar.css'
+import { isAuthenticated, logout } from "../../modules/simpleAuth"
+
+
+import { Link, withRouter } from "react-router-dom"
+
 
 const drawerWidth = 240;
 
@@ -44,8 +49,8 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
     [theme.breakpoints.up('sm')]: {
-        display: 'none',
-      },
+      display: 'none',
+    },
   },
   title: {
     display: 'none',
@@ -154,7 +159,7 @@ class NavBar extends React.Component {
   };
 
 
-//   for drawer
+  //   for drawer
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
@@ -172,8 +177,12 @@ class NavBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Log Out</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}><Link id="mobile-nav-link" to="/profile">Profile</Link></MenuItem>
+        <MenuItem onClick={() => {
+          this.handleMenuClose()
+          logout()
+          this.props.loggedOut()
+        }}>Log Out</MenuItem>
       </Menu>
     );
 
@@ -187,20 +196,33 @@ class NavBar extends React.Component {
         id="userMenu"
       >
         <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <ShoppingCart />
-            </Badge>
+          <IconButton color="inherit" id="shopping-link">
+          <Link id="mobile-nav-link" to="/order"><Home id="shopping-link" /></Link>
           </IconButton>
-          <p>Messages</p>
+          <Link id="mobile-nav-link" to="/"><p>Bangazon Prime</p></Link>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" id="shopping-link">
+          <Link id="mobile-nav-link" to="/product/new"><AttachMoney id="shopping-link" /></Link>
           </IconButton>
-          <p>Settings</p>
+          <Link id="mobile-nav-link" to="/product/new"><p>Sell A Product</p></Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuClose}>
+          <IconButton color="inherit" id="shopping-link">
+          <Link id="mobile-nav-link" to="/products"><Store id="shopping-link" /></Link>
+          </IconButton>
+          <Link id="mobile-nav-link" to="/products"><p>My Products</p></Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuClose}>
+          <IconButton color="inherit" >
+            <Badge badgeContent={4} color="secondary">
+              <Link id="mobile-nav-link" to="/order"><ShoppingCart id="shopping-link" /></Link>
+            </Badge>
+          </IconButton>
+          <Link id="mobile-nav-link" to="/order"><p>Orders</p></Link>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" id="shopping-link">
             <AccountCircle />
           </IconButton>
           <p>Profile</p>
@@ -208,89 +230,116 @@ class NavBar extends React.Component {
       </Menu>
     );
 
-    const drawer = (
-        <div>
-          <div className={classes.toolbar} />
-          <Divider />
-          <List>
-              <ListItem button id="home">
-                <ListItemIcon><Home /></ListItemIcon>
-                <ListItemText>Bangazon Prime</ListItemText>
-              </ListItem>
-              <ListItem button id="sellAProduct">
-                <ListItemIcon><AttachMoney /></ListItemIcon>
-                <ListItemText>Sell A Product</ListItemText>
-              </ListItem>
-              <ListItem button id="myProducts">
-                <ListItemIcon><Store /></ListItemIcon>
-                <ListItemText>My Products</ListItemText>
-              </ListItem>
-          </List>
-        </div>
-      );
+    // const drawer = (
+    //     <div>
+    //       <div className={classes.toolbar} />
+    //       <Divider />
+    //       <List>
+    //           <ListItem button id="home">
+    //             <ListItemIcon><Home /></ListItemIcon>
+    //             <ListItemText><Link className="nav-link link" to="/home">Bangazon Prime</Link></ListItemText>
+    //           </ListItem>
+    //           <ListItem button id="sellAProduct">
+    //             <ListItemIcon><AttachMoney /></ListItemIcon>
+    //             <ListItemText><Link className="nav-link link" to="/product/new">Sell A Product</Link></ListItemText>
+    //           </ListItem>
+    //           <ListItem button id="myProducts">
+    //             <ListItemIcon><Store /></ListItemIcon>
+    //             <ListItemText><Link className="nav-link link" to="/products">My Products</Link></ListItemText>
+    //           </ListItem>
+    //       </List>
+    //     </div>
+    //   );
+    if (isAuthenticated()) {
+      return (
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar position="static" id="navBar">
+            <Toolbar>
+              {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                <MenuIcon />
+              </IconButton> */}
+              <section id="desktop-nav">
+              <ListItemIcon><Home /></ListItemIcon>
 
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position="static" id="navBar">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Bangazon Prime
-            </Typography>
-            <div className={classes.search}>
-              <InputBase
-                placeholder="Product…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-            <div className={classes.search}>
-              <InputBase
-                placeholder="City…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-            <IconButton>
+              <ListItemText><Link to="/" id="nav-link" >Bangazon Prime</Link></ListItemText>
+
+              <ListItemIcon><AttachMoney /></ListItemIcon>
+              <ListItemText><Link to="/product/new" id="nav-link">Sell A Product</Link></ListItemText>
+
+              <ListItemIcon><Store /></ListItemIcon>
+              <ListItemText><Link to="/products" id="nav-link">My Products</Link></ListItemText>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="Product…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="City…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <IconButton>
                 <SearchIcon />
-            </IconButton>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <ShoppingCart />
-                </Badge>
               </IconButton>
-              <IconButton color="inherit">
-                  <Settings />
+              </section>
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+                <IconButton color="inherit">
+                  <Badge badgeContent={4} color="secondary">
+                    <Link className="nav-link link" to="/order" id="shopping-link"><ShoppingCart /></Link>
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleProfileMenuOpen}
+                  color="inherit"
+                  id="shopping-link"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </div>
+              <div className={classes.sectionMobile}>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="Product…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="City…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <IconButton>
+                <SearchIcon />
               </IconButton>
-              <IconButton
-                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
-        <nav className={classes.drawer}>
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Hidden smUp implementation="css">
-            <Drawer
+                <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                  <MoreIcon />
+                </IconButton>
+              </div>
+            </Toolbar>
+          </AppBar>
+          {/* <nav className={classes.drawer}>
+            The implementation can be swapped with js to avoid SEO duplication of links.
+            <Hidden smUp implementation="css">
+              <Drawer
               container={this.props.container}
               variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -302,9 +351,9 @@ class NavBar extends React.Component {
             >
               {drawer}
             </Drawer>
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Drawer
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <Drawer
               classes={{
                 paper: classes.drawerPaper,
               }}
@@ -313,19 +362,61 @@ class NavBar extends React.Component {
             >
               {drawer}
             </Drawer>
-          </Hidden>
-        </nav>
-        {renderMenu}
-        {renderMobileMenu}
-      </div>
-    );
+            </Hidden>
+
+          </nav> */}
+          {renderMenu}
+          {renderMobileMenu}
+        </div>
+      )
+    } else {
+      return (
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar position="static" id="navBar">
+            <Toolbar>
+              {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                <MenuIcon />
+              </IconButton> */}
+              <Typography  variant="h6" color="inherit" >
+                Bangazon Prime
+            </Typography>
+
+              {/* <ListItemIcon><Home /></ListItemIcon> */}
+              <Link to="/login" id="login-link" >Login</Link>
+
+
+              {/* <ListItemIcon><Home /></ListItemIcon> */}
+              <Link to="/register" id="login-link">Register</Link>
+
+
+
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+
+
+                <AccountCircle id="shopping-link" />
+
+              </div>
+              <div className={classes.sectionMobile}>
+                
+                <AccountCircle id="shopping-link" />
+              </div>
+            </Toolbar>
+          </AppBar>
+
+          {renderMenu}
+          {renderMobileMenu}
+        </div>
+      )
+    }
   }
 }
 
 NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
   container: PropTypes.object,
-    theme: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 

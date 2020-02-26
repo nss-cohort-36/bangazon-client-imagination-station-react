@@ -33,7 +33,10 @@ class Register extends Component {
 
     // Make a fetch call with the object as the body of the POST request
     register(newUser)
-    .then(() => this.props.history.push("/"))
+    .then(() => {
+      this.props.loggedIn()
+      this.props.history.push("/")
+    })
   }
 
   render() {
