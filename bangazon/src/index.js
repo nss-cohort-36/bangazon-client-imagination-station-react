@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
 import BangazonClient from './components/BangazonClient';
-import * as serviceWorker from './serviceWorker';
-import App from "./App"
-import Register from "../src/components/auth/Register"
-import Login from "../src/components/auth/Login"
-import ProductCreateForm from '../src/components/products/ProductCreateForm'
+
 
 ReactDOM.render(
     <Router>
