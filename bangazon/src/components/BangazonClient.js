@@ -24,7 +24,10 @@ class BangazonClient extends Component {
 
     }
 
+    // This function is passed as props and will handle search functionality
+    
     search = async (search_terms) => {
+
 
         // console.log('this search func ran')
         // console.log(search_terms, 'search terms obj')
