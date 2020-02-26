@@ -1,3 +1,55 @@
 #navBar{
     z-index: 1300;
 }
+
+#nav-link {
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+
+}
+
+#nav-link:hover {
+    color: rgba(255, 255, 255, 0.603);
+    text-decoration: none;
+}
+
+#login-link {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 18px;
+}
+#login-link:hover {
+    color: rgba(255, 255, 255, 0.603);
+    text-decoration: none;
+    margin: 10px;
+    font-size: 18px;
+}
+
+#shopping-link {
+    color: rgba(0, 0, 0, 0.54);
+
+}
+
+#mobile-nav-link {
+    color: rgba(0, 0, 0, 0.87);
+    text-decoration: none;
+}
+
+#desktop-nav {
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+
+}
+
+@media screen and (max-width: 900px) {
+    #desktop-nav {
+        clear: both;
+        display: none;
+        
+
+    }
+  }
