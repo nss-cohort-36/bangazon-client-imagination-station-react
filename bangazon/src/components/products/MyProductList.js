@@ -35,7 +35,7 @@ class MyProductList extends Component {
         return (
             <Card >
                 <CardContent>
-
+                    {/* maps through myproductcarts */}
                     {
                         this.state.products.map(products => <MyProductCard key={products.id} myProductCard={products} deleteProduct={this.deleteProduct}{...this.props} />)
                     }
