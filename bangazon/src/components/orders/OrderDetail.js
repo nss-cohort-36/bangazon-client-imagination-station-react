@@ -31,9 +31,9 @@ const OrderDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchOrders = async () => {
-    const orders = await APIManager.get("orders", "?customer=true&open=true");
+    const orders = await APIManager.getAll("orders", "?customer=true&open=true");
     for (const order of orders) {
-      const products = await APIManager.get(
+      const products = await APIManager.getAll(
         "orderproducts",
         `?order=${order.id}`
       );
