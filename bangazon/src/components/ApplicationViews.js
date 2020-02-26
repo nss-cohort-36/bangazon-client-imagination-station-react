@@ -8,7 +8,7 @@ import { isAuthenticated } from "../modules/simpleAuth";
 import OrderDetail from "./orders/OrderDetail";
 import SearchList from "./products/searchList"
 // import ProductDetail from './products/ProductDetails'
-// import ProductList from './products/ProductList'
+import MyProductList from './products/MyProductList'
 // import Home from './home/Home'
 // import PaymentCreateForm from './payment/PaymentCreateForm'
 // import Profile from './myAccount/Profile'
@@ -98,6 +98,15 @@ export default class ApplicationViews extends Component {
                                 {...this.props}
                                 productId={props.match.params.productId}
                             />
+                        } else {
+                            return <Redirect to='/login' />
+                        }
+                    }}
+                />
+                <Route
+                    exact path="/products" render={props => {
+                        if (isAuthenticated()) {
+                            return <MyProductList {...props} {...this.props} />
                         } else {
                             return <Redirect to='/login' />
                         }
