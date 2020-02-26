@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './nav/Navbar';
 import ApplicationViews from './ApplicationViews'
 import APIManager from '../modules/APIManager'
+import { withRouter } from "react-router";
 
 class BangazonClient extends Component { 
     state = {
@@ -39,7 +40,8 @@ class BangazonClient extends Component {
         }       
 
         this.setState({searchResults: await APIManager.get("products", search_terms_string)})
-        // console.log(this.state, "BC state")
+
+        this.props.history.push("/SearchResults")
     }
 
     render() {
@@ -53,4 +55,4 @@ class BangazonClient extends Component {
     }
 }
 
-export default BangazonClient;
+export default withRouter(BangazonClient);

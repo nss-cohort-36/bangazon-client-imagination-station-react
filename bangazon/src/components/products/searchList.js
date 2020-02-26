@@ -13,6 +13,7 @@ class SearchList extends Component {
             {this.props.searchResults.map(product =>
               <SearchCard
                 key={product.id}
+                product={product}
                 name={product.name}
                 price={product.price}
               />
