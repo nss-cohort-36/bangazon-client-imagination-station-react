@@ -32,7 +32,6 @@ const styles = {
 
 function MyProductCard(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
@@ -42,9 +41,7 @@ function MyProductCard(props) {
         </Typography>
         <Typography variant="h5" component="h2">
           be
-          {bull}
           nev
-          {bull}o{bull}
           lent
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
