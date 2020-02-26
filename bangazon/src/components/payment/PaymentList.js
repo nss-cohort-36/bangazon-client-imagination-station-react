@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Payment from "./PaymentCard"
 
 class PaymentList extends Component {
-
+// Creates the list for payment types
   render() {
     return (
       <>

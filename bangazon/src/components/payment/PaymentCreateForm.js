@@ -33,12 +33,14 @@ class PaymentCreateForm extends React.Component {
     };
     
     handleChange = name => event => {
+        // Material UI field change func
         this.setState({
             [name]: event.target.value,
         });
     };
 
     savePaymentType = evt => {
+        // Saves payment type to DB
         evt.preventDefault()
         const paymenttype = {
             merchant_name: this.state.merchantName,

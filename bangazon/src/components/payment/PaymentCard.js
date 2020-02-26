@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 class Payment extends React.Component {
-
+// Creates card for payment type
   render() {
     const { classes } = this.props;
     return (
