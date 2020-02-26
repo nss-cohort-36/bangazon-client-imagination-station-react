@@ -25,7 +25,7 @@ import {
   Typography
 } from "@material-ui/core";
 
-const OrderDetail = () => {
+const OrderDetail = (props) => {
   const [orders, setOrders] = useState([]);
   // const [total, setTotal] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -64,6 +64,16 @@ const OrderDetail = () => {
     fetchData();
   }, []);
 
+  const handleCancelOrder = (orderId) => {
+    let confirmation = window.confirm("Are you sure you want to cancel this order?")
+    if (confirmation) {
+      APIManager.delete("orders", orderId)
+        .then(() => {
+          props.history.push("/")
+        })
+    }
+    }
+
   return isLoading ? (
     <div>Loading, please wait</div>
   ) : (
@@ -98,6 +108,7 @@ const OrderDetail = () => {
                 <ListItemText>Total: ${order.total}</ListItemText>
               </ListItem>
               <Button variant="contained">Complete Order</Button>
+              <Button variant="contained" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
             </List>
           </ListItem>
         ))}
