@@ -15,6 +15,23 @@ import React, { Component } from 'react'
 import APIManager from '../../modules/APIManager'
 import OrderAPIManager from '../../modules/OrderAPIManager'
 
+//CARDS
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import PropTypes from 'prop-types';
+
+
+const styles = {
+    card: {
+        maxWidth: 345,
+    },
+};
 
 class ProductDetail extends Component {
     state = {
@@ -28,8 +45,8 @@ class ProductDetail extends Component {
     handleAddOrderProduct = (newOrderProduct) => {
         // Handles posting a new orderProduct in the database
         APIManager.post("orderproducts/", newOrderProduct)
-                    // then, push to the home page or another page
-                    .then(() => this.props.history.push('/order'))
+            // then, push to the home page or another page
+            .then(() => this.props.history.push('/order'))
     }
 
     handleAddToOrder = () => {
@@ -54,13 +71,13 @@ class ProductDetail extends Component {
                         anything in the body.
                     */
                     APIManager.post("orders/", {})
-                    .then(newOrderObject=> {
-                        let newOrderProduct = {
-                            order_id: newOrderObject.id,
-                            product_id: this.props.productId
-                        }
-                        this.handleAddOrderProduct(newOrderProduct)
-                    })
+                        .then(newOrderObject => {
+                            let newOrderProduct = {
+                                order_id: newOrderObject.id,
+                                product_id: this.props.productId
+                            }
+                            this.handleAddOrderProduct(newOrderProduct)
+                        })
                 }
                 else {
                     let newOrderProduct = {
@@ -70,7 +87,7 @@ class ProductDetail extends Component {
                     this.handleAddOrderProduct(newOrderProduct)
                 }
 
-                
+
             })
     }
 
@@ -92,21 +109,33 @@ class ProductDetail extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="img-container">
-                    <img src={`https://robohash.org/${this.state.name}`} alt="Current User" />
-                </div>
-                <div className="product-detail-container">
-                    <h1>{this.state.title}</h1>
-                    <p>{this.state.description}</p>
-                    <ul>
-                        <li>Price: ${this.state.price}</li>
-                        <li>Quantity available: {this.state.quantity}</li>
-                    </ul>
-                    <button type="button" onClick={this.handleAddToOrder}>Add to Order</button>
-                </div>
+                <Card>
+                        <CardContent>
+                        <div className="img-container">
+                            <img src={`https://robohash.org/${this.state.name}`} alt="Current User" />
+                        </div>
+                            <Typography variant="h5" component="h2">{this.state.title}</Typography>
+                            <Typography color="textSecondary" gutterBottom>{this.state.description}</Typography>
+                            <Typography component="p">
+                                <ul>
+                                    <li>Price: ${this.state.price}</li>
+                                    <li>Quantity available: {this.state.quantity}</li>
+                                </ul>
+                            </Typography>
+                            <CardActions>
+                                <Button
+                                    size="small"
+                                    variant="contained"
+                                    onClick={this.handleAddToOrder}>Add to Order
+                        </Button>
+                            </CardActions>
+                        </CardContent>
+
+                </Card>
+
             </React.Fragment>
         )
     }
 }
 
-export default ProductDetail
+export default withStyles(styles)(ProductDetail);
