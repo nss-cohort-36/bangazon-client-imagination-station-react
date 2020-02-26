@@ -9,7 +9,7 @@ import { isAuthenticated } from "../modules/simpleAuth"
 // import Home from './home/Home'
 // import PaymentCreateForm from './payment/PaymentCreateForm'
 // import OrderDetail from './orders/OrderDetail'
-// import Profile from './myAccount/Profile'
+import Profile from './myAccount/Profile'
 
 
 export default class ApplicationViews extends Component {
@@ -102,11 +102,11 @@ export default class ApplicationViews extends Component {
 
                 <Route
                     path="/profile" render={(props, link) => {
-                        // if (isAuthenticated()) {
-                        // return <Profile {...props} {...this.props} {...link} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
+                        if (isAuthenticated()) {
+                        return <Profile {...props} {...this.props} {...link} />
+                        } else {
+                            return <Redirect to='/login' />
+                        }
                     }}
                 />
 
