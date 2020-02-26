@@ -10,37 +10,38 @@ import SearchList from "./products/searchList"
 // import ProductDetail from './products/ProductDetails'
 import MyProductList from './products/MyProductList'
 // import Home from './home/Home'
-// import PaymentCreateForm from './payment/PaymentCreateForm'
-// import Profile from './myAccount/Profile'
+import PaymentCreateForm from './payment/PaymentCreateForm'
+// import OrderDetail from './orders/OrderDetail'
+import Profile from './myAccount/Profile'
 
 export default class ApplicationViews extends Component {
 
-    render() {
-        return (
-            <React.Fragment>
+  render() {
+    return (
+      <React.Fragment>
 
 
-                <Route
-                    exact path="/login" render={props => {
-                        if (isAuthenticated()) {
-                            return <Redirect to='/' />
-                        } else {
-                            return <Login
-                                {...props} {...this.props} loggedIn={this.props.loggedIn} />
-                        }
-                    }}
-                />
-                <Route
-                    exact path="/Register" render={props => {
-                        if (isAuthenticated()) {
-                            return <Redirect to='/' />
-                        } else {
-                            return <Register
-                                {...props} {...this.props} loggedIn={this.props.loggedIn} />
-                        }
+        <Route
+          exact path="/login" render={props => {
+            if (isAuthenticated()) {
+              return <Redirect to='/' />
+            } else {
+              return <Login
+                {...props} {...this.props} loggedIn={this.props.loggedIn} />
+            }
+          }}
+        />
+        <Route
+          exact path="/Register" render={props => {
+            if (isAuthenticated()) {
+              return <Redirect to='/' />
+            } else {
+              return <Register
+                {...props} {...this.props} loggedIn={this.props.loggedIn} />
+            }
 
-                    }}
-                />
+          }}
+        />
 
                 <Route
                     exact path="/SearchResults" render={props => {
@@ -53,97 +54,86 @@ export default class ApplicationViews extends Component {
                 />
 
 
-                <Route
-                    path="/product/new"
-                    render={props => {
-                        if (isAuthenticated()) {
-                            return <ProductCreateForm {...props} {...this.props} />;
-                        } else {
-                            return <Redirect to="/login" />;
-                        }
-                    }}
-                />
+        <Route
+          path="/product/new"
+          render={props => {
+            if (isAuthenticated()) {
+              return <ProductCreateForm {...props} {...this.props} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+
+        <Route
+          path="/profile"
+          render={props => {
+            if (isAuthenticated()) {
+              return <Profile {...props} {...this.props} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
 
 
-                <Route
-                    exact
-                    path="/products"
-                    render={props => {
-                        // if (isAuthenticated()) {
-                        //     return <ProductList {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
+        <Route
+          exact
+          path="/payment/new"
+          render={props => {
+            if (isAuthenticated()) {
+              return <PaymentCreateForm {...props} {...this.props} />
+            } else {
+              return <Redirect to='/login' />
+            }
+          }}
+        />
 
-                <Route
-                    exact
-                    path="/payment/new"
-                    render={props => {
-                        // if (isAuthenticated()) {
-                        // return <PaymentCreateForm {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
+        <Route exact
+          path="/product/:productId(\d+)" render={props => {
+            if (isAuthenticated()) {
+              return <ProductDetail
+                {...props}
+                {...this.props}
+                productId={props.match.params.productId}
+              />
+            } else {
+              return <Redirect to='/login' />
+            }
+          }}
+        />
+        <Route
+          exact path="/products" render={props => {
+            if (isAuthenticated()) {
+              return <MyProductList {...props} {...this.props} />
+            } else {
+              return <Redirect to='/login' />
+            }
+          }}
+        />
+
+        <Route
+          exact path="/" render={props => {
+            // if (isAuthenticated()) {
+            //     return <Home {...props} {...this.props} />
+            // } else {
+            //     return <Redirect to='/login' />
+            // }
+          }}
+        />
 
 
-                <Route exact
-                    path="/product/:productId(\d+)" render={props => {
-                        if (isAuthenticated()) {
-                            return <ProductDetail
-                                {...props}
-                                {...this.props}
-                                productId={props.match.params.productId}
-                            />
-                        } else {
-                            return <Redirect to='/login' />
-                        }
-                    }}
-                />
-                <Route
-                    exact path="/products" render={props => {
-                        if (isAuthenticated()) {
-                            return <MyProductList {...props} {...this.props} />
-                        } else {
-                            return <Redirect to='/login' />
-                        }
-                    }}
-                />
-
-                <Route
-                    exact path="/" render={props => {
-                        // if (isAuthenticated()) {
-                        //     return <Home {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
-
-                <Route
-                    path="/profile" render={(props, link) => {
-                        // if (isAuthenticated()) {
-                        // return <Profile {...props} {...this.props} {...link} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
-                <Route
-                    path="/order"
-                    render={(props, link) => {
-                        if (isAuthenticated()) {
-                            return <OrderDetail {...props} {...this.props} {...link} />;
-                        } else {
-                            return <Redirect to="/login" />;
-                        }
-                    }}
-                />
-
-            </React.Fragment>
-        );
-    }
+        <Route
+          path="/order"
+          render={(props, link) => {
+            if (isAuthenticated()) {
+              return <OrderDetail {...props} {...this.props} {...link} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+      </React.Fragment>
+    );
+  }
 }
