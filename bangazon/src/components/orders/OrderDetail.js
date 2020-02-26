@@ -136,7 +136,8 @@ const OrderDetail = (props) => {
                   </ListItem>
                   <CardActions>
                   <Button variant="contained">Complete Order</Button>
-                  <Button variant="contained" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
+                  <Button variant="contained" 
+          color="secondary"  onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
                   </CardActions>
                 </List>
               </ListItem>
