@@ -21,7 +21,7 @@ class ProductDetail extends Component {
         title: '',
         description: '',
         quantity: 0,
-        pricePerUnit: 0,
+        price: 0,
         loadingStatus: true
     }
 
@@ -40,8 +40,8 @@ class ProductDetail extends Component {
             // then, post order to orderproduct in the database.
             .then(orderObject => {
                 let newOrderProduct = {
-                    order_id = orderObject.id,
-                    product_id = this.props.productId
+                    order_id: orderObject.id,
+                    product_id: this.props.productId
                 }
                 APIManager.post("orderproducts", newOrderProduct)
                     // then, push to the home page or another page
@@ -54,11 +54,12 @@ class ProductDetail extends Component {
         APIManager.get("products", this.props.productId)
             // then, put info into state
             .then(productObject => {
+                console.log("My Product: ", productObject)
                 this.setState({
                     title: productObject.name,
                     description: productObject.description,
                     quantity: productObject.quantity,
-                    pricePerUnit: productObject.price,
+                    price: productObject.price,
                     loadingStatus: false
                 })
             })
@@ -66,7 +67,7 @@ class ProductDetail extends Component {
 
     render() {
         return (
-            <ReactFragment>
+            <React.Fragment>
                 <div className="img-container">
                     <img src={`https://robohash.org/${this.state.name}`} alt="Current User" />
                 </div>
@@ -74,12 +75,12 @@ class ProductDetail extends Component {
                     <h1>{this.state.title}</h1>
                     <p>{this.state.description}</p>
                     <ul>
-                        <li>Price: {this.state.price}</li>
-                        <li>Quantity available: {this.state.price}</li>
+                        <li>Price: ${this.state.price}</li>
+                        <li>Quantity available: {this.state.quantity}</li>
                     </ul>
                     <button type="button" onClick={this.handleAddToOrder}>Add to Order</button>
                 </div>
-            </ReactFragment>
+            </React.Fragment>
         )
     }
 }

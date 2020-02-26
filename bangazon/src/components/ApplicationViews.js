@@ -4,7 +4,7 @@ import ProductCreateForm from "./products/ProductCreateForm";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import { isAuthenticated } from "../modules/simpleAuth"
-// import ProductDetail from './products/ProductDetails'
+import ProductDetail from './products/ProductDetails'
 // import ProductList from './products/ProductList'
 // import Home from './home/Home'
 // import PaymentCreateForm from './payment/PaymentCreateForm'
@@ -25,7 +25,7 @@ export default class ApplicationViews extends Component {
                             return <Redirect to='/' />
                         } else {
                             return <Login
-                                {...props} {...this.props} loggedIn={this.props.loggedIn}/>
+                                {...props} {...this.props} loggedIn={this.props.loggedIn} />
                         }
                     }}
                 />
@@ -35,7 +35,7 @@ export default class ApplicationViews extends Component {
                             return <Redirect to='/' />
                         } else {
                             return <Register
-                                {...props} {...this.props} loggedIn={this.props.loggedIn}/>
+                                {...props} {...this.props} loggedIn={this.props.loggedIn} />
                         }
 
                     }}
@@ -52,14 +52,18 @@ export default class ApplicationViews extends Component {
                 }
                 } />
 
+
                 <Route exact
                     path="/product/:productId(\d+)" render={props => {
-
-                        //     if (isAuthenticated()) {
-                        //       return <ProductDetail {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
+                        if (isAuthenticated()) {
+                            return <ProductDetail
+                                {...props}
+                                {...this.props}
+                                productId={props.match.params.productId}
+                                />
+                        } else {
+                            return <Redirect to='/login' />
+                        }
                     }}
                 />
                 <Route
