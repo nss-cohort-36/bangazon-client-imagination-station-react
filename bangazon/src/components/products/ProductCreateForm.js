@@ -73,7 +73,7 @@ class ProductCreateForm extends React.Component {
 
         if (this.state.Name !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.ProductTypeId !== null) {
             // Make a post with the product to the API
-            APIManager.post("products/", product)
+            APIManager.post("products", product)
                 .then((response) => {
                     // pushes you to product detail for the product just created
                     this.props.history.push(`/product/${response.id}`)
