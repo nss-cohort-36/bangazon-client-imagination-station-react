@@ -29,8 +29,7 @@ class ProductDetail extends Component {
         // Handles posting a new orderProduct in the database
         APIManager.post("orderproducts/", newOrderProduct)
                     // then, push to the home page or another page
-                    .then(response => console.log(response))
-                    // .then(() => this.props.history.push('/order'))
+                    .then(() => this.props.history.push('/order'))
     }
 
     handleAddToOrder = () => {
@@ -47,7 +46,6 @@ class ProductDetail extends Component {
         OrderAPIManager.getUserOpenOrder()
             // then, post order to orderproduct in the database.
             .then(orderObject => {
-                console.log("OrderObject: ", orderObject)
                 // Check to see if this customer has an open order. If not, create a new order.
                 if (orderObject.length < 1) {
                     /*
@@ -57,11 +55,14 @@ class ProductDetail extends Component {
                     */
                     APIManager.post("orders/", {})
                     .then(newOrderObject=> {
-                        console.log("new order object: ", newOrderObject)
+                        let newOrderProduct = {
+                            order_id: newOrderObject.id,
+                            product_id: this.props.productId
+                        }
+                        this.handleAddOrderProduct(newOrderProduct)
                     })
                 }
                 else {
-                    console.log("already had an order.")
                     let newOrderProduct = {
                         order_id: orderObject[0].id,
                         product_id: this.props.productId
