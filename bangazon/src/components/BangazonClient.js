@@ -42,7 +42,7 @@ class BangazonClient extends Component {
             search_terms_string += `?name=${search_terms.name}`
         }       
 
-        this.setState({searchResults: await APIManager.get("products", search_terms_string)})
+        this.setState({searchResults: await APIManager.getAll("products", search_terms_string)})
 
         this.props.history.push("/SearchResults")
     }
