@@ -49,7 +49,7 @@ class PaymentCreateForm extends React.Component {
 
         if (this.state.merchantName !== "" && this.state.accountNumber !== "" && this.state.expirationDate !== "" ) {
             // Make a post with the product to the API
-            APIManager.post("paymenttypes/", paymenttype)
+            APIManager.post("paymenttypes", paymenttype)
                 .then((response) => {
                     // pushes you to product detail for the product just created
                     this.props.history.push(`/profile`)

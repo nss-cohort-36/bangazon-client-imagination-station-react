@@ -38,7 +38,7 @@ class Profile extends Component {
     getPaymentTypes = () => {
         // Gets all payment types, then sets them in state to load the cards later
 
-        APIManager.get("paymenttypes/")
+        APIManager.getAll("paymenttypes")
             .then((response) => {
                 this.setState({
                     paymenttypes: response
@@ -48,7 +48,7 @@ class Profile extends Component {
     deletePaymentType = (id) => {
         APIManager.delete("paymenttypes", id)
             .then(() => {
-                APIManager.get("paymenttypes/")
+                APIManager.getAll("paymenttypes")
                     .then((response) => {
                         console.log(response)
                         this.setState({
