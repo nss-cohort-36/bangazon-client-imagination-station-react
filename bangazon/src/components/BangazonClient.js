@@ -43,6 +43,7 @@ class BangazonClient extends Component {
         }
 
         this.setState({searchResults: await APIManager.get("products", search_terms_string)})
+        console.log(this.state, "BC state")
     }
 
     render() {
