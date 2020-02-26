@@ -55,7 +55,7 @@ export default {
       },
       body: JSON.stringify(editedItem)
     });
-    return results.json();
+    return results;
   },
 
   async patch(route, editedItem, id) {

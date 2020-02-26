@@ -13,7 +13,8 @@ import MyProductList from './products/MyProductList'
 import PaymentCreateForm from './payment/PaymentCreateForm'
 // import OrderDetail from './orders/OrderDetail'
 import Profile from './myAccount/Profile'
-
+import CompleteOrder from './orders/CompleteOrder'
+import ThankYou from "./orders/ThankYou"
 export default class ApplicationViews extends Component {
 
   render() {
@@ -43,15 +44,15 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-                <Route
-                    exact path="/SearchResults" render={props => {
-                        if(isAuthenticated()) {
-                            return <SearchList {...props} {...this.props} />
-                        } else {
-                            return <Redirect to="/login" />
-                        }
-                    }}
-                />
+        <Route
+          exact path="/SearchResults" render={props => {
+            if (isAuthenticated()) {
+              return <SearchList {...props} {...this.props} />
+            } else {
+              return <Redirect to="/login" />
+            }
+          }}
+        />
 
 
         <Route
@@ -133,7 +134,29 @@ export default class ApplicationViews extends Component {
             }
           }}
         />
+
+        <Route
+          path="/completeorder/:orderId(\d+)"
+          render={(props, link) => {
+            if (isAuthenticated()) {
+              return <CompleteOrder {...props} {...this.props} {...link} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+        <Route
+          path="/thankyou'"
+          render={(props, link) => {
+            if (isAuthenticated()) {
+              return <ThankYou {...props} {...this.props} {...link} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
       </React.Fragment>
     );
   }
 }
+

@@ -18,6 +18,8 @@ import "./Order.css";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import { Link } from "react-router-dom"
+
 import {
   ListItemText,
   Container,
@@ -25,7 +27,7 @@ import {
   Typography
 } from "@material-ui/core";
 
-const OrderDetail = () => {
+const OrderDetail = (props) => {
   const [orders, setOrders] = useState([]);
   // const [total, setTotal] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -97,7 +99,15 @@ const OrderDetail = () => {
               <ListItem style={{ alignItems: "flex-end" }}>
                 <ListItemText>Total: ${order.total}</ListItemText>
               </ListItem>
-              <Button variant="contained">Complete Order</Button>
+              
+              <Button variant="contained" ><Link to={{
+          pathname: `/completeorder/${order.id}`,
+          state: {
+            order: order
+          }
+        }}>
+        Complete Order</Link>
+</Button>
             </List>
           </ListItem>
         ))}
