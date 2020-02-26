@@ -25,6 +25,14 @@ class ProductDetail extends Component {
         loadingStatus: true
     }
 
+    handleAddOrderProduct = (newOrderProduct) => {
+        // Handles posting a new orderProduct in the database
+        APIManager.post("orderproducts/", newOrderProduct)
+                    // then, push to the home page or another page
+                    .then(response => console.log(response))
+                    // .then(() => this.props.history.push('/order'))
+    }
+
     handleAddToOrder = () => {
         /*
             Function to handle click event for add button. Adds product to order in database.
@@ -39,13 +47,29 @@ class ProductDetail extends Component {
         OrderAPIManager.getUserOpenOrder()
             // then, post order to orderproduct in the database.
             .then(orderObject => {
-                let newOrderProduct = {
-                    order_id: orderObject.id,
-                    product_id: this.props.productId
+                console.log("OrderObject: ", orderObject)
+                // Check to see if this customer has an open order. If not, create a new order.
+                if (orderObject.length < 1) {
+                    /*
+                        Make sure to add a trailing slash onto the end of orders.
+                        Empty object passed as the POST for orders does not require
+                        anything in the body.
+                    */
+                    APIManager.post("orders/", {})
+                    .then(newOrderObject=> {
+                        console.log("new order object: ", newOrderObject)
+                    })
                 }
-                APIManager.post("orderproducts", newOrderProduct)
-                    // then, push to the home page or another page
-                    .then(() => this.props.history.push('/'))
+                else {
+                    console.log("already had an order.")
+                    let newOrderProduct = {
+                        order_id: orderObject[0].id,
+                        product_id: this.props.productId
+                    }
+                    this.handleAddOrderProduct(newOrderProduct)
+                }
+
+                
             })
     }
 
@@ -54,7 +78,6 @@ class ProductDetail extends Component {
         APIManager.get("products", this.props.productId)
             // then, put info into state
             .then(productObject => {
-                console.log("My Product: ", productObject)
                 this.setState({
                     title: productObject.name,
                     description: productObject.description,
