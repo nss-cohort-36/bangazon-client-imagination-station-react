@@ -11,7 +11,10 @@ class Payment extends Component {
             <h2>Merchant: {this.props.type.merchant_name}</h2>
             <h3>Account Number: {this.props.type.account_number}</h3>
             <h4>Expiration Date: {dateString}</h4>
-            <button onClick={() => {this.props.deletePaymentType(this.props.type.id)}}>Delete</button>
+            <button onClick={() => {
+              this.props.deletePaymentType(this.props.type.id)
+            
+            }}>Delete</button>
         </section>
       </>
     )

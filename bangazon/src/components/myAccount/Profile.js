@@ -16,7 +16,7 @@ class Profile extends Component {
     }
    
     
-    getPaymentTypes () {
+    getPaymentTypes = () => {
         // Gets all payment types, then sets them in state to load the cards later
         
         APIManager.get("paymenttypes/")
@@ -26,16 +26,20 @@ class Profile extends Component {
                 })
             })
     }
-    deletePaymentType (id) {
+    deletePaymentType = (id) => {
         APIManager.delete("paymenttypes", id)
-        .then((response)=>response.json())
-        .then((res) => {
-            console.log(res)
-            // this.setState({
-            //     paymenttypes: []
-            // })
+        .then(()=> {
+            APIManager.get("paymenttypes/")
+            .then((response) => {
+                console.log(response)
+                this.setState({
+                    paymenttypes: response
+                })
+            })
         })
     }
+
+  
 
     render() {
 
@@ -43,7 +47,8 @@ class Profile extends Component {
             <>
                 <div className="profile-container">
                     <button onClick={() => this.getPaymentTypes()}>View Payment Options</button>
-                <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType}/>
+                    <button onClick={() => this.props.history.push('/payment/new')}>Add a Payment Option</button>
+                <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
                     
                 </div>
             </>
