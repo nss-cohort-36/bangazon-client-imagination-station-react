@@ -6,7 +6,7 @@ import Register from "./auth/Register";
 import ProductDetail from './products/ProductDetails'
 import { isAuthenticated } from "../modules/simpleAuth";
 import OrderDetail from "./orders/OrderDetail";
-import SearchList from "./products/SearchList"
+import SearchList from "./products/searchList"
 // import ProductDetail from './products/ProductDetails'
 // import ProductList from './products/ProductList'
 // import Home from './home/Home'
