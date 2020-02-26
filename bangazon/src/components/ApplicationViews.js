@@ -5,7 +5,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import { isAuthenticated } from "../modules/simpleAuth"
 // import ProductDetail from './products/ProductDetails'
-// import ProductList from './products/ProductList'
+import MyProductList from './products/MyProductList'
 // import Home from './home/Home'
 // import PaymentCreateForm from './payment/PaymentCreateForm'
 // import OrderDetail from './orders/OrderDetail'
@@ -64,11 +64,11 @@ export default class ApplicationViews extends Component {
                 />
                 <Route
                     exact path="/products" render={props => {
-                        // if (isAuthenticated()) {
-                        //     return <ProductList {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
+                        if (isAuthenticated()) {
+                            return <MyProductList {...props} {...this.props} />
+                        } else {
+                            return <Redirect to='/login' />
+                        }
                     }}
                 />
                 <Route
