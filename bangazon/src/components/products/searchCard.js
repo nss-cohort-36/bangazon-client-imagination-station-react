@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class SearchCard extends Component {
 
     render() {
-        return <p>{this.props.name}</p>
+        return <p>Name: {this.props.name} Price: ${this.props.price}</p>
     }
 }
 
