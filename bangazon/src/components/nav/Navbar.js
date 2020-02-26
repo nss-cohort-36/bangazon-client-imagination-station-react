@@ -29,6 +29,8 @@ import Home from '@material-ui/icons/Home'
 import AttachMoney from '@material-ui/icons/AttachMoney'
 import Store from '@material-ui/icons/Store'
 import './Navbar.css'
+import { isAuthenticated, logout } from "../../modules/simpleAuth"
+
 
 import { Link, withRouter } from "react-router-dom"
 
@@ -47,8 +49,8 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
     [theme.breakpoints.up('sm')]: {
-        display: 'none',
-      },
+      display: 'none',
+    },
   },
   title: {
     display: 'none',
@@ -157,7 +159,7 @@ class NavBar extends React.Component {
   };
 
 
-//   for drawer
+  //   for drawer
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
@@ -176,7 +178,11 @@ class NavBar extends React.Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMenuClose}><Link className="nav-link link" to="/profile">Profile</Link></MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Log Out</MenuItem>
+        <MenuItem onClick={() => {
+          this.handleMenuClose()
+          logout()
+          this.props.loggedOut()
+          }}>Log Out</MenuItem>
       </Menu>
     );
 
@@ -192,7 +198,7 @@ class NavBar extends React.Component {
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
-            <Link className="nav-link link" to="/order"><ShoppingCart /></Link>
+              <Link className="nav-link link" to="/order"><ShoppingCart /></Link>
             </Badge>
           </IconButton>
           <Link className="nav-link link" to="/order"><p>Orders</p></Link>
@@ -226,79 +232,74 @@ class NavBar extends React.Component {
     //       </List>
     //     </div>
     //   );
+    if (isAuthenticated()) {
+      return (
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar position="static" id="navBar">
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                <MenuIcon />
+              </IconButton>
 
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position="static" id="navBar">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
-            
-            {/* <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Bangazon Prime
-            </Typography> */}
-              <ListItem button id="home">
-                <ListItemIcon><Home /></ListItemIcon>
-                <ListItemText><Link className="nav-link link" to="/home">Bangazon Prime</Link></ListItemText>
-              </ListItem>
-              <ListItem button id="sellAProduct">
-                <ListItemIcon><AttachMoney /></ListItemIcon>
-                <ListItemText><Link className="nav-link link" to="/product/new">Sell A Product</Link></ListItemText>
-              </ListItem>
-              <ListItem button id="myProducts">
-                <ListItemIcon><Store /></ListItemIcon>
-                <ListItemText><Link className="nav-link link" to="/products">My Products</Link></ListItemText>
-              </ListItem>
-                  <div className={classes.search}>
-              <InputBase
-                placeholder="Product…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-            <div className={classes.search}>
-              <InputBase
-                placeholder="City…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-            <IconButton>
+              <ListItemIcon><Home /></ListItemIcon>
+
+              <ListItemText><Link to="/home" id="nav-link" className={classes.title} variant="h6" color="inherit" noWrap>Bangazon Prime</Link></ListItemText>
+
+              <ListItemIcon><AttachMoney /></ListItemIcon>
+              <ListItemText><Link to="/product/new" id="nav-link">Sell A Product</Link></ListItemText>
+
+              <ListItemIcon><Store /></ListItemIcon>
+              <ListItemText><Link to="/products" id="nav-link">My Products</Link></ListItemText>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="Product…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="City…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <IconButton>
                 <SearchIcon />
-            </IconButton>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                <Link className="nav-link link" to="/order"><ShoppingCart /></Link>
-                </Badge>
               </IconButton>
-              <IconButton
-                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
-        <nav className={classes.drawer}>
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Hidden smUp implementation="css">
-            {/* <Drawer
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+                <IconButton color="inherit">
+                  <Badge badgeContent={4} color="secondary">
+                    <Link className="nav-link link" to="/order" id="nav-link"><ShoppingCart /></Link>
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleProfileMenuOpen}
+                  color="inherit"
+                  id="nav-link"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </div>
+              <div className={classes.sectionMobile}>
+                <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                  <MoreIcon />
+                </IconButton>
+              </div>
+            </Toolbar>
+          </AppBar>
+          <nav className={classes.drawer}>
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Hidden smUp implementation="css">
+              {/* <Drawer
               container={this.props.container}
               variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -310,9 +311,9 @@ class NavBar extends React.Component {
             >
               {drawer}
             </Drawer> */}
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            {/* <Drawer
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              {/* <Drawer
               classes={{
                 paper: classes.drawerPaper,
               }}
@@ -321,19 +322,60 @@ class NavBar extends React.Component {
             >
               {drawer}
             </Drawer> */}
-          </Hidden>
-        </nav>
-        {renderMenu}
-        {renderMobileMenu}
-      </div>
-    );
+            </Hidden>
+
+          </nav>
+          {renderMenu}
+          {renderMobileMenu}
+        </div>
+      )
+    } else {
+      return (
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar position="static" id="navBar">
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                <MenuIcon />
+              </IconButton>
+              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                Bangazon Prime
+            </Typography>
+
+              <Link to="/login" id="login-link" className={classes.title} variant="h6" color="inherit" noWrap>Login</Link>
+
+
+              <Link to="/register" id="login-link">Register</Link>
+
+
+
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+
+
+                <AccountCircle />
+
+              </div>
+              <div className={classes.sectionMobile}>
+                <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                  <MoreIcon />
+                </IconButton>
+              </div>
+            </Toolbar>
+          </AppBar>
+
+          {renderMenu}
+          {renderMobileMenu}
+        </div>
+      )
+    }
   }
 }
 
 NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
   container: PropTypes.object,
-    theme: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 

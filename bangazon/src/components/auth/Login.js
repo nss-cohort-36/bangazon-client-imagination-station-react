@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 // import "./Login.css"
-import { login } from "../../modules/simpleAuth"
+import { login, isAuthenticated } from "../../modules/simpleAuth"
 
 
 class Login extends Component {
@@ -27,7 +27,10 @@ class Login extends Component {
 
       login(credentials)
       .then(() => {
-        this.props.history.push("/")
+        if (isAuthenticated()) {
+        this.props.loggedIn()
+        this.props.history.push("/home")
+        }
       })
     }
 
