@@ -29,32 +29,36 @@ const styles = {
     marginBottom: 12,
   },
 };
-
 function MyProductCard(props) {
   const { classes } = props;
-
+  
   return (
     <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+          Product Type: {props.myProductCard.product_type.name}
         </Typography>
         <Typography variant="h5" component="h2">
-          be
-          nev
-          lent
+          {props.myProductCard.name}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+          ${props.myProductCard.price}  
         </Typography>
         <Typography component="p">
-          well meaning and kindly.
+          Qty: {props.myProductCard.quantity}
           <br />
-          {'"a benevolent smile"'}
+          Location: {props.myProductCard.location}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button 
+          size="small" 
+          variant="contained" 
+          color="secondary" 
+          className={classes.button}
+          onClick={() => props.deleteProduct(props.myProductCard.id)}
+        >Delete
+        </Button>
       </CardActions>
     </Card>
   );
