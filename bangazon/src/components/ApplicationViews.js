@@ -6,6 +6,8 @@ import Register from "./auth/Register";
 import ProductDetail from './products/ProductDetails'
 import { isAuthenticated } from "../modules/simpleAuth";
 import OrderDetail from "./orders/OrderDetail";
+import SearchList from "./products/searchList"
+// import ProductDetail from './products/ProductDetails'
 import MyProductList from './products/MyProductList'
 // import Home from './home/Home'
 import PaymentCreateForm from './payment/PaymentCreateForm'
@@ -40,6 +42,16 @@ export default class ApplicationViews extends Component {
 
           }}
         />
+
+                <Route
+                    exact path="/SearchResults" render={props => {
+                        if(isAuthenticated()) {
+                            return <SearchList {...props} {...this.props} />
+                        } else {
+                            return <Redirect to="/login" />
+                        }
+                    }}
+                />
 
 
         <Route
