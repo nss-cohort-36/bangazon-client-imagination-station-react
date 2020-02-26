@@ -31,7 +31,7 @@ export default {
         Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
       }
     });
-    return results.json();
+    return results;
   },
 
   async post(route, newItem) {
