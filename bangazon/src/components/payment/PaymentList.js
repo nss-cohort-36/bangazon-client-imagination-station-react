@@ -12,6 +12,7 @@ class PaymentList extends Component {
               <Payment
                 key={type.id}                
                 type={type}
+                deletePaymentType={this.props.deletePaymentType}
               />)
           }
         </article>
