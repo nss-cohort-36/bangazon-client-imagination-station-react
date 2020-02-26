@@ -18,13 +18,14 @@ class BangazonClient extends Component {
         this.setState({
             user: false
         })
+
     }
 
     render() {
 
         return (
             <>
-                <NavBar loggedOut={this.loggedOut}/>
+                <NavBar loggedOut={this.loggedOut} {...this.props}/>
                 <ApplicationViews loggedOut={this.loggedOut} loggedIn={this.loggedIn}/>
             </>
         )

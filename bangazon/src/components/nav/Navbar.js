@@ -182,7 +182,7 @@ class NavBar extends React.Component {
           this.handleMenuClose()
           logout()
           this.props.loggedOut()
-          }}>Log Out</MenuItem>
+        }}>Log Out</MenuItem>
       </Menu>
     );
 
@@ -244,7 +244,7 @@ class NavBar extends React.Component {
 
               <ListItemIcon><Home /></ListItemIcon>
 
-              <ListItemText><Link to="/home" id="nav-link" className={classes.title} variant="h6" color="inherit" noWrap>Bangazon Prime</Link></ListItemText>
+              <ListItemText><Link to="/" id="nav-link" className={classes.title} variant="h6" color="inherit" noWrap>Bangazon Prime</Link></ListItemText>
 
               <ListItemIcon><AttachMoney /></ListItemIcon>
               <ListItemText><Link to="/product/new" id="nav-link">Sell A Product</Link></ListItemText>
@@ -357,9 +357,7 @@ class NavBar extends React.Component {
 
               </div>
               <div className={classes.sectionMobile}>
-                <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                  <MoreIcon />
-                </IconButton>
+                <AccountCircle />
               </div>
             </Toolbar>
           </AppBar>

@@ -22,7 +22,7 @@ export default class ApplicationViews extends Component {
                 <Route
                     exact path="/login" render={props => {
                         if (isAuthenticated()) {
-                            return <Redirect to='/home' />
+                            return <Redirect to='/' />
                         } else {
                             return <Login
                                 {...props} {...this.props} loggedIn={this.props.loggedIn}/>
@@ -32,7 +32,7 @@ export default class ApplicationViews extends Component {
                 <Route
                     exact path="/Register" render={props => {
                         if (isAuthenticated()) {
-                            return <Redirect to='/home' />
+                            return <Redirect to='/' />
                         } else {
                             return <Register
                                 {...props} {...this.props} loggedIn={this.props.loggedIn}/>
@@ -73,11 +73,11 @@ export default class ApplicationViews extends Component {
                 />
                 <Route
                     exact path="/" render={props => {
-                        // if (isAuthenticated()) {
-                        //     return <Home {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
+                        if (isAuthenticated()) {
+                            return <ProductCreateForm {...props} {...this.props} />
+                        } else {
+                            return <Redirect to='/login' />
+                        }
                     }}
                 />
                 <Route
