@@ -33,7 +33,6 @@ const OrderDetail = () => {
   const fetchOrders = async () => {
     const orders = await APIManager.get("orders", "?customer=true&open=true");
     for (const order of orders) {
-      console.log(order);
       const products = await APIManager.get(
         "orderproducts",
         `?order=${order.id}`
@@ -41,20 +40,16 @@ const OrderDetail = () => {
       order["products"] = products;
     }
 
-    console.log(orders);
     return orders;
   };
 
   useEffect(() => {
-    console.log("products", orders);
-
     orders.forEach(order => {
       order["total"] = order.products
         ? order.products.reduce((total, product) => {
             return total + Number(product.product.price);
           }, 0)
         : 0;
-      console.log("order total", order.total);
     });
   }, [orders]);
 
@@ -102,11 +97,11 @@ const OrderDetail = () => {
               <ListItem style={{ alignItems: "flex-end" }}>
                 <ListItemText>Total: ${order.total}</ListItemText>
               </ListItem>
+              <Button variant="contained">Complete Order</Button>
             </List>
           </ListItem>
         ))}
       </List>
-      <Button variant="contained">Complete Order</Button>
     </Container>
   );
 };
