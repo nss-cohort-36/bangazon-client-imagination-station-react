@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchCard from "./SearchCard"
+import SearchCard from "./searchCard"
 
 class SearchList extends Component {
 
