@@ -140,7 +140,22 @@ class NavBar extends React.Component {
     anchorEl: null,
     mobileMoreAnchorEl: null,
     mobileOpen: false,
+    productSearchField: "",
+    citySearchField: ""
   };
+
+  handleInputChange = (evt) => {
+    let stateToChange = {}
+    stateToChange[evt.target.id] = evt.target.value
+    this.setState(stateToChange)
+  }
+
+  doSearch = () => {
+      let searchObj = {location: "", name: ""}
+      searchObj.name = this.state.productSearchField
+      searchObj.location = this.state.citySearchField
+      this.props.search(searchObj)
+  }
 
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -273,6 +288,8 @@ class NavBar extends React.Component {
               <div className={classes.search}>
                 <InputBase
                   placeholder="Product…"
+                  onChange={this.handleInputChange}
+                  id="productSearchField"
                   classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
@@ -281,6 +298,8 @@ class NavBar extends React.Component {
               </div>
               <div className={classes.search}>
                 <InputBase
+                  onChange={this.handleInputChange}
+                  id="citySearchField"
                   placeholder="City…"
                   classes={{
                     root: classes.inputRoot,
@@ -288,7 +307,7 @@ class NavBar extends React.Component {
                   }}
                 />
               </div>
-              <IconButton>
+              <IconButton onClick={this.doSearch}>
                 <SearchIcon />
               </IconButton>
               </section>
@@ -313,6 +332,8 @@ class NavBar extends React.Component {
               <div className={classes.search}>
                 <InputBase
                   placeholder="Product…"
+                  onChange={this.handleInputChange}
+                  id="productSearchField"
                   classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
@@ -322,6 +343,8 @@ class NavBar extends React.Component {
               <div className={classes.search}>
                 <InputBase
                   placeholder="City…"
+                  onChange={this.handleInputChange}
+                  id="citySearchField"
                   classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
