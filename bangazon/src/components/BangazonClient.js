@@ -30,17 +30,17 @@ class BangazonClient extends Component {
 
         let search_terms_string = ""
 
-        if (search_terms.location) {
-            search_terms_string += `?location=${search_terms.location}`
-        }
-
-        if (search_terms.name) {
-            search_terms_string += `?name=${search_terms.name}`
-        }
-
         if (search_terms.name && search_terms.location) {
             search_terms_string += `?name=${search_terms.name}&location=${search_terms.location}`
         }
+
+        else if (search_terms.location) {
+            search_terms_string += `?location=${search_terms.location}`
+        }
+
+        else if (search_terms.name) {
+            search_terms_string += `?name=${search_terms.name}`
+        }       
 
         this.setState({searchResults: await APIManager.get("products", search_terms_string)})
         console.log(this.state, "BC state")
