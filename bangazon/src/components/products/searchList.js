@@ -1,26 +1,31 @@
 import React, { Component } from 'react'
 import SearchCard from "./searchCard"
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 class SearchList extends Component {
 
 
-    render() {
+  render() {
 
-        // console.log(this.props.searchResults, 'search results')
+    // console.log(this.props.searchResults, 'search results')
 
-        return (
-            <div>
-            {this.props.searchResults.map(product =>
-              <SearchCard
-                key={product.id}
-                product={product}
-                name={product.name}
-                price={product.price}
-              />
-            )}
-          </div>
-        )
-    }
+    return (
+      <Card >
+        <CardContent>
+          {this.props.searchResults.map(product =>
+            <SearchCard
+              key={product.id}
+              product={product}
+              name={product.name}
+              price={product.price}
+            />
+          )}
+        </CardContent>
+
+      </Card>
+    )
+  }
 
 }
 
