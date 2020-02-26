@@ -43,6 +43,9 @@ function MyProductCard(props) {
           <br />
           Location: {props.myProductCard.location}
         </Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          Description: {props.myProductCard.description}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button 
