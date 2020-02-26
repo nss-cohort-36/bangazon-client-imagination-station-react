@@ -10,7 +10,7 @@ class MyProductList extends Component {
     }
 
     componentDidMount() {
-        APIManager.get("products?customer=true")
+        APIManager.getAll("products", "?customer=true")
             .then((products) => {
                 this.setState({
                     products: products
@@ -21,7 +21,7 @@ class MyProductList extends Component {
     deleteProduct = id => {
         APIManager.delete("products",id)
             .then(() => {
-                APIManager.get("products?customer=true")
+                APIManager.getAll("products", "?customer=true")
                     .then((newProducts) => {
                         console.log("new", newProducts)
                         this.setState({

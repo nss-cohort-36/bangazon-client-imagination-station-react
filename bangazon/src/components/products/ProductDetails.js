@@ -44,9 +44,15 @@ class ProductDetail extends Component {
 
     handleAddOrderProduct = (newOrderProduct) => {
         // Handles posting a new orderProduct in the database
+<<<<<<< HEAD
         APIManager.post("orderproducts/", newOrderProduct)
             // then, push to the home page or another page
             .then(() => this.props.history.push('/order'))
+=======
+        APIManager.post("orderproducts", newOrderProduct)
+                    // then, push to the home page or another page
+                    .then(() => this.props.history.push('/order'))
+>>>>>>> master
     }
 
     handleAddToOrder = () => {
@@ -70,6 +76,7 @@ class ProductDetail extends Component {
                         Empty object passed as the POST for orders does not require
                         anything in the body.
                     */
+<<<<<<< HEAD
                     APIManager.post("orders/", {})
                         .then(newOrderObject => {
                             let newOrderProduct = {
@@ -78,6 +85,16 @@ class ProductDetail extends Component {
                             }
                             this.handleAddOrderProduct(newOrderProduct)
                         })
+=======
+                    APIManager.post("orders", {})
+                    .then(newOrderObject=> {
+                        let newOrderProduct = {
+                            order_id: newOrderObject.id,
+                            product_id: this.props.productId
+                        }
+                        this.handleAddOrderProduct(newOrderProduct)
+                    })
+>>>>>>> master
                 }
                 else {
                     let newOrderProduct = {
@@ -93,7 +110,7 @@ class ProductDetail extends Component {
 
     componentDidMount() {
         // take id from props, fetch call to get product
-        APIManager.get("products", this.props.productId)
+        APIManager.getOne("products", this.props.productId)
             // then, put info into state
             .then(productObject => {
                 this.setState({
