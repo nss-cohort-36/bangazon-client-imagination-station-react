@@ -8,7 +8,7 @@ import { isAuthenticated } from "../modules/simpleAuth";
 import OrderDetail from "./orders/OrderDetail";
 // import ProductList from './products/ProductList'
 // import Home from './home/Home'
-// import PaymentCreateForm from './payment/PaymentCreateForm'
+import PaymentCreateForm from './payment/PaymentCreateForm'
 // import OrderDetail from './orders/OrderDetail'
 import Profile from './myAccount/Profile'
 
@@ -81,11 +81,11 @@ export default class ApplicationViews extends Component {
           exact
           path="/payment/new"
           render={props => {
-            // if (isAuthenticated()) {
-            // return <PaymentCreateForm {...props} {...this.props} />
-            // } else {
-            //     return <Redirect to='/login' />
-            // }
+            if (isAuthenticated()) {
+            return <PaymentCreateForm {...props} {...this.props} />
+            } else {
+                return <Redirect to='/login' />
+            }
           }}
         />
 
