@@ -25,25 +25,21 @@ class BangazonClient extends Component {
 
     search = async (search_terms) => {
 
-        console.log('this search func ran')
-        console.log(search_terms, 'search terms obj')
+        // console.log('this search func ran')
+        // console.log(search_terms, 'search terms obj')
 
         let search_terms_string = ""
 
         if (search_terms.name && search_terms.location) {
             search_terms_string += `?name=${search_terms.name}&location=${search_terms.location}`
-        }
-
-        else if (search_terms.location) {
+        } else if (search_terms.location) {
             search_terms_string += `?location=${search_terms.location}`
-        }
-
-        else if (search_terms.name) {
+        } else if (search_terms.name) {
             search_terms_string += `?name=${search_terms.name}`
         }       
 
         this.setState({searchResults: await APIManager.get("products", search_terms_string)})
-        console.log(this.state, "BC state")
+        // console.log(this.state, "BC state")
     }
 
     render() {
@@ -51,7 +47,7 @@ class BangazonClient extends Component {
         return (
             <>
                 <NavBar search={this.search} loggedOut={this.loggedOut} {...this.props}/>
-                <ApplicationViews loggedOut={this.loggedOut} loggedIn={this.loggedIn}/>
+                <ApplicationViews searchResults={this.state.searchResults} loggedOut={this.loggedOut} loggedIn={this.loggedIn}/>
             </>
         )
     }
