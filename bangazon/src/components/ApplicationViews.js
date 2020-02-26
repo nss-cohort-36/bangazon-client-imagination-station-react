@@ -53,17 +53,7 @@ export default class ApplicationViews extends Component {
                     }}
                 />
 
-                <Route
-                    exact
-                    path="/product/:productId(\d+)"
-                    render={props => {
-                        //     if (isAuthenticated()) {
-                        //       return <ProductDetail {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
+
                 <Route
                     exact
                     path="/products"
@@ -75,17 +65,7 @@ export default class ApplicationViews extends Component {
                         // }
                     }}
                 />
-                <Route
-                    exact
-                    path="/"
-                    render={props => {
-                        // if (isAuthenticated()) {
-                        //     return <Home {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
+
                 <Route
                     exact
                     path="/payment/new"
@@ -121,19 +101,11 @@ export default class ApplicationViews extends Component {
                         }
                     }}
                 />
+
                 <Route
                     exact path="/" render={props => {
                         // if (isAuthenticated()) {
                         //     return <Home {...props} {...this.props} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
-                <Route
-                    exact path="/payment/new" render={props => {
-                        // if (isAuthenticated()) {
-                        // return <PaymentCreateForm {...props} {...this.props} />
                         // } else {
                         //     return <Redirect to='/login' />
                         // }
@@ -160,16 +132,6 @@ export default class ApplicationViews extends Component {
                     }}
                 />
 
-                <Route
-                    path="/profile"
-                    render={(props, link) => {
-                        // if (isAuthenticated()) {
-                        // return <Profile {...props} {...this.props} {...link} />
-                        // } else {
-                        //     return <Redirect to='/login' />
-                        // }
-                    }}
-                />
             </React.Fragment>
         );
     }
