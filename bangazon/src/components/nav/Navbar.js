@@ -177,7 +177,7 @@ class NavBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}><Link className="nav-link link" to="/profile">Profile</Link></MenuItem>
+        <MenuItem onClick={this.handleMenuClose}><Link id="mobile-nav-link" to="/profile">Profile</Link></MenuItem>
         <MenuItem onClick={() => {
           this.handleMenuClose()
           logout()
@@ -196,15 +196,33 @@ class NavBar extends React.Component {
         id="userMenu"
       >
         <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" id="shopping-link">
+          <Link id="mobile-nav-link" to="/order"><Home id="shopping-link" /></Link>
+          </IconButton>
+          <Link id="mobile-nav-link" to="/"><p>Bangazon Prime</p></Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuClose}>
+          <IconButton color="inherit" id="shopping-link">
+          <Link id="mobile-nav-link" to="/product/new"><AttachMoney id="shopping-link" /></Link>
+          </IconButton>
+          <Link id="mobile-nav-link" to="/product/new"><p>Sell A Product</p></Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuClose}>
+          <IconButton color="inherit" id="shopping-link">
+          <Link id="mobile-nav-link" to="/products"><Store id="shopping-link" /></Link>
+          </IconButton>
+          <Link id="mobile-nav-link" to="/products"><p>My Products</p></Link>
+        </MenuItem>
+        <MenuItem onClick={this.handleMobileMenuClose}>
+          <IconButton color="inherit" >
             <Badge badgeContent={4} color="secondary">
-              <Link className="nav-link link" to="/order"><ShoppingCart /></Link>
+              <Link id="mobile-nav-link" to="/order"><ShoppingCart id="shopping-link" /></Link>
             </Badge>
           </IconButton>
-          <Link className="nav-link link" to="/order"><p>Orders</p></Link>
+          <Link id="mobile-nav-link" to="/order"><p>Orders</p></Link>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" id="shopping-link">
             <AccountCircle />
           </IconButton>
           <p>Profile</p>
@@ -238,13 +256,13 @@ class NavBar extends React.Component {
           <CssBaseline />
           <AppBar position="static" id="navBar">
             <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+              {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                 <MenuIcon />
-              </IconButton>
-
+              </IconButton> */}
+              <section id="desktop-nav">
               <ListItemIcon><Home /></ListItemIcon>
 
-              <ListItemText><Link to="/" id="nav-link" className={classes.title} variant="h6" color="inherit" noWrap>Bangazon Prime</Link></ListItemText>
+              <ListItemText><Link to="/" id="nav-link" >Bangazon Prime</Link></ListItemText>
 
               <ListItemIcon><AttachMoney /></ListItemIcon>
               <ListItemText><Link to="/product/new" id="nav-link">Sell A Product</Link></ListItemText>
@@ -272,11 +290,12 @@ class NavBar extends React.Component {
               <IconButton>
                 <SearchIcon />
               </IconButton>
+              </section>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
                 <IconButton color="inherit">
                   <Badge badgeContent={4} color="secondary">
-                    <Link className="nav-link link" to="/order" id="nav-link"><ShoppingCart /></Link>
+                    <Link className="nav-link link" to="/order" id="shopping-link"><ShoppingCart /></Link>
                   </Badge>
                 </IconButton>
                 <IconButton
@@ -284,22 +303,43 @@ class NavBar extends React.Component {
                   aria-haspopup="true"
                   onClick={this.handleProfileMenuOpen}
                   color="inherit"
-                  id="nav-link"
+                  id="shopping-link"
                 >
                   <AccountCircle />
                 </IconButton>
               </div>
               <div className={classes.sectionMobile}>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="Product…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <div className={classes.search}>
+                <InputBase
+                  placeholder="City…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
                 <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
                   <MoreIcon />
                 </IconButton>
               </div>
             </Toolbar>
           </AppBar>
-          <nav className={classes.drawer}>
-            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          {/* <nav className={classes.drawer}>
+            The implementation can be swapped with js to avoid SEO duplication of links.
             <Hidden smUp implementation="css">
-              {/* <Drawer
+              <Drawer
               container={this.props.container}
               variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -310,10 +350,10 @@ class NavBar extends React.Component {
               }}
             >
               {drawer}
-            </Drawer> */}
+            </Drawer>
             </Hidden>
             <Hidden xsDown implementation="css">
-              {/* <Drawer
+              <Drawer
               classes={{
                 paper: classes.drawerPaper,
               }}
@@ -321,10 +361,10 @@ class NavBar extends React.Component {
               open
             >
               {drawer}
-            </Drawer> */}
+            </Drawer>
             </Hidden>
 
-          </nav>
+          </nav> */}
           {renderMenu}
           {renderMobileMenu}
         </div>
@@ -335,16 +375,18 @@ class NavBar extends React.Component {
           <CssBaseline />
           <AppBar position="static" id="navBar">
             <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+              {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                 <MenuIcon />
-              </IconButton>
-              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+              </IconButton> */}
+              <Typography  variant="h6" color="inherit" >
                 Bangazon Prime
             </Typography>
 
-              <Link to="/login" id="login-link" className={classes.title} variant="h6" color="inherit" noWrap>Login</Link>
+              {/* <ListItemIcon><Home /></ListItemIcon> */}
+              <Link to="/login" id="login-link" >Login</Link>
 
 
+              {/* <ListItemIcon><Home /></ListItemIcon> */}
               <Link to="/register" id="login-link">Register</Link>
 
 
@@ -353,11 +395,12 @@ class NavBar extends React.Component {
               <div className={classes.sectionDesktop}>
 
 
-                <AccountCircle />
+                <AccountCircle id="shopping-link" />
 
               </div>
               <div className={classes.sectionMobile}>
-                <AccountCircle />
+                
+                <AccountCircle id="shopping-link" />
               </div>
             </Toolbar>
           </AppBar>

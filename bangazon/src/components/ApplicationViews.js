@@ -73,11 +73,11 @@ export default class ApplicationViews extends Component {
                 />
                 <Route
                     exact path="/" render={props => {
-                        if (isAuthenticated()) {
-                            return <ProductCreateForm {...props} {...this.props} />
-                        } else {
-                            return <Redirect to='/login' />
-                        }
+                        // if (isAuthenticated()) {
+                        //     return <Home {...props} {...this.props} />
+                        // } else {
+                        //     return <Redirect to='/login' />
+                        // }
                     }}
                 />
                 <Route
