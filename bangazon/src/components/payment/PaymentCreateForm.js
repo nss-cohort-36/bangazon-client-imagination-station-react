@@ -27,7 +27,8 @@ class PaymentCreateForm extends React.Component {
     state = {
         merchantName: "",
         accountNumber: "",
-        expirationDate: ""
+        month: "",
+        year: ""
         
     };
     
@@ -42,7 +43,7 @@ class PaymentCreateForm extends React.Component {
         const paymenttype = {
             merchant_name: this.state.merchantName,
             account_number: Number(this.state.accountNumber),
-            expiration_date: Date(this.state.expirationDate),
+            expiration_date: `${this.state.month}/${this.state.year}`,
            
         }
 
@@ -92,11 +93,22 @@ class PaymentCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
+                            inputProps={{maxLength: 2}}
                             id="outlined-number"
-                            label="Expiration Date"
-                            onChange={this.handleChange('expirationDate')}
+                            label="MM"
+                            onChange={this.handleChange('month')}
                             className={classes.textField}
-
+                            maxLength="2"
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            inputProps={{maxLength: 4}}
+                            id="outlined-number"
+                            label="YYYY"
+                            onChange={this.handleChange('year')}
+                            className={classes.textField}
+                            maxLength="4"
                             margin="normal"
                             variant="outlined"
                         />
