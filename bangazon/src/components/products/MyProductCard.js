@@ -1,9 +1,3 @@
-import APIManager from '../../modules/APIManager'
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import AttachMoney from '@material-ui/icons/AttachMoney'
-
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
