@@ -15,22 +15,25 @@ class Profile extends Component {
         this.setState(stateToChange)
     }
     componentDidMount() {
-        // Gets all product types, then sets them in state to load the dropdown later
+    }
+    
+    getPaymentTypes () {
+        // Gets all payment types, then sets them in state to load the cards later
+        
         APIManager.get("paymenttypes")
             .then((response) => {
-                console.log("HI",response)
                 this.setState({
                     paymenttypes: response
                 })
             })
     }
-  
 
     render() {
 
         return (
             <>
                 <div className="profile-container">
+                    <button onClick={() => this.getPaymentTypes()}>View Payment Options</button>
                 <PaymentList paymenttypes={this.state.paymenttypes} />
                     
                 </div>
