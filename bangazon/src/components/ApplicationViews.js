@@ -64,17 +64,7 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-        <Route
-          exact
-          path="/product/:productId(\d+)"
-          render={props => {
-                if (isAuthenticated()) {
-                  return <ProductDetail {...props} {...this.props} productId={props.match.params.productId} />
-            } else {
-                return <Redirect to='/login' />
-            }
-          }}
-        />
+
         <Route
           exact
           path="/products"
@@ -86,17 +76,7 @@ export default class ApplicationViews extends Component {
             // }
           }}
         />
-        <Route
-          exact
-          path="/"
-          render={props => {
-            // if (isAuthenticated()) {
-            //     return <Home {...props} {...this.props} />
-            // } else {
-            //     return <Redirect to='/login' />
-            // }
-          }}
-        />
+
         <Route
           exact
           path="/payment/new"
@@ -109,6 +89,29 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+        <Route exact
+          path="/product/:productId(\d+)" render={props => {
+            if (isAuthenticated()) {
+              return <ProductDetail
+                {...props}
+                {...this.props}
+                productId={props.match.params.productId}
+              />
+            } else {
+              return <Redirect to='/login' />
+            }
+          }}
+        />
+
+        <Route
+          exact path="/" render={props => {
+            // if (isAuthenticated()) {
+            //     return <Home {...props} {...this.props} />
+            // } else {
+            //     return <Redirect to='/login' />
+            // }
+          }}
+        />
 
 
         <Route
