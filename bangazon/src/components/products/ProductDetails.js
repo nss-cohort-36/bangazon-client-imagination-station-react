@@ -27,7 +27,7 @@ class ProductDetail extends Component {
 
     handleAddOrderProduct = (newOrderProduct) => {
         // Handles posting a new orderProduct in the database
-        APIManager.post("orderproducts/", newOrderProduct)
+        APIManager.post("orderproducts", newOrderProduct)
                     // then, push to the home page or another page
                     .then(() => this.props.history.push('/order'))
     }
@@ -53,7 +53,7 @@ class ProductDetail extends Component {
                         Empty object passed as the POST for orders does not require
                         anything in the body.
                     */
-                    APIManager.post("orders/", {})
+                    APIManager.post("orders", {})
                     .then(newOrderObject=> {
                         let newOrderProduct = {
                             order_id: newOrderObject.id,
@@ -76,7 +76,7 @@ class ProductDetail extends Component {
 
     componentDidMount() {
         // take id from props, fetch call to get product
-        APIManager.get("products", this.props.productId)
+        APIManager.getOne("products", this.props.productId)
             // then, put info into state
             .then(productObject => {
                 this.setState({

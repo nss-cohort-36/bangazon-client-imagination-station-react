@@ -46,7 +46,7 @@ class ProductCreateForm extends React.Component {
     }
     componentDidMount() {
         // Gets all product types, then sets them in state to load the dropdown later
-        APIManager.get("producttypes")
+        APIManager.getAll("producttypes")
             .then((response) => {
                 this.setState({
                     producttypes: response

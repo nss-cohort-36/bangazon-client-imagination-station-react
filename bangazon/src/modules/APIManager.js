@@ -1,25 +1,25 @@
 const remoteURL = "http://localhost:8000";
 
 export default {
-  async get(route, id = null) {
-    let results;
-    if (id !== null) {
-      results = await fetch(`${remoteURL}/${route}/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
-        }
-      });
-    } else {
-      results = await fetch(`${remoteURL}/${route}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
-        }
-      });
-    }
+  async getOne(route, id) {
+    const results = await fetch(`${remoteURL}/${route}/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
+      }
+    });
+    return results.json();
+  }, 
+
+  async getAll(route, query_params="") {
+    const results = await fetch(`${remoteURL}/${route}${query_params}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
+      }
+    });
     return results.json();
   },
 
