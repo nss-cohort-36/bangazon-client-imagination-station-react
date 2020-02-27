@@ -3,8 +3,10 @@ import Payment from "./PaymentCard"
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+// Author: Lauren Riddle
+// Purpose: To create payment type list
 class PaymentList extends Component {
-  // Creates the list for payment types. Cool
+  // Creates the list for payment types. 
   render() {
     return (
       <>

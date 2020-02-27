@@ -1,11 +1,8 @@
 /*
   OrderDetail
-
   displays a single open order
   button for complete order
   presented payment type on clicking button
-
-
   user selects payment type
   user clicks done
   payment type added to the order at this point
@@ -13,6 +10,7 @@
 */
 
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom"
 import APIManager from "../../modules/APIManager";
 import "./Order.css";
 import Button from "@material-ui/core/Button";
@@ -130,14 +128,21 @@ const OrderDetail = (props) => {
                   ))}
                   <ListItem style={{ alignItems: "flex-end" }}>
                     <ListItemText>
-                      <Typography component="p">Total: ${order.total}                        
+                      <Typography component="p">Total: ${order.total}
                       </Typography>
                     </ListItemText>
                   </ListItem>
                   <CardActions>
-                  <Button variant="contained">Complete Order</Button>
-                  <Button variant="contained" 
-          color="secondary"  onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
+                    <Button variant="contained" ><Link to={{
+                      pathname: `/completeorder/${order.id}`,
+                      state: {
+                        order: order
+                      }
+                    }}>
+                      Complete Order</Link>
+                    </Button>
+                    <Button variant="contained" color="secondary" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
+
                   </CardActions>
                 </List>
               </ListItem>
@@ -151,3 +156,4 @@ const OrderDetail = (props) => {
 };
 
 export default OrderDetail;
+
