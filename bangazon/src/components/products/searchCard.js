@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import "./Product.css"
 
 const styles = {
     card: {
@@ -29,7 +30,7 @@ class SearchCard extends Component {
             <Card>
                 <CardContent>
                     <Typography variant="h5" component="h2">
-                        <Link to={`/Product/${this.props.product.id}`}>{this.props.name}</Link>
+                        <Link to={`/Product/${this.props.product.id}`} className="product-link">{this.props.name}</Link>
                     </Typography>
                     <Typography color="textSecondary">
                         Price: ${this.props.price}

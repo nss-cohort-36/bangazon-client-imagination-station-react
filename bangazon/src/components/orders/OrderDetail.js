@@ -1,11 +1,8 @@
 /*
   OrderDetail
-
   displays a single open order
   button for complete order
   presented payment type on clicking button
-
-
   user selects payment type
   user clicks done
   payment type added to the order at this point
@@ -13,19 +10,35 @@
 */
 
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom"
 import APIManager from "../../modules/APIManager";
 import "./Order.css";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import { Link } from "react-router-dom"
-
 import {
   ListItemText,
   Container,
   ListSubheader,
   Typography
 } from "@material-ui/core";
+//CARDS
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
+const styles = {
+  card: {
+    minWidth: 275,
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
 
 const OrderDetail = (props) => {
   const [orders, setOrders] = useState([]);
@@ -49,8 +62,8 @@ const OrderDetail = (props) => {
     orders.forEach(order => {
       order["total"] = order.products
         ? order.products.reduce((total, product) => {
-            return total + Number(product.product.price);
-          }, 0)
+          return total + Number(product.product.price);
+        }, 0)
         : 0;
     });
   }, [orders]);
@@ -74,57 +87,73 @@ const OrderDetail = (props) => {
           props.history.push("/")
         })
     }
-    }
+  }
 
   return isLoading ? (
     <div>Loading, please wait</div>
   ) : (
-    <Container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-      }}>
-      <h2>{orders.length > 1 ? "Open Orders" : "Open Order"} </h2>
-      <List>
-        {orders.map(order => (
-          <ListItem key={order.id} className="order-item-card">
-            <List
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end"
-              }}>
-              <Typography style={{ alignSelf: "center" }}>
-                Order #{order.id}
-              </Typography>
-              {order.products.map(product => (
-                <ListItem key={product.id}>
-                  <ListItemText>
-                    {product.product.quantity} {product.product.name}: $
-                    {product.product.price}
-                  </ListItemText>
-                </ListItem>
-              ))}
-              <ListItem style={{ alignItems: "flex-end" }}>
-                <ListItemText>Total: ${order.total}</ListItemText>
+      <Card>
+        <CardContent>
+          {/* <Container
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center"
+            }}> */}
+          <Typography variant="h5" component="h2">{orders.length > 1 ? "Open Orders" : "Open Order"} </Typography>
+          <List>
+            {orders.map(order => (
+              <ListItem key={order.id}>
+                <List
+                // style={{
+                //   display: "flex",
+                //   flexDirection: "column",
+                //   alignItems: "flex-end"
+                // }}
+                >
+                  <Typography
+                  // style={{ alignSelf: "center" }}
+                  >
+                    Order #{order.id}
+                  </Typography>
+                  {order.products.map(product => (
+                    <ListItem key={product.id}>
+                      <ListItemText>
+                        <Typography variant="h5" component="h2">{product.product.name}: </Typography>
+                        <Typography color="textSecondary" gutterBottom>Quantity Available: {product.product.quantity}</Typography>
+                        <Typography color="textSecondary" gutterBottom>Price: $
+                    {product.product.price}</Typography>
+                      </ListItemText>
+                    </ListItem>
+                  ))}
+                  <ListItem style={{ alignItems: "flex-end" }}>
+                    <ListItemText>
+                      <Typography component="p">Total: ${order.total}
+                      </Typography>
+                    </ListItemText>
+                  </ListItem>
+                  <CardActions>
+                    <Button variant="contained" ><Link to={{
+                      pathname: `/completeorder/${order.id}`,
+                      state: {
+                        order: order
+                      }
+                    }}>
+                      Complete Order</Link>
+                    </Button>
+                    <Button variant="contained" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
+
+                  </CardActions>
+                </List>
               </ListItem>
-              
-              <Button variant="contained" ><Link to={{
-          pathname: `/completeorder/${order.id}`,
-          state: {
-            order: order
-          }
-        }}>
-        Complete Order</Link>
-</Button>
-              <Button variant="contained" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
-            </List>
-          </ListItem>
-        ))}
-      </List>
-    </Container>
-  );
+            ))}
+          </List>
+          {/* </Container> */}
+        </CardContent>
+
+      </Card>
+    );
 };
 
 export default OrderDetail;
+
