@@ -1,8 +1,8 @@
 import MyProductCard from "./MyProductCard";
 import React, { Component } from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+
 import APIManager from '../../modules/APIManager'
+import "./Product.css"
 
 class MyProductList extends Component {
     state = {
@@ -19,7 +19,7 @@ class MyProductList extends Component {
     }
 
     deleteProduct = id => {
-        APIManager.delete("products",id)
+        APIManager.delete("products", id)
             .then(() => {
                 APIManager.getAll("products", "?customer=true")
                     .then((newProducts) => {
@@ -33,15 +33,15 @@ class MyProductList extends Component {
 
     render() {
         return (
-            <Card >
-                <CardContent>
-                    {/* maps through myproductcarts */}
+            <>
+                <h1 className="my-products-header">My Products</h1>
+                {/* maps through myproductcarts */}
+                <div className="my-products-container">
                     {
                         this.state.products.map(products => <MyProductCard key={products.id} myProductCard={products} deleteProduct={this.deleteProduct}{...this.props} />)
                     }
-                </CardContent>
-
-            </Card>
+                </div>
+            </>
         )
     }
 }

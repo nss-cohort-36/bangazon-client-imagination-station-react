@@ -5,6 +5,7 @@ import PaymentList from '../payment/PaymentList';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import "./Profile.css"
 // Author: Lauren Riddle
 // Purpose: To load user profile with payment types
 const styles = theme => ({
@@ -68,14 +69,20 @@ class Profile extends Component {
         return (
             <>
                 <div className="profile-container">
-                    <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
-                        onClick={() => this.getPaymentTypes()}>
-                        View Payment Options
+                    <div className="payment-button-container">
+                        {this.state.paymenttypes.length === 0 && 
+                        
+                        <Button id="payment-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
+                            onClick={() => this.getPaymentTypes()}>
+                            View Payment Options
+                        </Button>
+                            }
+
+                        <Button id="payment-button" variant="contained" color="dark" className={classes.button} disabled={this.state.loadingStatus}
+                            onClick={() => this.props.history.push('/payment/new')}>
+                            Add a New Payment Option
                     </Button>
-                    <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
-                        onClick={() => this.props.history.push('/payment/new')}>
-                        Add a New Payment Option
-                    </Button>
+                    </div>
                     <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
 
                 </div>

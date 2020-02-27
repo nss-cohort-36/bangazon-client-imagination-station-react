@@ -1,6 +1,44 @@
 .complete-order-container {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    margin-top: 10px;
 }
 .order-item-card {
     margin: 10px;
+}
+.complete-order-button {
+    text-decoration: none;
+    color: black;
+    width: 10%;
+}
+
+@media screen and (max-width: 700px) {
+    .complete-order-container {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .complete-order-container {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+        margin-top: 10px;
+    }
+   
 }

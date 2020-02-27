@@ -147,7 +147,7 @@ const OrderDetail = props => {
                         state: {
                           order: order
                         }
-                      }}>
+                      }} className="complete-order-button">
                       Complete Order
                     </Link>
                   </Button>
