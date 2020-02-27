@@ -167,7 +167,7 @@ return isLoading ? (
                       </Typography>
                     </ListItemText>
                     
-                      <DeleteIcon onClick={() => deleteCartItem(product.id, order)}
+                      <DeleteIcon onClick={() => deleteCartItem(product.id, order, product.product.id)}
                       variant="contained"
                       color="light"/>
                   </ListItem>
