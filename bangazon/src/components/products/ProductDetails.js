@@ -62,8 +62,24 @@ class ProductDetail extends Component {
         // sets loadingStatus to true to prevent duplicate adds
         this.setState({ loadingStatus: true })
 
+        // Decrement the quantity of the product by 1
+        APIManager.update(
+            "products",
+            {
+                name: this.state.title,
+                description: this.state.description,
+                quantity: (this.state.quantity - 1),
+                price: this.state.price,
+                location: this.state.product.location,
+                image_path: this.state.product.image_path,
+                customer_id: this.state.product.customer.id,
+                product_type_id: this.state.product.product_type.url.split("/")[4]
+            },
+            this.state.product.id
+        )
+
         // GET open order for logged in customer
-        OrderAPIManager.getUserOpenOrder()
+        .then(() => OrderAPIManager.getUserOpenOrder())
             // then, post order to orderproduct in the database.
             .then(orderObject => {
                 // Check to see if this customer has an open order. If not, create a new order.
@@ -104,6 +120,7 @@ class ProductDetail extends Component {
                     description: productObject.description,
                     quantity: productObject.quantity,
                     price: productObject.price,
+                    product: productObject,
                     loadingStatus: false
                 })
             })
@@ -132,7 +149,7 @@ class ProductDetail extends Component {
                                     variant="contained"
                                     onClick={this.handleAddToOrder}>Add to Order
                                 </Button>
-                            : null
+                                : null
                             }
                         </CardActions>
                     </CardContent>
