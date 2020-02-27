@@ -88,7 +88,7 @@ const OrderDetail = (props) => {
       <h2>{orders.length > 1 ? "Open Orders" : "Open Order"} </h2>
       <List>
         {orders.map(order => (
-          <ListItem key={order.id}>
+          <ListItem key={order.id} className="order-item-card">
             <List
               style={{
                 display: "flex",
