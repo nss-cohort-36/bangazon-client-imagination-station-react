@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Payment from "./PaymentCard"
-
+// Author: Lauren Riddle
+// Purpose: To create payment type list
 class PaymentList extends Component {
 // Creates the list for payment types
   render() {

@@ -9,11 +9,12 @@ import OrderDetail from "./orders/OrderDetail";
 import SearchList from "./products/searchList"
 // import ProductDetail from './products/ProductDetails'
 import MyProductList from './products/MyProductList'
-// import Home from './home/Home'
+import Home from './home/Home'
 import PaymentCreateForm from './payment/PaymentCreateForm'
 // import OrderDetail from './orders/OrderDetail'
 import Profile from './myAccount/Profile'
-
+import CompleteOrder from './orders/CompleteOrder'
+import ThankYou from "./orders/ThankYou"
 export default class ApplicationViews extends Component {
 
   render() {
@@ -43,15 +44,15 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-                <Route
-                    exact path="/SearchResults" render={props => {
-                        if(isAuthenticated()) {
-                            return <SearchList {...props} {...this.props} />
-                        } else {
-                            return <Redirect to="/login" />
-                        }
-                    }}
-                />
+        <Route
+          exact path="/SearchResults" render={props => {
+            if (isAuthenticated()) {
+              return <SearchList {...props} {...this.props} />
+            } else {
+              return <Redirect to="/login" />
+            }
+          }}
+        />
 
 
         <Route
@@ -114,11 +115,11 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            // if (isAuthenticated()) {
-            //     return <Home {...props} {...this.props} />
-            // } else {
-            //     return <Redirect to='/login' />
-            // }
+            if (isAuthenticated()) {
+                return <Home {...props} {...this.props} />
+            } else {
+                return <Redirect to='/login' />
+            }
           }}
         />
 
@@ -133,7 +134,29 @@ export default class ApplicationViews extends Component {
             }
           }}
         />
+
+        <Route exact
+          path="/completeorder/:orderId(\d+)"
+          render={(props, link) => {
+            if (isAuthenticated()) {
+              return <CompleteOrder {...props} {...this.props} {...link} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+        <Route exact
+          path="/thankyou"
+          render={(props) => {
+            if (isAuthenticated()) {
+              return <ThankYou {...props} {...this.props} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
       </React.Fragment>
     );
   }
 }
+
