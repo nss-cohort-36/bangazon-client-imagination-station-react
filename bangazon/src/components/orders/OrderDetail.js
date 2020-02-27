@@ -60,8 +60,8 @@ const OrderDetail = props => {
     orders.forEach(order => {
       order["total"] = order.products
         ? order.products.reduce((total, product) => {
-            return total + Number(product.product.price);
-          }, 0)
+          return total + Number(product.product.price);
+        }, 0)
         : 0;
     });
   }, [orders]);
@@ -82,26 +82,67 @@ const OrderDetail = props => {
       "Are you sure you want to cancel this order?"
     );
     if (confirmation) {
+      increaseQuantityALL()
       APIManager.delete("orders", orderId).then(() => {
         props.history.push("/");
       });
     }
   };
 
-  const deleteCartItem = async (orderProductId, order) => {
-    if (order.products.length > 1) {
-      await APIManager.delete("orderproducts", orderProductId);
-      const orders = await fetchOrders();
-      setOrders(orders);
-    } else {
-      handleCancelOrder(order.id);
+  const increaseQuantityALL = async () => {
+    for (let p of orders[0].products) {
+      const prod = await APIManager.getOne("products", p.product.id)
+      await APIManager.update(
+        "products",
+        {
+          name: prod.name,
+          description: prod.description,
+          quantity: (prod.quantity + 1),
+          price: prod.price,
+          location: prod.location,
+          image_path: prod.image_path,
+          customer_id: prod.customer.id,
+          product_type_id: prod.product_type.url.split("/")[4]
+        },
+        prod.id
+      )
     }
-    props.history.push("/order");
-  };
+  }
 
-  return isLoading ? (
-    <div>Loading, please wait</div>
-  ) : (
+  const increaseQuantityONE = async (productId) => {
+    const prod = await APIManager.getOne("products", productId)
+    await APIManager.update(
+      "products",
+      {
+        name: prod.name,
+        description: prod.description,
+        quantity: (prod.quantity + 1),
+        price: prod.price,
+        location: prod.location,
+        image_path: prod.image_path,
+        customer_id: prod.customer.id,
+        product_type_id: prod.product_type.url.split("/")[4]
+      },
+      prod.id
+    )
+  }
+
+
+const deleteCartItem = async (orderProductId, order, productId) => {
+  if (order.products.length > 1) {
+    await APIManager.delete("orderproducts", orderProductId);
+    await increaseQuantityONE(productId)
+    const orders = await fetchOrders();
+    setOrders(orders);
+  } else {
+    handleCancelOrder(order.id);
+  }
+  props.history.push("/order");
+};
+
+return isLoading ? (
+  <div>Loading, please wait</div>
+) : (
     <Card>
       <CardContent>
         <Typography variant="h5" component="h2">
@@ -118,9 +159,9 @@ const OrderDetail = props => {
                       <Typography variant="h5" component="h2">
                         {product.product.name}:{" "}
                       </Typography>
-                      <Typography color="textSecondary" gutterBottom>
+                      {/* <Typography color="textSecondary" gutterBottom>
                         Quantity Available: {product.product.quantity}
-                      </Typography>
+                      </Typography> */}
                       <Typography color="textSecondary" gutterBottom>
                         Price: ${product.product.price}
                       </Typography>
