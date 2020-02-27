@@ -141,7 +141,7 @@ const OrderDetail = (props) => {
                     }}>
                       Complete Order</Link>
                     </Button>
-                    <Button variant="contained" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
+                    <Button variant="contained" color="secondary" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
 
                   </CardActions>
                 </List>
