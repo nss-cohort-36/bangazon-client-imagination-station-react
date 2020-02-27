@@ -109,84 +109,104 @@ const OrderDetail = props => {
     }
   }
 
-  const deleteCartItem = async (orderProductId, order) => {
-    if (order.products.length > 1) {
-      await APIManager.delete("orderproducts", orderProductId);
-      const orders = await fetchOrders();
-      setOrders(orders);
-    } else {
-      handleCancelOrder(order.id);
-    }
-    props.history.push("/order");
-  };
+  const increaseQuantityONE = async (productId) => {
+    const prod = await APIManager.getOne("products", productId)
+    await APIManager.update(
+      "products",
+      {
+        name: prod.name,
+        description: prod.description,
+        quantity: (prod.quantity + 1),
+        price: prod.price,
+        location: prod.location,
+        image_path: prod.image_path,
+        customer_id: prod.customer.id,
+        product_type_id: prod.id
+      },
+      prod.id
+    )
+  }
 
-  return isLoading ? (
-    <div>Loading, please wait</div>
-  ) : (
-      <Card>
-        <CardContent>
-          <Typography variant="h5" component="h2">
-            {orders.length > 1 ? "Open Orders" : "Open Order"}{" "}
-          </Typography>
-          <List>
-            {orders.map(order => (
-              <ListItem key={order.id}>
-                <List>
-                  <Typography>Order #{order.id}</Typography>
-                  {order.products.map(product => (
-                    <ListItem key={product.id}>
-                      <ListItemText>
-                        <Typography variant="h5" component="h2">
-                          {product.product.name}:{" "}
-                        </Typography>
-                        {/* <Typography color="textSecondary" gutterBottom>
+
+const deleteCartItem = async (orderProductId, order, productId) => {
+  if (order.products.length > 1) {
+    await APIManager.delete("orderproducts", orderProductId);
+    await increaseQuantityONE(productId)
+    const orders = await fetchOrders();
+    setOrders(orders);
+  } else {
+    handleCancelOrder(order.id);
+  }
+  props.history.push("/order");
+};
+
+return isLoading ? (
+  <div>Loading, please wait</div>
+) : (
+    <Card>
+      <CardContent>
+        <Typography variant="h5" component="h2">
+          {orders.length > 1 ? "Open Orders" : "Open Order"}{" "}
+        </Typography>
+        <List>
+          {orders.map(order => (
+            <ListItem key={order.id}>
+              <List>
+                <Typography>Order #{order.id}</Typography>
+                {order.products.map(product => (
+                  <ListItem key={product.id}>
+                    <ListItemText>
+                      <Typography variant="h5" component="h2">
+                        {product.product.name}:{" "}
+                      </Typography>
+                      {/* <Typography color="textSecondary" gutterBottom>
                         Quantity Available: {product.product.quantity}
                       </Typography> */}
-                        <Typography color="textSecondary" gutterBottom>
-                          Price: ${product.product.price}
-                        </Typography>
-                      </ListItemText>
-                      <Button
-                        onClick={() => deleteCartItem(product.id, order)}
-                        variant="contained"
-                        color="secondary"
-                        startIcon={<DeleteIcon />}>
-                        Remove
-                    </Button>
-                    </ListItem>
-                  ))}
-                  <ListItem style={{ alignItems: "flex-end" }}>
-                    <ListItemText>
-                      <Typography component="p">Total: ${order.total}</Typography>
+                      <Typography color="textSecondary" gutterBottom>
+                        Price: ${product.product.price}
+                      </Typography>
                     </ListItemText>
-                  </ListItem>
-                  <CardActions>
-                    <Button variant="contained">
-                      <Link
-                        to={{
-                          pathname: `/completeorder/${order.id}`,
-                          state: {
-                            order: order
-                          }
-                        }}>
-                        Complete Order
-                    </Link>
-                    </Button>
                     <Button
+                      onClick={() => deleteCartItem(product.id, order, product.product.id)}
                       variant="contained"
                       color="secondary"
-                      onClick={() => handleCancelOrder(order.id)}>
-                      Cancel Order
+                      startIcon={<DeleteIcon />}>
+                      Remove
+                    </Button>
+                  </ListItem>
+                ))}
+                <ListItem style={{ alignItems: "flex-end" }}>
+                  <ListItemText>
+                    <Typography component="p">Total: ${order.total}</Typography>
+                  </ListItemText>
+                </ListItem>
+                <CardActions>
+                  <Button variant="contained">
+                    <Link
+                      to={{
+                        pathname: `/completeorder/${order.id}`,
+                        state: {
+                          order: order
+                        }
+                      }}>
+                      Complete Order
+                    </Link>
                   </Button>
-                  </CardActions>
-                </List>
-              </ListItem>
-            ))}
-          </List>
-          {/* </Container> */}
-        </CardContent>
-      </Card>
-    );
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleCancelOrder(order.id)}>
+                    Cancel Order
+                  </Button>
+                </CardActions>
+              </List>
+            </ListItem>
+          ))}
+        </List>
+        {/* </Container> */}
+      </CardContent>
+    </Card>
+  );
 };
 
 export default OrderDetail;
