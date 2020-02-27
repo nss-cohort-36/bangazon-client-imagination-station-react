@@ -94,7 +94,7 @@ class CompleteOrder extends Component {
                                     className: classes.menu,
                                 },
                             }}
-                            helperText="Please select a product type"
+                            helperText="Please select a payment type"
                             margin="normal"
                             variant="outlined"
                         >
