@@ -6,7 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AttachMoney from '@material-ui/icons/AttachMoney'
 import './Product.css'
-
+// Author: Lauren Riddle
+// Purpose: To create form to making a new product
 const styles = theme => ({
     container: {
         display: 'flex',
