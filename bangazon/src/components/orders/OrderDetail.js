@@ -10,43 +10,41 @@
 */
 
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import APIManager from "../../modules/APIManager";
 import "./Order.css";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import {
-  ListItemText,
-  Container,
-  ListSubheader,
-  Typography
-} from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+import { ListItemText, Typography } from "@material-ui/core";
 //CARDS
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 
 const styles = {
   card: {
-    minWidth: 275,
+    minWidth: 275
   },
   title: {
-    fontSize: 14,
+    fontSize: 14
   },
   pos: {
-    marginBottom: 12,
-  },
+    marginBottom: 12
+  }
 };
 
-const OrderDetail = (props) => {
+const OrderDetail = props => {
   const [orders, setOrders] = useState([]);
-  // const [total, setTotal] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchOrders = async () => {
-    const orders = await APIManager.getAll("orders", "?customer=true&open=true");
+    const orders = await APIManager.getAll(
+      "orders",
+      "?customer=true&open=true"
+    );
     for (const order of orders) {
       const products = await APIManager.getAll(
         "orderproducts",
@@ -62,8 +60,8 @@ const OrderDetail = (props) => {
     orders.forEach(order => {
       order["total"] = order.products
         ? order.products.reduce((total, product) => {
-          return total + Number(product.product.price);
-        }, 0)
+            return total + Number(product.product.price);
+          }, 0)
         : 0;
     });
   }, [orders]);
@@ -79,81 +77,95 @@ const OrderDetail = (props) => {
     fetchData();
   }, []);
 
-  const handleCancelOrder = (orderId) => {
-    let confirmation = window.confirm("Are you sure you want to cancel this order?")
+  const handleCancelOrder = orderId => {
+    let confirmation = window.confirm(
+      "Are you sure you want to cancel this order?"
+    );
     if (confirmation) {
-      APIManager.delete("orders", orderId)
-        .then(() => {
-          props.history.push("/")
-        })
+      APIManager.delete("orders", orderId).then(() => {
+        props.history.push("/");
+      });
     }
-  }
+  };
+
+  const deleteCartItem = async (orderProductId, order) => {
+    if (order.products.length > 1) {
+      await APIManager.delete("orderproducts", orderProductId);
+      const orders = await fetchOrders();
+      setOrders(orders);
+    } else {
+      handleCancelOrder(order.id);
+    }
+    props.history.push("/order");
+  };
 
   return isLoading ? (
     <div>Loading, please wait</div>
   ) : (
-      <Card>
-        <CardContent>
-          {/* <Container
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center"
-            }}> */}
-          <Typography variant="h5" component="h2">{orders.length > 1 ? "Open Orders" : "Open Order"} </Typography>
-          <List>
-            {orders.map(order => (
-              <ListItem key={order.id}>
-                <List
-                // style={{
-                //   display: "flex",
-                //   flexDirection: "column",
-                //   alignItems: "flex-end"
-                // }}
-                >
-                  <Typography
-                  // style={{ alignSelf: "center" }}
-                  >
-                    Order #{order.id}
-                  </Typography>
-                  {order.products.map(product => (
-                    <ListItem key={product.id}>
-                      <ListItemText>
-                        <Typography variant="h5" component="h2">{product.product.name}: </Typography>
-                        <Typography color="textSecondary" gutterBottom>Quantity Available: {product.product.quantity}</Typography>
-                        <Typography color="textSecondary" gutterBottom>Price: $
-                    {product.product.price}</Typography>
-                      </ListItemText>
-                    </ListItem>
-                  ))}
-                  <ListItem style={{ alignItems: "flex-end" }}>
+    <Card>
+      <CardContent>
+        <Typography variant="h5" component="h2">
+          {orders.length > 1 ? "Open Orders" : "Open Order"}{" "}
+        </Typography>
+        <List>
+          {orders.map(order => (
+            <ListItem key={order.id}>
+              <List>
+                <Typography>Order #{order.id}</Typography>
+                {order.products.map(product => (
+                  <ListItem key={product.id}>
                     <ListItemText>
-                      <Typography component="p">Total: ${order.total}
+                      <Typography variant="h5" component="h2">
+                        {product.product.name}:{" "}
+                      </Typography>
+                      <Typography color="textSecondary" gutterBottom>
+                        Quantity Available: {product.product.quantity}
+                      </Typography>
+                      <Typography color="textSecondary" gutterBottom>
+                        Price: ${product.product.price}
                       </Typography>
                     </ListItemText>
-                  </ListItem>
-                  <CardActions>
-                    <Button variant="contained" ><Link to={{
-                      pathname: `/completeorder/${order.id}`,
-                      state: {
-                        order: order
-                      }
-                    }}>
-                      Complete Order</Link>
+                    <Button
+                      onClick={() => deleteCartItem(product.id, order)}
+                      variant="contained"
+                      color="secondary"
+                      startIcon={<DeleteIcon />}>
+                      Remove
                     </Button>
-                    <Button variant="contained" color="secondary" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
-
-                  </CardActions>
-                </List>
-              </ListItem>
-            ))}
-          </List>
-          {/* </Container> */}
-        </CardContent>
-
-      </Card>
-    );
+                  </ListItem>
+                ))}
+                <ListItem style={{ alignItems: "flex-end" }}>
+                  <ListItemText>
+                    <Typography component="p">Total: ${order.total}</Typography>
+                  </ListItemText>
+                </ListItem>
+                <CardActions>
+                  <Button variant="contained">
+                    <Link
+                      to={{
+                        pathname: `/completeorder/${order.id}`,
+                        state: {
+                          order: order
+                        }
+                      }}>
+                      Complete Order
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleCancelOrder(order.id)}>
+                    Cancel Order
+                  </Button>
+                </CardActions>
+              </List>
+            </ListItem>
+          ))}
+        </List>
+        {/* </Container> */}
+      </CardContent>
+    </Card>
+  );
 };
 
 export default OrderDetail;
-
