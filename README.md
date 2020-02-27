@@ -8,16 +8,18 @@ Bangazon Prime is an E-commerce application that allows a logged in user to do t
 - Sell A Product
     - Create a new product listing
 - My Products
-    - View the products that a user has posted to sell
+    - View the products that a logged in user has posted to sell
 - Search for Products to Buy
     - Search by product or city
     - View a list of all products for sell on Bangazon Prime
 - My Cart
     - View the cart and products in it
     - Complete an order
+    - Cancel an order and delete products in an order
 - Profile
     - Add a payment type
     - View all payment types for a user
+    - Delete a payment type
 
 ## Want to use Bangazon? Follow the instructions bellow to run the application.
 
