@@ -166,13 +166,10 @@ return isLoading ? (
                         Price: ${product.product.price}
                       </Typography>
                     </ListItemText>
-                    <Button
-                      onClick={() => deleteCartItem(product.id, order, product.product.id)}
+                    
+                      <DeleteIcon onClick={() => deleteCartItem(product.id, order, product.product.id)}
                       variant="contained"
-                      color="secondary"
-                      startIcon={<DeleteIcon />}>
-                      Remove
-                    </Button>
+                      color="light"/>
                   </ListItem>
                 ))}
                 <ListItem style={{ alignItems: "flex-end" }}>
@@ -188,7 +185,7 @@ return isLoading ? (
                         state: {
                           order: order
                         }
-                      }}>
+                      }} className="complete-order-button">
                       Complete Order
                     </Link>
                   </Button>

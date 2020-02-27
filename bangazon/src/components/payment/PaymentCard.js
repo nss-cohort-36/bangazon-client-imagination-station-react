@@ -41,7 +41,7 @@ class Payment extends React.Component {
     const { classes } = this.props;
     return (
       <>
-        <section className="paymenttype">
+        <section className="paymenttype" id="payment-type-card">
           <Card>
             <CardContent>
 

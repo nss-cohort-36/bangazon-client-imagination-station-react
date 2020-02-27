@@ -117,7 +117,7 @@ class PaymentCreateForm extends React.Component {
                         />
                         
                        
-                        <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
+                        <Button variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.savePaymentType}>
                             Save
                         </Button>

@@ -275,14 +275,14 @@ class NavBar extends React.Component {
                 <MenuIcon />
               </IconButton> */}
               <section id="desktop-nav">
-              <ListItemIcon><Home /></ListItemIcon>
+              <ListItemIcon ><Link to="/" id="shopping-link" ><Home /></Link></ListItemIcon>
 
               <ListItemText><Link to="/" id="nav-link" >Bangazon Prime</Link></ListItemText>
 
-              <ListItemIcon><AttachMoney /></ListItemIcon>
+              <ListItemIcon><Link to="/product/new" id="shopping-link" ><AttachMoney /></Link></ListItemIcon>
               <ListItemText><Link to="/product/new" id="nav-link">Sell A Product</Link></ListItemText>
 
-              <ListItemIcon><Store /></ListItemIcon>
+              <ListItemIcon><Link to="/products" id="shopping-link" ><Store /></Link></ListItemIcon>
               <ListItemText><Link to="/products" id="nav-link">My Products</Link></ListItemText>
               <div className={classes.search}>
                 <InputBase
