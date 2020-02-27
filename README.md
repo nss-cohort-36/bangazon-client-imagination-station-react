@@ -1,5 +1,4 @@
 
-# Welcome to Bangazon Prime! 
 
 ![ Logo ](./bangazon.png)
 
