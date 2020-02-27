@@ -102,7 +102,7 @@ const OrderDetail = props => {
           location: prod.location,
           image_path: prod.image_path,
           customer_id: prod.customer.id,
-          product_type_id: prod.id
+          product_type_id: prod.product_type.url.split("/")[4]
         },
         prod.id
       )
@@ -121,7 +121,7 @@ const OrderDetail = props => {
         location: prod.location,
         image_path: prod.image_path,
         customer_id: prod.customer.id,
-        product_type_id: prod.id
+        product_type_id: prod.product_type.url.split("/")[4]
       },
       prod.id
     )
