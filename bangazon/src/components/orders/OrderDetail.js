@@ -125,13 +125,10 @@ const OrderDetail = props => {
                         Price: ${product.product.price}
                       </Typography>
                     </ListItemText>
-                    <Button
-                      onClick={() => deleteCartItem(product.id, order)}
+                    
+                      <DeleteIcon onClick={() => deleteCartItem(product.id, order)}
                       variant="contained"
-                      color="secondary"
-                      startIcon={<DeleteIcon />}>
-                      Remove
-                    </Button>
+                      color="light"/>
                   </ListItem>
                 ))}
                 <ListItem style={{ alignItems: "flex-end" }}>
