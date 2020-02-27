@@ -26,15 +26,15 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
     card: {
-      minWidth: 275,
+        minWidth: 275,
     },
     title: {
-      fontSize: 14,
+        fontSize: 14,
     },
     pos: {
-      marginBottom: 12,
+        marginBottom: 12,
     },
-  };
+};
 
 class ProductDetail extends Component {
     state = {
@@ -126,11 +126,14 @@ class ProductDetail extends Component {
                             </ul>
                         </Typography>
                         <CardActions>
-                            <Button
-                                size="small"
-                                variant="contained"
-                                onClick={this.handleAddToOrder}>Add to Order
-                        </Button>
+                            {this.state.quantity > 0 ?
+                                <Button
+                                    size="small"
+                                    variant="contained"
+                                    onClick={this.handleAddToOrder}>Add to Order
+                                </Button>
+                            : null
+                            }
                         </CardActions>
                     </CardContent>
 
