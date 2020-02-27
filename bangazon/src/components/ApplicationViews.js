@@ -9,7 +9,7 @@ import OrderDetail from "./orders/OrderDetail";
 import SearchList from "./products/searchList"
 // import ProductDetail from './products/ProductDetails'
 import MyProductList from './products/MyProductList'
-// import Home from './home/Home'
+import Home from './home/Home'
 import PaymentCreateForm from './payment/PaymentCreateForm'
 // import OrderDetail from './orders/OrderDetail'
 import Profile from './myAccount/Profile'
@@ -115,11 +115,11 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/" render={props => {
-            // if (isAuthenticated()) {
-            //     return <Home {...props} {...this.props} />
-            // } else {
-            //     return <Redirect to='/login' />
-            // }
+            if (isAuthenticated()) {
+                return <Home {...props} {...this.props} />
+            } else {
+                return <Redirect to='/login' />
+            }
           }}
         />
 
