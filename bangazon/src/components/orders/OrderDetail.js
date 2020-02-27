@@ -8,12 +8,7 @@ import "./Order.css";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import {
-  ListItemText,
-  Container,
-  ListSubheader,
-  Typography
-} from "@material-ui/core";
+import { ListItemText, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -23,9 +18,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const OrderDetail = () => {
+const OrderDetail = props => {
   const classes = useStyles();
-
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -66,6 +60,28 @@ const OrderDetail = () => {
     fetchData();
   }, []);
 
+  const handleCancelOrder = orderId => {
+    let confirmation = window.confirm(
+      "Are you sure you want to cancel this order?"
+    );
+    if (confirmation) {
+      APIManager.delete("orders", orderId).then(() => {
+        props.history.push("/");
+      });
+    }
+  };
+
+  const deleteCartItem = async (orderProductId, order) => {
+    if (order.products.length > 1) {
+      await APIManager.delete("orderproducts", orderProductId);
+      const orders = await fetchOrders();
+      setOrders(orders);
+    } else {
+      handleCancelOrder(order.id);
+    }
+    props.history.push("/order");
+  };
+
   return isLoading ? (
     <div>Loading, please wait</div>
   ) : (
@@ -95,17 +111,24 @@ const OrderDetail = () => {
                     {product.product.price}
                   </ListItemText>
                   <Button
+                    onClick={() => deleteCartItem(product.id, order)}
                     variant="contained"
                     color="secondary"
                     className={classes.button}
-                    startIcon={<DeleteIcon />}
-                  >Begone</Button>
+                    startIcon={<DeleteIcon />}>
+                    Begone
+                  </Button>
                 </ListItem>
               ))}
               <ListItem style={{ alignItems: "flex-end" }}>
                 <ListItemText>Total: ${order.total}</ListItemText>
               </ListItem>
               <Button variant="contained">Complete Order</Button>
+              <Button
+                variant="contained"
+                onClick={() => handleCancelOrder(order.id)}>
+                Cancel Order
+              </Button>
             </List>
           </ListItem>
         ))}
