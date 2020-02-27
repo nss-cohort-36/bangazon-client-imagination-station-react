@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 
 // Author: Lauren Riddle
-// Purpose: To load complete order view
+// Purpose: To display the thank you page after an order has been completed
 
 const ThankYou = () => {
 

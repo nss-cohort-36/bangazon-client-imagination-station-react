@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 
 // Author: Lauren Riddle
-// Purpose: To load complete order view
+// Purpose: To load complete order view and allow a user to select a payment type
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -33,6 +33,7 @@ class CompleteOrder extends Component {
 
 
     componentDidMount() {
+        // get all payment types
         APIManager.getAll("paymenttypes")
             .then((response) => {
                 console.log(response)
@@ -50,22 +51,23 @@ class CompleteOrder extends Component {
     };
 
     completeOrder = () => {
+        // create object to be sent to DB
         const order = {
             payment_type_id: this.state.PaymentTypeId,
             created_at: this.props.history.location.state.order.created_at,
             customer_id: this.props.history.location.state.order.customer_id,
             id: this.props.match.params.orderId
         }
-
+        
         if (this.state.PaymentTypeId !==  null) {
-            // Make a post with the product to the API
+            // Make a put with the order to the API
             APIManager.update("orders", order, this.props.match.params.orderId)
                 .then(() => {
-                    // pushes you to product detail for the product just created
+                    // pushes you to thank you page for the order just completed
                     this.props.history.push(`/thankyou`)
                 })
         } else {
-            // renders and alert based on what is missing from the product form
+            // renders and alert based on what is missing from the payment form
             if (this.state.PaymentTypeId === null) {
                 alert('Please select a payment type to complete your order.')
             } 
