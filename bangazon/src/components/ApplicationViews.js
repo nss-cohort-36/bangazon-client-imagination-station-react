@@ -135,7 +135,7 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-        <Route
+        <Route exact
           path="/completeorder/:orderId(\d+)"
           render={(props, link) => {
             if (isAuthenticated()) {
@@ -145,11 +145,11 @@ export default class ApplicationViews extends Component {
             }
           }}
         />
-        <Route
-          path="/thankyou'"
-          render={(props, link) => {
+        <Route exact
+          path="/thankyou"
+          render={(props) => {
             if (isAuthenticated()) {
-              return <ThankYou {...props} {...this.props} {...link} />;
+              return <ThankYou {...props} {...this.props} />;
             } else {
               return <Redirect to="/login" />;
             }

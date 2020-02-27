@@ -5,21 +5,25 @@ import React, { Component } from 'react'
 // Author: Lauren Riddle
 // Purpose: To load complete order view
 
-class ThankYou extends Component {
+const ThankYou = () => {
 
-    render() {
+    // render() {
 
         return (
             <>
+            
                 <div className="complete-order-container">
                     
 
-                    <h1>You order has been placed! Thank You! 🦆🐒🐓🐬 - The Animals of the Aboretum (P.S. We accept crunchberries as tips)</h1>
+                    <h1>Your order has been placed, you should receive it shortly!</h1>
+                     <h3>Sincerely,
+                          The Animals of Keahua Arboretum 🦆🐒🐓🐬</h3><h4> (P.S. Should you be feeling generous, we accept crunchberries as tips, and also ice cream. Thank you!)</h4>
 
                 </div>
-            </>
+                </>
+            
         );
-    }
+    // }
 }
 
 export default ThankYou
