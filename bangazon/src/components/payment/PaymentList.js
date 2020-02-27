@@ -1,22 +1,29 @@
 import React, { Component } from "react"
 import Payment from "./PaymentCard"
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
 // Author: Lauren Riddle
 // Purpose: To create payment type list
 class PaymentList extends Component {
-// Creates the list for payment types
+  // Creates the list for payment types. 
   render() {
     return (
       <>
-        <article className="paymentList">
-          {
-            this.props.paymenttypes.map(type =>
-              <Payment
-                key={type.id}                
-                type={type}
-                deletePaymentType={this.props.deletePaymentType}
-              />)
-          }
-        </article>
+        <Card >
+          <CardContent>
+            <article className="paymentList">
+              {
+                this.props.paymenttypes.map(type =>
+                  <Payment
+                    key={type.id}
+                    type={type}
+                    deletePaymentType={this.props.deletePaymentType}
+                  />)
+              }
+            </article>
+          </CardContent>
+        </Card>
       </>
     )
   }

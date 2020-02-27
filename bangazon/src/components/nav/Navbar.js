@@ -230,9 +230,9 @@ class NavBar extends React.Component {
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit" >
-            <Badge badgeContent={4} color="secondary">
+            {/* <Badge badgeContent={4} color="secondary"> */}
               <Link id="mobile-nav-link" to="/order"><ShoppingCart id="shopping-link" /></Link>
-            </Badge>
+            {/* </Badge> */}
           </IconButton>
           <Link id="mobile-nav-link" to="/order"><p>Orders</p></Link>
         </MenuItem>
@@ -313,9 +313,9 @@ class NavBar extends React.Component {
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
                 <IconButton color="inherit">
-                  <Badge badgeContent={4} color="secondary">
+                  {/* <Badge badgeContent={4} color="secondary"> */}
                     <Link className="nav-link link" to="/order" id="shopping-link"><ShoppingCart /></Link>
-                  </Badge>
+                  {/* </Badge> */}
                 </IconButton>
                 <IconButton
                   aria-owns={isMenuOpen ? 'material-appbar' : undefined}

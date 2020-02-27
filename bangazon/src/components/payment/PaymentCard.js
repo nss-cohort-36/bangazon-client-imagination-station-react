@@ -1,44 +1,70 @@
 import React, { Component } from "react"
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AttachMoney from '@material-ui/icons/AttachMoney'
-// Author: Lauren Riddle
-// Purpose: To create payment card
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
+// const styles = theme => ({
+//   container: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//   },
+//   textField: {
+//     marginLeft: theme.spacing.unit,
+//     marginRight: theme.spacing.unit,
+//   },
+//   dense: {
+//     marginTop: 16,
+//   },
+//   menu: {
+//     width: 200,
+//   },
+// });
+
+const styles = {
+  card: {
+    minWidth: 275,
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+  title: {
+    fontSize: 14,
   },
-  dense: {
-    marginTop: 16,
+  pos: {
+    marginBottom: 12,
   },
-  menu: {
-    width: 200,
-  },
-});
+};
 class Payment extends React.Component {
-// Creates card for payment type
+  // Creates card for payment type
   render() {
     const { classes } = this.props;
     return (
       <>
         <section className="paymenttype">
+          <Card>
+            <CardContent>
 
-          <h2>Merchant: {this.props.type.merchant_name}</h2>
-          <h3>Account Number: {this.props.type.account_number}</h3>
-          <h4>Expiration Date: {this.props.type.expiration_date}</h4>
-          <Button variant="contained" color="secondary" className={classes.button}
-            onClick={() => {
-              this.props.deletePaymentType(this.props.type.id)
+              <Typography variant="h5" component="h2">
+                Merchant: {this.props.type.merchant_name}
+              </Typography>
+              <Typography variant="h5" component="h5">
+                Account Number: {this.props.type.account_number}
+              </Typography>
+              <Typography color="textSecondary" gutterBottom>
+                Expiration Date: {this.props.type.expiration_date}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button variant="contained" color="secondary" className={classes.button}
+                onClick={() => {
+                  this.props.deletePaymentType(this.props.type.id)
 
-            }}>
-            Delete
+                }}>
+                Delete
           </Button>
+            </CardActions>
+          </Card>
         </section>
       </>
     )
