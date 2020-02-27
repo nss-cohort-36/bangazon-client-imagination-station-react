@@ -66,6 +66,16 @@ const OrderDetail = (props) => {
     fetchData();
   }, []);
 
+  const handleCancelOrder = (orderId) => {
+    let confirmation = window.confirm("Are you sure you want to cancel this order?")
+    if (confirmation) {
+      APIManager.delete("orders", orderId)
+        .then(() => {
+          props.history.push("/")
+        })
+    }
+    }
+
   return isLoading ? (
     <div>Loading, please wait</div>
   ) : (
@@ -108,6 +118,7 @@ const OrderDetail = (props) => {
         }}>
         Complete Order</Link>
 </Button>
+              <Button variant="contained" onClick={() => handleCancelOrder(order.id)}>Cancel Order</Button>
             </List>
           </ListItem>
         ))}

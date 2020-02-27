@@ -213,7 +213,7 @@ class NavBar extends React.Component {
       >
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit" id="shopping-link">
-          <Link id="mobile-nav-link" to="/order"><Home id="shopping-link" /></Link>
+          <Link id="mobile-nav-link" to="/"><Home id="shopping-link" /></Link>
           </IconButton>
           <Link id="mobile-nav-link" to="/"><p>Bangazon Prime</p></Link>
         </MenuItem>
