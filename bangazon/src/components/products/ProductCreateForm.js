@@ -102,7 +102,7 @@ class ProductCreateForm extends React.Component {
 
                     <form >
                         <TextField
-                            id="outlined-name"
+                            id="outlined-name product"
                             label="Name"
                             className={classes.textField}
                             onChange={this.handleChange('Name')}
@@ -110,7 +110,7 @@ class ProductCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            id="outlined-name"
+                            id="outlined-name product"
                             label="Description"
                             className={classes.textField}
                             onChange={this.handleChange('Description')}
@@ -118,7 +118,7 @@ class ProductCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            id="outlined-number"
+                            id="outlined-number product"
                             label="Quantity"
                             onChange={this.handleChange('Quantity')}
                             type="number"
@@ -128,7 +128,7 @@ class ProductCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            id="outlined-name"
+                            id="outlined-name product"
                             label="Location"
                             className={classes.textField}
                             onChange={this.handleChange('Location')}
@@ -136,7 +136,7 @@ class ProductCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            id="outlined-number"
+                            id="outlined-number product"
                             label="Price"
                             onChange={this.handleChange('Price')}
                             type="number"
@@ -148,7 +148,7 @@ class ProductCreateForm extends React.Component {
                        
 
                         <TextField
-                            id="outlined-select-currency"
+                            id="outlined-select-currency product"
                             select
                             label="Select"
                             className={classes.textField}

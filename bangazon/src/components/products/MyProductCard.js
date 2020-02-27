@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import "./Product.css"
 
 const styles = {
   card: {
@@ -22,7 +23,7 @@ function MyProductCard(props) {
   const { classes } = props;
   
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} id="my-product-card">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           Product Type: {props.myProductCard.product_type.name}
