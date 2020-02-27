@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 class PaymentList extends Component {
-  // Creates the list for payment types
+  // Creates the list for payment types. Cool
   render() {
     return (
       <>
