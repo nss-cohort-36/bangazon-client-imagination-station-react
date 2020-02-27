@@ -116,7 +116,7 @@ const OrderDetail = props => {
                     color="secondary"
                     className={classes.button}
                     startIcon={<DeleteIcon />}>
-                    Begone
+                    Remove
                   </Button>
                 </ListItem>
               ))}
