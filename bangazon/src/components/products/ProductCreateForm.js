@@ -9,10 +9,6 @@ import './Product.css'
 // Author: Lauren Riddle
 // Purpose: To create form to making a new product
 const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
@@ -92,6 +88,11 @@ class ProductCreateForm extends React.Component {
         }
     }
 
+    uploadPhoto = evt => {
+        evt.preventDefault()
+        console.log('upload photo')
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -101,6 +102,10 @@ class ProductCreateForm extends React.Component {
                     <h2>Sell a Product</h2>
 
                     <form >
+                        <Button variant="contained" color="default" className={classes.button} disabled={this.state.loadingStatus}
+                            onClick={this.uploadPhoto}>
+                            Upload Photo
+                        </Button>
                         <TextField
                             id="outlined-name product"
                             label="Name"
@@ -145,8 +150,6 @@ class ProductCreateForm extends React.Component {
                             margin="normal"
                             variant="outlined"
                         />
-                       
-
                         <TextField
                             id="outlined-select-currency product"
                             select
@@ -168,8 +171,6 @@ class ProductCreateForm extends React.Component {
                                 </MenuItem>
                             ))}
                         </TextField>
-
-                       
                         <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.saveProduct}>
                             Sell
