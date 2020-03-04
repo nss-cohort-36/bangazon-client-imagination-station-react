@@ -101,7 +101,7 @@ class Profile extends Component {
                         <p>Phone Number: {this.state.phone_number}</p>
                         <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={() => this.getPaymentTypes()}>
-                            View Payment Options
+                            Edit Profile
                         </Button>
 
                     </div>
