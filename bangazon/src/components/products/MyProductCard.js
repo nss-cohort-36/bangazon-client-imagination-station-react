@@ -35,7 +35,9 @@ function MyProductCard(props) {
           ${props.myProductCard.price}  
         </Typography>
         <Typography component="p">
-          Qty: {props.myProductCard.quantity}
+          Current Inventory: {props.myProductCard.quantity}
+          <br />
+          Number Sold:
           <br />
           Location: {props.myProductCard.location}
         </Typography>
