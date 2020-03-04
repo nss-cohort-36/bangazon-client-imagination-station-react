@@ -68,6 +68,8 @@ class PaymentCreateForm extends React.Component {
                 alert('Please input an account number.')
             } else if (this.state.expirationDate === null) {
                 alert('Please input a expiration date.')
+            } else if (isNaN(this.state.year)|| isNaN(this.state.month)) {
+                alert("Please enter an integer in the month and year fields.")
             } else if (someday > today === false) {
                 alert('Please enter an expiration date that is not expired.')
             }
@@ -76,15 +78,6 @@ class PaymentCreateForm extends React.Component {
 
     render() {
         const { classes } = this.props;
-        // const date = new Date(); // M-D-YYYY
-
-        // const d = date.getDate();
-        // const m = date.getMonth();
-        // const y = date.getFullYear() 
-        // const today = new Date();
-        // const someday = new Date();
-        // someday.setFullYear(Number(this.state.year), Number(this.state.month), 1);       
-        // console.log(`${m}/${y}`, someday > today)
         return (
             <>
                 <div className="new-product-form-container">
@@ -109,15 +102,14 @@ class PaymentCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            inputProps={{maxLength: 2}}
                             id="outlined-number"
                             label="MM"
                             onChange={this.handleChange('month')}
                             className={classes.textField}
                             margin="normal"
-                            type="number"
                             variant="outlined"
-                        />
+                            inputProps={{maxLength: 2}}
+                            />
                         <TextField
                             inputProps={{maxLength: 4}}
                             id="outlined-number"
