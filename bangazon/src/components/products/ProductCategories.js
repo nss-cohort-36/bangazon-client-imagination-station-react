@@ -25,7 +25,6 @@ class ProductCategories extends Component {
                 })
             })
     }
-
     render() {
         return (
             <>
