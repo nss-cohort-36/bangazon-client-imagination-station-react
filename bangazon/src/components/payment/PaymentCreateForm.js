@@ -46,11 +46,15 @@ class PaymentCreateForm extends React.Component {
         const paymenttype = {
             merchant_name: this.state.merchantName,
             account_number: Number(this.state.accountNumber),
-            expiration_date: `${this.state.month}/${this.state.year}`,
+            expiration_date: `${Number(this.state.month)}/${Number(this.state.year)}`,
            
         }
+        // Checks to see if the date the user entered has not already past
+        const today = new Date();
+        const someday = new Date();
+        someday.setFullYear(Number(this.state.year), Number(this.state.month), 1)
 
-        if (this.state.merchantName !== "" && this.state.accountNumber !== "" && this.state.expirationDate !== "" ) {
+        if (this.state.merchantName !== "" && this.state.accountNumber !== "" && this.state.expirationDate !== "" && someday > today) {
             // Make a post with the product to the API
             APIManager.post("paymenttypes", paymenttype)
                 .then((response) => {
@@ -65,13 +69,16 @@ class PaymentCreateForm extends React.Component {
                 alert('Please input an account number.')
             } else if (this.state.expirationDate === null) {
                 alert('Please input a expiration date.')
+            } else if (isNaN(this.state.year)|| isNaN(this.state.month)) {
+                alert("Please enter an integer in the month and year fields.")
+            } else if (someday > today === false) {
+                alert('Please enter an expiration date that is not expired.')
             }
         }
     }
 
     render() {
         const { classes } = this.props;
-
         return (
             <>
                 <div className="new-product-form-container">
@@ -96,22 +103,20 @@ class PaymentCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            inputProps={{maxLength: 2}}
                             id="outlined-number"
                             label="MM"
                             onChange={this.handleChange('month')}
                             className={classes.textField}
-                            maxLength="2"
                             margin="normal"
                             variant="outlined"
-                        />
+                            inputProps={{maxLength: 2}}
+                            />
                         <TextField
                             inputProps={{maxLength: 4}}
                             id="outlined-number"
                             label="YYYY"
                             onChange={this.handleChange('year')}
                             className={classes.textField}
-                            maxLength="4"
                             margin="normal"
                             variant="outlined"
                         />

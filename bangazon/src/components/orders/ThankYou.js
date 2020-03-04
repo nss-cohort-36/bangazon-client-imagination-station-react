@@ -1,5 +1,4 @@
-import APIManager from '../../modules/APIManager'
-import React, { Component } from 'react'
+import React from 'react'
 
 
 // Author: Lauren Riddle
