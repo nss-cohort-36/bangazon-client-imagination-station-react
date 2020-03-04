@@ -65,23 +65,34 @@ class ProductCreateForm extends React.Component {
             name: this.state.Name,
             description: this.state.Description,
             price: this.state.Price,
-            quantity: Number(this.state.Quantity),
+            quantity: parseInt((this.state.Quantity)),
             location: this.state.Location,
             image_path: this.state.ImagePath,
             product_type_id: Number(this.state.ProductTypeId)
         }
 
-        if (this.state.Name !== "" && this.state.Description !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.ProductTypeId !== null) {
-            // Check to make sure the price is less than $10,000
-            this.state.Price <= 10000 ?
-                // Make a post with the product to the API
-                APIManager.post("products", product)
-                    .then((response) => {
-                        // pushes you to product detail for the product just created
-                        this.props.history.push(`/product/${response.id}`)
-                    })
-                :
-                alert("The maximum price on Bangazon is $10,000.")
+        // make sure price is a 2 digit float for currency
+        if (product.price) {
+            let oldPrice = parseFloat(product.price)
+            let newPrice = oldPrice.toFixed(2)
+            product.price = newPrice
+        }
+
+        if (this.state.Name !== ""
+            && this.state.Description !== ""
+            // Check to make sure quantity is not a negative number
+            && this.state.Quantity >= 0
+            && this.state.Description !== ""
+            // Check to make sure the price is not negative and less than 10,000
+            && this.state.Price >= 0 && this.state.Price <= 10000
+            && this.state.ProductTypeId !== null
+        ) {
+            // Make a post with the product to the API
+            APIManager.post("products", product)
+                .then((response) => {
+                    // pushes you to product detail for the product just created
+                    this.props.history.push(`/product/${response.id}`)
+                })
         } else {
             // renders and alert based on what is missing from the product form
             if (this.state.Name === "") {
@@ -90,8 +101,16 @@ class ProductCreateForm extends React.Component {
                 alert('Please input a description.')
             } else if (this.state.Quantity === null) {
                 alert('Please input a quantity.')
-            } else if (this.state.Price === null) {
+            } else if (this.state.Quantity < 0) {
+                alert('You cannot have a negative quantity number.')
+            } else if (this.state.Location === "") {
+                alert('Please input a location.')
+            } else if (this.state.Price === null || this.state.Price == "") {
                 alert('Please input a price.')
+            } else if (this.state.Price < 0) {
+                alert('You cannot have a negative price.')
+            } else if (this.state.Price > 10000) {
+                alert('The maximum price is $10,000.')
             } else if (this.state.ProductTypeId === null) {
                 alert('Please select a product type.')
             }
@@ -151,7 +170,7 @@ class ProductCreateForm extends React.Component {
                             margin="normal"
                             variant="outlined"
                         />
-                       
+
 
                         <TextField
                             id="outlined-select-currency product"
@@ -175,13 +194,13 @@ class ProductCreateForm extends React.Component {
                             ))}
                         </TextField>
 
-                       
+
                         <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.saveProduct}>
                             Sell
                             <AttachMoney className={classes.rightIcon} />
                         </Button>
-                      
+
                     </form>
                 </div>
             </>
