@@ -83,7 +83,7 @@ class ProductCreateForm extends React.Component {
         if (this.state.Name !== ""
             && this.state.Description !== ""
             // Check to make sure quantity is not a negative number or between 0 and 1
-            && this.state.Quantity >= 0 && product.quantity != NaN
+            && this.state.Quantity >= 0 && isNaN(product.quantity) != true
             && this.state.Description !== ""
             // Check to make sure the price is not negative and less than 10,000
             && this.state.Price >= 0 && this.state.Price <= 10000
