@@ -77,11 +77,13 @@ class ProductCreateForm extends React.Component {
             let newPrice = oldPrice.toFixed(2)
             product.price = newPrice
         }
+        console.log("Product: ", product)
+        console.log("Quantity: ", this.state.Quantity)
 
         if (this.state.Name !== ""
             && this.state.Description !== ""
-            // Check to make sure quantity is not a negative number
-            && this.state.Quantity >= 0
+            // Check to make sure quantity is not a negative number or between 0 and 1
+            && this.state.Quantity >= 0 && product.quantity != NaN
             && this.state.Description !== ""
             // Check to make sure the price is not negative and less than 10,000
             && this.state.Price >= 0 && this.state.Price <= 10000
@@ -99,7 +101,7 @@ class ProductCreateForm extends React.Component {
                 alert('Please input a product name.')
             } else if (this.state.Description === "") {
                 alert('Please input a description.')
-            } else if (this.state.Quantity === null) {
+            } else if (this.state.Quantity === null || isNaN(product.quantity)) {
                 alert('Please input a quantity.')
             } else if (this.state.Quantity < 0) {
                 alert('You cannot have a negative quantity number.')
