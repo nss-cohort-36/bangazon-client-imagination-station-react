@@ -46,11 +46,14 @@ class PaymentCreateForm extends React.Component {
         const paymenttype = {
             merchant_name: this.state.merchantName,
             account_number: Number(this.state.accountNumber),
-            expiration_date: `${this.state.month}/${this.state.year}`,
+            expiration_date: `${Number(this.state.month)}/${Number(this.state.year)}`,
            
         }
+        const today = new Date();
+        const someday = new Date();
+        someday.setFullYear(Number(this.state.year), Number(this.state.month), 1)
 
-        if (this.state.merchantName !== "" && this.state.accountNumber !== "" && this.state.expirationDate !== "" ) {
+        if (this.state.merchantName !== "" && this.state.accountNumber !== "" && this.state.expirationDate !== "" && someday > today) {
             // Make a post with the product to the API
             APIManager.post("paymenttypes", paymenttype)
                 .then((response) => {
@@ -65,13 +68,23 @@ class PaymentCreateForm extends React.Component {
                 alert('Please input an account number.')
             } else if (this.state.expirationDate === null) {
                 alert('Please input a expiration date.')
+            } else if (someday > today === false) {
+                alert('Please enter an expiration date that is not expired.')
             }
         }
     }
 
     render() {
         const { classes } = this.props;
+        // const date = new Date(); // M-D-YYYY
 
+        // const d = date.getDate();
+        // const m = date.getMonth();
+        // const y = date.getFullYear() 
+        // const today = new Date();
+        // const someday = new Date();
+        // someday.setFullYear(Number(this.state.year), Number(this.state.month), 1);       
+        // console.log(`${m}/${y}`, someday > today)
         return (
             <>
                 <div className="new-product-form-container">
@@ -101,8 +114,8 @@ class PaymentCreateForm extends React.Component {
                             label="MM"
                             onChange={this.handleChange('month')}
                             className={classes.textField}
-                            maxLength="2"
                             margin="normal"
+                            type="number"
                             variant="outlined"
                         />
                         <TextField
@@ -111,7 +124,6 @@ class PaymentCreateForm extends React.Component {
                             label="YYYY"
                             onChange={this.handleChange('year')}
                             className={classes.textField}
-                            maxLength="4"
                             margin="normal"
                             variant="outlined"
                         />
