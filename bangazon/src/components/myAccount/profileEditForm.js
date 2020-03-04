@@ -18,7 +18,6 @@ class ProfileEditForm extends Component {
         //get User name, email, payment info
         APIManager.getAll("customers")
             .then((customer) => {
-                console.log(customer, "customer object")
                 this.setState({
                     first_name: customer[0].user.first_name,
                     last_name: customer[0].user.last_name,
@@ -38,6 +37,7 @@ class ProfileEditForm extends Component {
     }
 
     updateProfile = evt => {
+        console.log("update ran")
         evt.preventDefault()
         const formUpdate = {
             first_name: this.state.first_name,
@@ -47,7 +47,7 @@ class ProfileEditForm extends Component {
             zipcode: this.state.zipcode,
             phone_number: this.state.phone_number
         }
-        APIManager.post("customers", formUpdate)
+        APIManager.prof_update("customers", formUpdate)
     }
 
 
@@ -62,6 +62,7 @@ class ProfileEditForm extends Component {
                             required
                             onChange={this.handleFieldChange}
                             id="first_name"
+                            value={this.state.first_name}
                             label="First Name"
                             margin="normal"
                             variant="outlined"
@@ -70,6 +71,7 @@ class ProfileEditForm extends Component {
                             required
                             onChange={this.handleFieldChange}
                             id="last_name"
+                            value={this.state.last_name}
                             label="Last Name"
                             margin="normal"
                             variant="outlined"
@@ -78,6 +80,7 @@ class ProfileEditForm extends Component {
                             required
                             onChange={this.handleFieldChange}
                             id="address"
+                            value={this.state.address}
                             label="Address"
                             margin="normal"
                             variant="outlined"
@@ -86,6 +89,7 @@ class ProfileEditForm extends Component {
                             required
                             onChange={this.handleFieldChange}
                             id="city"
+                            value={this.state.city}
                             label="City"
                             margin="normal"
                             variant="outlined"
@@ -94,6 +98,7 @@ class ProfileEditForm extends Component {
                             required
                             onChange={this.handleFieldChange}
                             id="zipcode"
+                            value={this.state.zipcode}
                             label="Zip Code"
                             margin="normal"
                             variant="outlined"
@@ -102,12 +107,13 @@ class ProfileEditForm extends Component {
                             required
                             onChange={this.handleFieldChange}
                             id="phone_number"
+                            value={this.state.phone_number}
                             label="Phone Number"
                             margin="normal"
                             variant="outlined"
                         />
-                        <Button id="edit-details-button" variant="contained" color="light"  disabled={this.state.loadingStatus}
-                            onClick={() => this.updateProfile}
+                        <Button variant="contained" color="light"
+                            onClick={this.updateProfile}
                         >Save Profile
                     </Button>
                     </form>

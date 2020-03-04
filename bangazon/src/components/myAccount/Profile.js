@@ -41,7 +41,6 @@ class Profile extends Component {
         //get User name, email, payment info
         APIManager.getAll("customers")
         .then((customer) => {
-            console.log(customer, "customer object")
             this.setState({
                 first_name: customer[0].user.first_name,
                 last_name: customer[0].user.last_name,
