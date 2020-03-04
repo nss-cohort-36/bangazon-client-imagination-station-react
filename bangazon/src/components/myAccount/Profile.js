@@ -53,7 +53,6 @@ class Profile extends Component {
             .then(() => {
                 APIManager.getAll("paymenttypes")
                     .then((response) => {
-                        console.log(response)
                         this.setState({
                             paymenttypes: response
                         })
