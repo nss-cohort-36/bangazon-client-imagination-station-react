@@ -77,8 +77,6 @@ class ProductCreateForm extends React.Component {
             let newPrice = oldPrice.toFixed(2)
             product.price = newPrice
         }
-        console.log("Product: ", product)
-        console.log("Quantity: ", this.state.Quantity)
 
         if (this.state.Name !== ""
             && this.state.Description !== ""
