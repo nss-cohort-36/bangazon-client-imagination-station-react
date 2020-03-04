@@ -86,6 +86,7 @@ class Profile extends Component {
 
 
     render() {
+
         const { classes } = this.props;
 
         return (
@@ -98,8 +99,8 @@ class Profile extends Component {
                         <p>City: {this.state.city}</p>
                         <p>Zip Code: {this.state.zipcode}</p>
                         <p>Phone Number: {this.state.phone_number}</p>
-                        <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
-                            onClick={() => this.getPaymentTypes()}>
+                        <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
+                            >
                             Edit Profile
                         </Button>
 
