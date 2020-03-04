@@ -21,7 +21,7 @@ const styles = theme => ({
         marginTop: 16,
     },
     menu: {
-        width: 200,
+        width: 400,
     },
 });
 
@@ -103,8 +103,6 @@ class ProductCreateForm extends React.Component {
                 alert('Please input a quantity.')
             } else if (this.state.Quantity < 0) {
                 alert('You cannot have a negative quantity number.')
-            } else if (this.state.Location === "") {
-                alert('Please input a location.')
             } else if (this.state.Price === null || this.state.Price == "") {
                 alert('Please input a price.')
             } else if (this.state.Price < 0) {
@@ -125,7 +123,7 @@ class ProductCreateForm extends React.Component {
                 <div className="new-product-form-container">
                     <h2>Sell a Product</h2>
 
-                    <form >
+                    <form className="new-product-form">
                         <TextField
                             id="outlined-name product"
                             label="Name"
@@ -154,7 +152,7 @@ class ProductCreateForm extends React.Component {
                         />
                         <TextField
                             id="outlined-name product"
-                            label="Location"
+                            label="Location (if available for local pickup)"
                             className={classes.textField}
                             onChange={this.handleChange('Location')}
                             margin="normal"
