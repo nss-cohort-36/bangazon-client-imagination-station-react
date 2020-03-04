@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AttachMoney from '@material-ui/icons/AttachMoney'
 import './Product.css'
-// Author: Lauren Riddle
+// Author(s): Lauren Riddle, Ryan Crowley
 // Purpose: To create form to making a new product
 const styles = theme => ({
     container: {
@@ -71,17 +71,23 @@ class ProductCreateForm extends React.Component {
             product_type_id: Number(this.state.ProductTypeId)
         }
 
-        if (this.state.Name !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.ProductTypeId !== null) {
-            // Make a post with the product to the API
-            APIManager.post("products", product)
-                .then((response) => {
-                    // pushes you to product detail for the product just created
-                    this.props.history.push(`/product/${response.id}`)
-                })
+        if (this.state.Name !== "" && this.state.Description !== "" && this.state.Quantity !== null && this.state.Price !== null && this.state.ProductTypeId !== null) {
+            // Check to make sure the price is less than $10,000
+            this.state.Price <= 10000 ?
+                // Make a post with the product to the API
+                APIManager.post("products", product)
+                    .then((response) => {
+                        // pushes you to product detail for the product just created
+                        this.props.history.push(`/product/${response.id}`)
+                    })
+                :
+                alert("The maximum price on Bangazon is $10,000.")
         } else {
             // renders and alert based on what is missing from the product form
             if (this.state.Name === "") {
                 alert('Please input a product name.')
+            } else if (this.state.Description === "") {
+                alert('Please input a description.')
             } else if (this.state.Quantity === null) {
                 alert('Please input a quantity.')
             } else if (this.state.Price === null) {
