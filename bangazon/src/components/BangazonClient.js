@@ -57,8 +57,6 @@ class BangazonClient extends Component {
 
     render() {
 
-        console.log(this.state, "this state")
-
         return (
             <>
                 <NavBar search={this.search} loggedOut={this.loggedOut} {...this.props} />

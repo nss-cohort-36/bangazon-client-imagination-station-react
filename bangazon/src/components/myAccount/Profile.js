@@ -29,7 +29,30 @@ class Profile extends Component {
 
     state = {
         paymenttypes: [],
+        first_name: "",
+        last_name: "",
+        address: "",
+        city: "",
+        zipcode: "",
+        phone_number: ""
     };
+
+    componentDidMount() {
+        //get User name, email, payment info
+        APIManager.getAll("customers")
+        .then((customer) => {
+            console.log(customer, "customer object")
+            this.setState({
+                first_name: customer[0].user.first_name,
+                last_name: customer[0].user.last_name,
+                address: customer[0].address,
+                city: customer[0].city,
+                zipcode: customer[0].zipcode,
+                phone_number: customer[0].phone
+            })
+        })
+        // .then((response) => console.log("UserProfile response", response))
+    }
 
     handleFieldChange = evt => {
         const stateToChange = {}
@@ -69,6 +92,15 @@ class Profile extends Component {
         return (
             <>
                 <div className="profile-container">
+                    <div className="profile-info">
+                        <p>First Name: {this.state.first_name}</p>
+                        <p>Last Name: {this.state.last_name}</p>
+                        <p>Address: {this.state.address}</p>
+                        <p>City: {this.state.city}</p>
+                        <p>Zip Code: {this.state.zipcode}</p>
+                        <p>Phone Number: {this.state.phone_number}</p>
+
+                    </div>
                     <div className="payment-button-container">
                         {this.state.paymenttypes.length === 0 && 
                         
