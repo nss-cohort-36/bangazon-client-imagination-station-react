@@ -49,6 +49,7 @@ class PaymentCreateForm extends React.Component {
             expiration_date: `${Number(this.state.month)}/${Number(this.state.year)}`,
            
         }
+        // Checks to see if the date the user entered has not already past
         const today = new Date();
         const someday = new Date();
         someday.setFullYear(Number(this.state.year), Number(this.state.month), 1)
