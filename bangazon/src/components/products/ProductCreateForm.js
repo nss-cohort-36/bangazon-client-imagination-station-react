@@ -71,7 +71,7 @@ class ProductCreateForm extends React.Component {
             product_type_id: Number(this.state.ProductTypeId)
         }
 
-        // make sure price is a 2 digit float for currency
+        // Upadte price to be 2 digit float to match currency in dollars
         if (product.price) {
             let oldPrice = parseFloat(product.price)
             let newPrice = oldPrice.toFixed(2)
