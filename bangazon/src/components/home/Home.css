@@ -17,3 +17,30 @@
     box-shadow: 1px 1px grey;
     border-radius: 10px;
 }
+
+.products-home-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.home-card {
+    flex-basis: 40%;
+    width: 80%;
+    height: 40%;
+    margin: 20px;
+}
+
+.bangazon-top-20 {
+    text-align: center;
+    margin: 10px;
+    font-size: 30px;
+}
+
+.product-link {
+    text-decoration: underline;
+}
+
+.product-link:hover {
+    text-decoration: underline;
+}
