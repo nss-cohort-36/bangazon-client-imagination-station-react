@@ -18,7 +18,6 @@ class ProductCategories extends Component {
     componentDidMount() {
         APIManager.getAll("producttypes", "?customer=true")
             .then((producttypes) => {
-                console.log(producttypes)
                 this.setState({
                     producttypes: producttypes
                 })
