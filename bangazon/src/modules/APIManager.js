@@ -58,8 +58,8 @@ export default {
     return results;
   },
 
-  async prof_update(route, editedItem) {
-    const results = await fetch(`${remoteURL}/${route}/`, {
+  async profile_update(route, editedItem) {
+    const results = await fetch(`${remoteURL}/${route}/profile_update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

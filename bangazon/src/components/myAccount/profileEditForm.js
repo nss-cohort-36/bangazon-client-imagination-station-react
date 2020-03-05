@@ -36,6 +36,7 @@ class ProfileEditForm extends Component {
         this.setState(stateToChange)
     }
 
+    //Make sure you notice that this object's ket=y are the exact name that the api is expecting
     updateProfile = evt => {
         console.log("update ran")
         evt.preventDefault()
@@ -45,9 +46,9 @@ class ProfileEditForm extends Component {
             address: this.state.address,
             city: this.state.city,
             zipcode: this.state.zipcode,
-            phone_number: this.state.phone_number
+            phone: this.state.phone_number
         }
-        APIManager.prof_update("customers", formUpdate)
+        APIManager.profile_update("customers", formUpdate)
     }
 
 
