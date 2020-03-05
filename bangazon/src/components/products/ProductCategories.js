@@ -33,12 +33,14 @@ class ProductCategories extends Component {
                             <List key={producttype.id}>
                                 <Typography variant="h4" key={producttype.id}>
                                     {producttype.name}
+                                    {/* displays how many products are in that category  */}
+                                    <span>({producttype.products.length})</span>
                                 </Typography>
                                 {producttype.products.slice(0,3).map(product => {
                                     return (
                                         <ListItem key={product.id}>
                                             <Typography color="textSecondary" variant="h5" gutterBottom key={product.id}>
-                                                {product.name}
+                                                {product.name} 
                                             </Typography>
                                             <Typography color="textSecondary" gutterBottom >
                                                 <Link to={`/product/${product.id}`} className="product-link">Details</Link>
