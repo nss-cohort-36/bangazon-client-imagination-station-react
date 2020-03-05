@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import "./Profile.css"
+import { Link } from "react-router-dom";
+
 // Author: Lauren Riddle
 // Purpose: To load user profile with payment types
 const styles = theme => ({
@@ -117,6 +119,15 @@ class Profile extends Component {
                             onClick={() => this.props.history.push('/payment/new')}>
                             Add a New Payment Option
                     </Button>
+                    <Button variant="contained">
+                    <Link
+                      to={{
+                        pathname: `/orderhistory`,
+                        
+                      }} className="complete-order-button">
+                      View Order History
+                    </Link>
+                  </Button>
                     </div>
                     <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
 

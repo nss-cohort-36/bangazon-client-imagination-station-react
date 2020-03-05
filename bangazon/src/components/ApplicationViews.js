@@ -16,6 +16,8 @@ import Profile from './myAccount/Profile'
 import CompleteOrder from './orders/CompleteOrder'
 import ThankYou from "./orders/ThankYou"
 import ProfileEditForm from "./myAccount/profileEditForm"
+import OrderHistory from "./orders/OrderHistory"
+import OrderHistoryDetail from "./orders/OrderHistoryDetail"
 export default class ApplicationViews extends Component {
 
   render() {
@@ -128,9 +130,9 @@ export default class ApplicationViews extends Component {
         <Route
           exact path="/" render={props => {
             if (isAuthenticated()) {
-                return <Home {...props} {...this.props} />
+              return <Home {...props} {...this.props} />
             } else {
-                return <Redirect to='/login' />
+              return <Redirect to='/login' />
             }
           }}
         />
@@ -162,6 +164,28 @@ export default class ApplicationViews extends Component {
           render={(props) => {
             if (isAuthenticated()) {
               return <ThankYou {...props} {...this.props} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+
+        <Route exact
+          path="/orderhistory"
+          render={(props) => {
+            if (isAuthenticated()) {
+              return <OrderHistory {...props} {...this.props} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+
+        <Route exact
+          path="/orderhistory/:orderId(\d+)"
+          render={(props) => {
+            if (isAuthenticated()) {
+              return <OrderHistoryDetail {...props} {...this.props} />;
             } else {
               return <Redirect to="/login" />;
             }
