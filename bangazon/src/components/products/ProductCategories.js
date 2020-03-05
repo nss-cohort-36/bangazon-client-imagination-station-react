@@ -31,7 +31,7 @@ class ProductCategories extends Component {
                                 <Typography variant="h4" key={producttype.id}>
                                     {producttype.name}
                                 </Typography>
-                                {producttype.products.map(product => {
+                                {producttype.products.slice(0,3).map(product => {
                                     return (
                                         <ListItem key={product.id}>
                                             <Typography color="textSecondary" variant="h5" gutterBottom key={product.id}>
