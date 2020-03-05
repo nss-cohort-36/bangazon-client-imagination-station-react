@@ -4,15 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AttachMoney from '@material-ui/icons/AttachMoney'
+import AttachMoney from '@material-ui/icons/AttachMoney';
+import firebase from "firebase/app";
+import 'firebase/storage';
+import FileUploader from "react-firebase-file-uploader";
 import './Product.css'
 // Author(s): Lauren Riddle, Ryan Crowley
 // Purpose: To create form to making a new product
 const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
@@ -25,6 +24,18 @@ const styles = theme => ({
     },
 });
 
+const config = {
+  apiKey: "AIzaSyAkfA7Spx0YUKiqGa_q9q_TqIeddkChjJM",
+  authDomain: "bangazon-dd868.firebaseapp.com",
+  databaseURL: "https://bangazon-dd868.firebaseio.com",
+  projectId: "bangazon-dd868",
+  storageBucket: "bangazon-dd868.appspot.com",
+  messagingSenderId: "89180329262",
+  appId: "1:89180329262:web:eeed075276edc6ace7d6bf"
+};
+
+firebase.initializeApp(config);
+
 class ProductCreateForm extends React.Component {
 
     state = {
@@ -36,6 +47,7 @@ class ProductCreateForm extends React.Component {
         ImagePath: "./none_pic.jpg",
         ProductTypeId: null,
         producttypes: [],
+        // imageFile: [],
         checkbox: ""
     };
 
@@ -59,8 +71,17 @@ class ProductCreateForm extends React.Component {
         });
     };
 
+    isValid = (str) => {
+        // Checks the string for the [!@#$%^&*()] characters and returns whether the string is valid or not
+        return !/[!@#$%^&*()]/g.test(str);
+    }
+
     saveProduct = evt => {
         evt.preventDefault()
+        if (this.isValid(this.state.Name) && this.isValid(this.state.Description)) {
+
+        // this.startUploadManually()
+
         const product = {
             name: this.state.Name,
             description: this.state.Description,
@@ -114,9 +135,35 @@ class ProductCreateForm extends React.Component {
             }
         }
     }
+    else {
+        alert('Please make sure that your title and description do not have !@#$%^&*() characters in them.')
+    }
+    }
+
+    handleUploadSuccess = filename => {
+      firebase
+        .storage()
+        .ref("images")
+        .child(filename)
+        .getDownloadURL()
+        .then(url => this.setState({ ImagePath: url }));
+    };
+
+    // // Store selected file in the state
+    // customOnChangeHandler = event => {
+    //   const { files } = event.target;
+    //   this.setState({ imageFile: files });
+    // }
+
+    // // Start download handler using the file uploader reference
+    // startUploadManually = () => {
+    //   const { imageFile } = this.state;
+    //   this.handleUploadSuccess(imageFile);
+    // }
 
     render() {
         const { classes } = this.props;
+        const { ImagePath } = this.state;
 
         return (
             <>
@@ -124,6 +171,20 @@ class ProductCreateForm extends React.Component {
                     <h2>Sell a Product</h2>
 
                     <form className="new-product-form">
+                        {ImagePath && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} />}
+                        <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
+                            Upload Photo
+                          <FileUploader
+                            hidden
+                            accept="image/*"
+                            name="product"
+                            randomizeFilename
+                            storageRef={firebase.storage().ref("images")}
+                            onUploadSuccess={this.handleUploadSuccess}
+                            // onChange={this.customOnChangeHandler}
+                            // ref={instance => { this.fileUploader = instance; } }
+                          />
+                        </label>
                         <TextField
                             id="outlined-name product"
                             label="Name"
@@ -164,12 +225,9 @@ class ProductCreateForm extends React.Component {
                             onChange={this.handleChange('Price')}
                             type="number"
                             className={classes.textField}
-
                             margin="normal"
                             variant="outlined"
                         />
-
-
                         <TextField
                             id="outlined-select-currency product"
                             select
@@ -191,7 +249,6 @@ class ProductCreateForm extends React.Component {
                                 </MenuItem>
                             ))}
                         </TextField>
-
 
                         <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.saveProduct}>
