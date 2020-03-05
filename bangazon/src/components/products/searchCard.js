@@ -27,7 +27,7 @@ class SearchCard extends Component {
     render() {
 
         return (
-            <Card id="product-list-card">
+            <Card className="product-list-card home-card">
                 <CardContent>
                     <Typography variant="h5" component="h2">
                         <Link to={`/Product/${this.props.product.id}`} className="product-link">{this.props.name}</Link>

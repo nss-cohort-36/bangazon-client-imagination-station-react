@@ -1,8 +1,8 @@
 import APIManager from '../../modules/APIManager'
 import React, { Component } from 'react'
 import "./Home.css"
-import "../products/Product.css"
-import MyProductCard from "../products/MyProductCard"
+// import "../products/Product.css"
+import SearchCard from "../products/searchCard"
 
 // Author: Lauren Riddle
 // Purpose: To display home page
@@ -42,10 +42,18 @@ class Home extends Component {
                     </div>
 
                 </div>
-                <section className="my-products-container products-home-container">
-                {this.state.products.map(product=> {
-                return <MyProductCard myProductCard={product} {...this.props}/>
-                })}
+                <h1 className="bangazon-top-20">Bangazon's Top 20</h1>
+                <section className="products-home-container">
+
+                    {this.state.products.map(product => {
+                        // return <MyProductCard myProductCard={product} {...this.props}/>
+                        return <SearchCard
+                            key={product.id}
+                            product={product}
+                            name={product.name}
+                            price={product.price}
+                        />
+                    })}
                 </section>
             </>
 
