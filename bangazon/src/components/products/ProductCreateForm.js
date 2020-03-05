@@ -4,7 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AttachMoney from '@material-ui/icons/AttachMoney'
+import AttachMoney from '@material-ui/icons/AttachMoney';
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
 import './Product.css'
 // Author: Lauren Riddle
 // Purpose: To create form to making a new product
@@ -21,6 +23,18 @@ const styles = theme => ({
     },
 });
 
+const config = {
+  apiKey: "AIzaSyAkfA7Spx0YUKiqGa_q9q_TqIeddkChjJM",
+  authDomain: "bangazon-dd868.firebaseapp.com",
+  databaseURL: "https://bangazon-dd868.firebaseio.com",
+  projectId: "bangazon-dd868",
+  storageBucket: "bangazon-dd868.appspot.com",
+  messagingSenderId: "89180329262",
+  appId: "1:89180329262:web:eeed075276edc6ace7d6bf"
+};
+
+firebase.initializeApp(config);
+
 class ProductCreateForm extends React.Component {
 
     state = {
@@ -32,6 +46,7 @@ class ProductCreateForm extends React.Component {
         ImagePath: "./none_pic.jpg",
         ProductTypeId: null,
         producttypes: [],
+        // imageFile: [],
         checkbox: ""
     };
 
@@ -57,6 +72,9 @@ class ProductCreateForm extends React.Component {
 
     saveProduct = evt => {
         evt.preventDefault()
+
+        // this.startUploadManually()
+
         const product = {
             name: this.state.Name,
             description: this.state.Description,
@@ -88,13 +106,30 @@ class ProductCreateForm extends React.Component {
         }
     }
 
-    uploadPhoto = evt => {
-        evt.preventDefault()
-        console.log('upload photo')
-    }
+    handleUploadSuccess = filename => {
+      firebase
+        .storage()
+        .ref("images")
+        .child(filename)
+        .getDownloadURL()
+        .then(url => this.setState({ ImagePath: url }));
+    };
+
+    // // Store selected file in the state
+    // customOnChangeHandler = event => {
+    //   const { files } = event.target;
+    //   this.setState({ imageFile: files });
+    // }
+
+    // // Start download handler using the file uploader reference
+    // startUploadManually = () => {
+    //   const { imageFile } = this.state;
+    //   this.handleUploadSuccess(imageFile);
+    // }
 
     render() {
         const { classes } = this.props;
+        const { ImagePath } = this.state;
 
         return (
             <>
@@ -102,10 +137,22 @@ class ProductCreateForm extends React.Component {
                     <h2>Sell a Product</h2>
 
                     <form >
-                        <Button variant="contained" color="default" className={classes.button} disabled={this.state.loadingStatus}
-                            onClick={this.uploadPhoto}>
-                            Upload Photo
-                        </Button>
+                        <form>
+                          {ImagePath && <img className="preview" src={ImagePath} />}
+                          <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
+                              Upload Photo
+                            <FileUploader
+                              hidden
+                              accept="image/*"
+                              name="product"
+                              randomizeFilename
+                              storageRef={firebase.storage().ref("images")}
+                              onUploadSuccess={this.handleUploadSuccess}
+                              // onChange={this.customOnChangeHandler}
+                              // ref={instance => { this.fileUploader = instance; } }
+                            />
+                          </label>
+                        </form>
                         <TextField
                             id="outlined-name product"
                             label="Name"
@@ -146,7 +193,6 @@ class ProductCreateForm extends React.Component {
                             onChange={this.handleChange('Price')}
                             type="number"
                             className={classes.textField}
-
                             margin="normal"
                             variant="outlined"
                         />

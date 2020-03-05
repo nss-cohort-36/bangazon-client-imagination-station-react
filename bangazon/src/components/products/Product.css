@@ -35,6 +35,10 @@
     font-size: 40px;
 }
 
+.preview {
+    width: 200px;
+}
+
 @media screen and (max-width: 900px) {
     .new-product-form-container {
         display: flex;
