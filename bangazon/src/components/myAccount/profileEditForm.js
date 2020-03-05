@@ -49,6 +49,7 @@ class ProfileEditForm extends Component {
             phone: this.state.phone_number
         }
         APIManager.profile_update("customers", formUpdate)
+        this.props.history.push("/profile")
     }
 
 
