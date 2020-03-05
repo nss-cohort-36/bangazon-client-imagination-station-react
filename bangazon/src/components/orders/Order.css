@@ -41,3 +41,11 @@
     }
    
 }
+.my-orders {
+    text-align: center;
+    font-size: 30px;
+}
+
+.order-card {
+    margin: 10px;
+}
