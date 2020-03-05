@@ -71,7 +71,7 @@ class ProductDetail extends Component {
                 quantity: (this.state.quantity - 1),
                 price: this.state.price,
                 location: this.state.product.location,
-                image_path: this.state.product.image_path,
+                image_path: this.state.product.imagePath,
                 customer_id: this.state.product.customer.id,
                 product_type_id: this.state.product.product_type.url.split("/")[4]
             },
@@ -121,6 +121,7 @@ class ProductDetail extends Component {
                     quantity: productObject.quantity,
                     price: productObject.price,
                     product: productObject,
+                    imagePath: productObject.image_path,
                     loadingStatus: false
                 })
             })
@@ -132,7 +133,7 @@ class ProductDetail extends Component {
                 <Card>
                     <CardContent>
                         <div className="img-container">
-                            <img src={`https://robohash.org/${this.state.name}`} alt="Current User" />
+                            <img style={{width: '400px', marginBottom: '20px'}} src={this.state.imagePath} alt={this.state.title} />
                         </div>
                         <Typography variant="h5" component="h2">{this.state.title}</Typography>
                         <Typography color="textSecondary" gutterBottom>{this.state.description}</Typography>
