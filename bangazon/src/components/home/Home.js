@@ -1,11 +1,10 @@
 import APIManager from '../../modules/APIManager'
 import React, { Component } from 'react'
 import "./Home.css"
-// import "../products/Product.css"
 import SearchCard from "../products/searchCard"
 
 // Author: Lauren Riddle
-// Purpose: To display home page
+// Purpose: To display home page with top 20 products
 
 class Home extends Component {
 
@@ -46,7 +45,6 @@ class Home extends Component {
                 <section className="products-home-container">
 
                     {this.state.products.map(product => {
-                        // return <MyProductCard myProductCard={product} {...this.props}/>
                         return <SearchCard
                             key={product.id}
                             product={product}
