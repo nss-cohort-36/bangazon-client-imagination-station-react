@@ -137,7 +137,7 @@ class ProductDetail extends Component {
                         </div>
                         <Typography variant="h5" component="h2">{this.state.title}</Typography>
                         <Typography color="textSecondary" gutterBottom>{this.state.description}</Typography>
-                        <Typography component="p">
+                        <Typography component="div">
                             <ul>
                                 <li>Price: ${this.state.price}</li>
                                 <li>Quantity available: {this.state.quantity}</li>

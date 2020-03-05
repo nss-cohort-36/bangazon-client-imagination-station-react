@@ -16,7 +16,7 @@ const ThankYou = () => {
 
                     <h1>Your order has been placed, you should receive it shortly!</h1>
                      <h3>Sincerely,
-                          The Animals of Keahua Arboretum 🦆🐒🐓🐬</h3><h4> (P.S. Should you be feeling generous, we accept crunchberries as tips, and also ice cream. Thank you!)</h4>
+                          The Animals of Keahua Arboretum <span role="img" aria-label="emoji">🦆🐒🐓🐬</span></h3><h4> (P.S. Should you be feeling generous, we accept crunchberries as tips, and also ice cream. Thank you!)</h4>
 
                 </div>
                 </>

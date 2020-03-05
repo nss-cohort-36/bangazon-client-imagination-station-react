@@ -3,7 +3,6 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AttachMoney from '@material-ui/icons/AttachMoney'
 // Author: Lauren Riddle
 // Purpose: To load form to create payment type
 const styles = theme => ({
@@ -71,7 +70,7 @@ class PaymentCreateForm extends React.Component {
                 alert('Please input a expiration date.')
             } else if (isNaN(this.state.year)|| isNaN(this.state.month)) {
                 alert("Please enter an integer in the month and year fields.")
-            } else if (someday > today === false) {
+            } else if ((someday > today) === false) {
                 alert('Please enter an expiration date that is not expired.')
             }
         }
@@ -122,7 +121,7 @@ class PaymentCreateForm extends React.Component {
                         />
                         
                        
-                        <Button variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
+                        <Button variant="contained" color="inherit" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.savePaymentType}>
                             Save
                         </Button>

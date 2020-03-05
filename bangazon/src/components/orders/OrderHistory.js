@@ -39,6 +39,7 @@ class OrderHistory extends Component {
                     if (order.payment_type_id !== null) {
                         orders.push(order)
                     }
+                    return orders
                 })
                 this.setState({
                     orders: orders
@@ -52,7 +53,6 @@ class OrderHistory extends Component {
 
 
     render() {
-        const { classes } = this.props;
 
         return (
             <>
