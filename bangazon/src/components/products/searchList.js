@@ -7,7 +7,6 @@ class SearchList extends Component {
 
   render() {
 
-    // console.log(this.props.searchResults, 'search results')
 
     return (
       <>
