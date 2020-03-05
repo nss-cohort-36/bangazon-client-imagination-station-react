@@ -36,7 +36,6 @@ class CompleteOrder extends Component {
         // get all payment types
         APIManager.getAll("paymenttypes")
             .then((response) => {
-                console.log(response)
                 this.setState({
                     paymenttypes: response
                 })

@@ -23,7 +23,6 @@ class MyProductList extends Component {
             .then(() => {
                 APIManager.getAll("products", "?customer=true")
                     .then((newProducts) => {
-                        console.log("new", newProducts)
                         this.setState({
                             products: newProducts
                         })
