@@ -78,13 +78,10 @@ class ProductCreateForm extends React.Component {
 
     saveProduct = evt => {
         evt.preventDefault()
-<<<<<<< HEAD
         if (this.isValid(this.state.Name) && this.isValid(this.state.Description)) {
-=======
 
         // this.startUploadManually()
 
->>>>>>> master
         const product = {
             name: this.state.Name,
             description: this.state.Description,
