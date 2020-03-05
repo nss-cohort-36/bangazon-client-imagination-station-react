@@ -71,8 +71,14 @@ class ProductCreateForm extends React.Component {
         });
     };
 
+    isValid = (str) => {
+        // Checks the string for the [!@#$%^&*()] characters and returns whether the string is valid or not
+        return !/[!@#$%^&*()]/g.test(str);
+    }
+
     saveProduct = evt => {
         evt.preventDefault()
+        if (this.isValid(this.state.Name) && this.isValid(this.state.Description)) {
 
         // this.startUploadManually()
 
@@ -128,6 +134,10 @@ class ProductCreateForm extends React.Component {
                 alert('Please select a product type.')
             }
         }
+    }
+    else {
+        alert('Please make sure that your title and description do not have !@#$%^&*() characters in them.')
+    }
     }
 
     handleUploadSuccess = filename => {
