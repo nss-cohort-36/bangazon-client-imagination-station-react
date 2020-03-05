@@ -1,53 +1,51 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 import "./Product.css";
 import APIManager from '../../modules/APIManager'
 
 
 class ProductCategories extends Component {
     state = {
-        products: []
+        producttypes: []
     }
 
     componentDidMount() {
         APIManager.getAll("producttypes", "?customer=true")
-            .then((products) => {
-                console.log(products)
+            .then((producttypes) => {
+                console.log(producttypes)
                 this.setState({
-                    products: products
+                    producttypes: producttypes
                 })
             })
     }
     render() {
         return (
             <>
-                <Typography variant="h3" component="h1">Product Categories</Typography>
-                <Grid container spacing={16}>
-                    <Grid item xs={12} md={6}>
-                        {
-                            this.state.products.map(product =>
-                                <Typography variant="h5" >
-                                    {product.name}
+                <Typography variant="h2" component="h1">Product Categories</Typography>
+                {
+                    this.state.producttypes.map(producttype =>
+                            <List key={producttype.id}>
+                                <Typography variant="h4" key={producttype.id}>
+                                    {producttype.name}
                                 </Typography>
-                            )
-                        }
-                        <Typography variant="h6">
-                            Text only
-                        </Typography>
-                        <div>
-                            <List>
+                                {producttype.products.map(product => {
+                                    return (
+                                        <ListItem key={product.id}>
+                                            <Typography color="textSecondary" variant="h5" gutterBottom key={product.id}>
+                                                {product.name}
+                                            </Typography>
+                                            <Typography color="textSecondary" gutterBottom >
+                                                <Link to={`/product/${product.id}`} className="product-link">Details</Link>
+                                            </Typography>
+                                        </ListItem>
+                                    )
+                                })}
                             </List>
-                        </div>
-                    </Grid>
-                </Grid>
-
+                    )
+                }
             </>
         )
     }
