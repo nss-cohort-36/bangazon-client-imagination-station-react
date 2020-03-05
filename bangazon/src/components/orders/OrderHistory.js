@@ -5,7 +5,7 @@ import OrderCard from "./OrderCard"
 import "./Order.css"
 
 // Author: Lauren Riddle
-// Purpose: To load complete order view and allow a user to select a payment type
+// Purpose: To load the order history for a user
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -31,7 +31,7 @@ class OrderHistory extends Component {
 
 
     componentDidMount() {
-        // get all payment types
+        // get all orders that are complete and specific to the user 
         APIManager.getAll("orders", "?customer=true")
             .then((response) => {
                 const orders = []

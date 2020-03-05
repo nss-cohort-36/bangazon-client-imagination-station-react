@@ -1,22 +1,8 @@
-/*
-  OrderDetail
-  displays a single open order
-  button for complete order
-  presented payment type on clicking button
-  user selects payment type
-  user clicks done
-  payment type added to the order at this point
-  user presented with confirmation/thank you screen
-*/
-
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import APIManager from "../../modules/APIManager";
 import "./Order.css";
-import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import DeleteIcon from "@material-ui/icons/Delete";
 
 import { ListItemText, Typography } from "@material-ui/core";
 //CARDS
@@ -24,6 +10,8 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 
+// Author: Lauren Riddle
+// Purpose: To display the details for an order in the user's order history
 const styles = {
     card: {
         minWidth: 275
@@ -42,13 +30,16 @@ class OrderHistoryDetail extends Component {
         products: [],
         total: null
     }
+
     componentDidMount() {
+        // Get the selected order
         APIManager.getOne("orders", `${this.props.match.params.orderId}`)
             .then((response) => {
 
                 this.setState({
                     order: response
                 })
+                // Get all products related to the selected order
                 APIManager.getAll(
                     "orderproducts",
                     `?order=${this.props.match.params.orderId}`
@@ -58,6 +49,7 @@ class OrderHistoryDetail extends Component {
                         this.setState({
                             products: response
                         })
+                        // Count the total price of the products in the order
                         this.totalPrice()
                     })
             })
@@ -66,10 +58,14 @@ class OrderHistoryDetail extends Component {
 
     totalPrice = () => {
         let total = 0
+
         this.state.products.map(product => {
+            // add the product price to the order total
             total += Number(product.product.price);
         })
+        // set order total in state
         this.setState({
+
             total: total
         })
 

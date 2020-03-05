@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
+// Author: Lauren Riddle
+// Purpose: To create a card for each order in order history
 const styles = {
     card: {
         minWidth: 275,
@@ -17,7 +18,7 @@ const styles = {
     },
 };
 class Order extends React.Component {
-    // Creates card for payment type
+    // Creates card for order
     render() {
         const { classes } = this.props;
 
@@ -32,7 +33,7 @@ class Order extends React.Component {
                                     to={{
                                         pathname: `/orderhistory/${this.props.order.id}`,
 
-                                    }} className="complete-order-button">
+                                    }} className="view-order-button">
                                     Order #{this.props.order.id}
                                 </Link>
 
