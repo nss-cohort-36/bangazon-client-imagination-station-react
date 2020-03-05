@@ -1,3 +1,6 @@
+// Author: Michelle Johnson
+// Purpose: Display product categories and first 3 products in that category
+
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
