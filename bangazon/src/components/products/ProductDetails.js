@@ -133,7 +133,7 @@ class ProductDetail extends Component {
                 <Card>
                     <CardContent>
                         <div className="img-container">
-                            <img className='preview' src={this.state.imagePath} alt={this.state.title} />
+                            <img src={this.state.imagePath} alt={this.state.title} />
                         </div>
                         <Typography variant="h5" component="h2">{this.state.title}</Typography>
                         <Typography color="textSecondary" gutterBottom>{this.state.description}</Typography>

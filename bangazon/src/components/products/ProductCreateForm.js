@@ -5,7 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AttachMoney from '@material-ui/icons/AttachMoney';
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/storage';
 import FileUploader from "react-firebase-file-uploader";
 import './Product.css'
 // Author(s): Lauren Riddle, Ryan Crowley
@@ -160,7 +161,7 @@ class ProductCreateForm extends React.Component {
                     <h2>Sell a Product</h2>
 
                     <form className="new-product-form">
-                        {ImagePath && <img style={{width: '50%', marginBottom: '20px'}} src={ImagePath} />}
+                        {ImagePath && <img style={{marginBottom: '20px'}} src={ImagePath} />}
                         <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
                             Upload Photo
                           <FileUploader
