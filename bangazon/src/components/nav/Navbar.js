@@ -26,7 +26,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Home from '@material-ui/icons/Home'
-import AttachMoney from '@material-ui/icons/AttachMoney'
+import AttachMoney from '@material-ui/icons/AttachMoney';
+import ViewList from '@material-ui/icons/ViewList';
 import Store from '@material-ui/icons/Store'
 import './Navbar.css'
 import { isAuthenticated, logout } from "../../modules/simpleAuth"
@@ -228,6 +229,14 @@ class NavBar extends React.Component {
           </IconButton>
           <Link id="mobile-nav-link" to="/products"><p>My Products</p></Link>
         </MenuItem>
+
+        <MenuItem onClick={this.handleMobileMenuClose}>
+        <IconButton color="inherit" id="shopping-link">
+          <Link id="mobile-nav-link" to="/product_categories"><ViewList id="shopping-link" /></Link>
+          </IconButton>
+          <Link id="mobile-nav-link" to="/product_categories"><p>Product Categories</p></Link>
+        </MenuItem>
+
         <MenuItem onClick={this.handleMobileMenuClose}>
           <IconButton color="inherit" >
             {/* <Badge badgeContent={4} color="secondary"> */}
@@ -284,6 +293,9 @@ class NavBar extends React.Component {
 
               <ListItemIcon><Link to="/products" id="shopping-link" ><Store /></Link></ListItemIcon>
               <ListItemText><Link to="/products" id="nav-link">My Products</Link></ListItemText>
+              <ListItemIcon><Link to="/product_categories" id="shopping-link" ><ViewList /></Link></ListItemIcon>
+              <ListItemText><Link to="/product_categories" id="nav-link">Product Categories</Link></ListItemText>
+              
               <div className={classes.search}>
                 <InputBase
                   placeholder="Product…"

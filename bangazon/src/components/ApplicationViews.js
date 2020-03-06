@@ -7,15 +7,14 @@ import ProductDetail from './products/ProductDetails'
 import { isAuthenticated } from "../modules/simpleAuth";
 import OrderDetail from "./orders/OrderDetail";
 import SearchList from "./products/searchList"
-// import ProductDetail from './products/ProductDetails'
 import MyProductList from './products/MyProductList'
 import Home from './home/Home'
 import PaymentCreateForm from './payment/PaymentCreateForm'
-// import OrderDetail from './orders/OrderDetail'
 import Profile from './myAccount/Profile'
 import CompleteOrder from './orders/CompleteOrder'
 import ThankYou from "./orders/ThankYou"
 import ProfileEditForm from "./myAccount/profileEditForm"
+import ProductCategories from './products/ProductCategories';
 import OrderHistory from "./orders/OrderHistory"
 import OrderHistoryDetail from "./orders/OrderHistoryDetail"
 export default class ApplicationViews extends Component {
@@ -121,6 +120,15 @@ export default class ApplicationViews extends Component {
           exact path="/products" render={props => {
             if (isAuthenticated()) {
               return <MyProductList {...props} {...this.props} />
+            } else {
+              return <Redirect to='/login' />
+            }
+          }}
+        />
+         <Route
+          exact path="/product_categories" render={props => {
+            if (isAuthenticated()) {
+              return <ProductCategories {...props} {...this.props} />
             } else {
               return <Redirect to='/login' />
             }
