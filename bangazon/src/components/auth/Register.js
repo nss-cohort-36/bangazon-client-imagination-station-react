@@ -71,6 +71,15 @@ class Register extends Component {
               required />
           </fieldset>
           <fieldset>
+            <label htmlFor="lastName"> Last Name </label>
+            <input onChange={this.handleInputChange}
+              id="lastName"
+              type="text"
+              name="lastName"
+              placeholder="Last name"
+              required />
+          </fieldset>
+          <fieldset>
             <label htmlFor="address"> Address </label>
             <input onChange={this.handleInputChange}
               id="address"
@@ -104,15 +113,6 @@ class Register extends Component {
               type="text"
               name="phoneNumber"
               placeholder="Phone Number"
-              required />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="lastName"> Last Name </label>
-            <input onChange={this.handleInputChange}
-              id="lastName"
-              type="text"
-              name="lastName"
-              placeholder="Last name"
               required />
           </fieldset>
           <fieldset>
