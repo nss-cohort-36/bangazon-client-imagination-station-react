@@ -21,7 +21,7 @@ class Home extends Component {
                     if (index < 20) {
                         twentyproducts.push(product)
                         index++
-                    }
+                    }return twentyproducts
                 })
                 this.setState({
                     products: twentyproducts

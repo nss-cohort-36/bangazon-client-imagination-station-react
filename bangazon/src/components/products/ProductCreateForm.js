@@ -102,7 +102,7 @@ class ProductCreateForm extends React.Component {
         if (this.state.Name !== ""
             && this.state.Description !== ""
             // Check to make sure quantity is not a negative number or between 0 and 1
-            && this.state.Quantity >= 0 && isNaN(product.quantity) != true
+            && this.state.Quantity >= 0 && isNaN(product.quantity) !== true
             && this.state.Description !== ""
             // Check to make sure the price is not negative and less than 10,000
             && this.state.Price >= 0 && this.state.Price <= 10000
@@ -124,7 +124,7 @@ class ProductCreateForm extends React.Component {
                 alert('Please input a quantity.')
             } else if (this.state.Quantity < 0) {
                 alert('You cannot have a negative quantity number.')
-            } else if (this.state.Price === null || this.state.Price == "") {
+            } else if (this.state.Price === null || this.state.Price === "") {
                 alert('Please input a price.')
             } else if (this.state.Price < 0) {
                 alert('You cannot have a negative price.')
@@ -171,7 +171,7 @@ class ProductCreateForm extends React.Component {
                     <h2>Sell a Product</h2>
 
                     <form className="new-product-form">
-                        {ImagePath && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} />}
+                        {ImagePath && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} alt="img" />}
                         <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
                             Upload Photo
                           <FileUploader

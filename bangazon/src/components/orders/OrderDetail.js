@@ -24,18 +24,6 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 
-const styles = {
-  card: {
-    minWidth: 275
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  }
-};
-
 const OrderDetail = props => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -169,7 +157,7 @@ return isLoading ? (
                     
                       <DeleteIcon onClick={() => deleteCartItem(product.id, order, product.product.id)}
                       variant="contained"
-                      color="light"/>
+                      color="inherit"/>
                   </ListItem>
                 ))}
                 <ListItem style={{ alignItems: "flex-end" }}>

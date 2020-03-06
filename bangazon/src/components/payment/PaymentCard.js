@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -7,22 +7,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-// const styles = theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   textField: {
-//     marginLeft: theme.spacing.unit,
-//     marginRight: theme.spacing.unit,
-//   },
-//   dense: {
-//     marginTop: 16,
-//   },
-//   menu: {
-//     width: 200,
-//   },
-// });
 
 const styles = {
   card: {

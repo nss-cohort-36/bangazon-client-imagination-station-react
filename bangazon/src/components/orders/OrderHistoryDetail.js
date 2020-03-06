@@ -10,20 +10,6 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 
-// Author: Lauren Riddle
-// Purpose: To display the details for an order in the user's order history
-const styles = {
-    card: {
-        minWidth: 275
-    },
-    title: {
-        fontSize: 14
-    },
-    pos: {
-        marginBottom: 12
-    }
-};
-
 class OrderHistoryDetail extends Component {
     state = {
         order: {},
@@ -61,7 +47,7 @@ class OrderHistoryDetail extends Component {
 
         this.state.products.map(product => {
             // add the product price to the order total
-            total += Number(product.product.price);
+            return total += Number(product.product.price);
         })
         // set order total in state
         this.setState({
