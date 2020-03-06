@@ -92,3 +92,19 @@
     display: block;
     width: 100%;
 }
+#product-categories-h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#product-cat-card {
+    border-radius: 4px;
+    flex-basis: 30%;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);}
+
+#product-cat-container {
+    display: flex;
+    flex-wrap: wrap;
+}
