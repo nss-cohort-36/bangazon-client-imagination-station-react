@@ -17,9 +17,9 @@ const styles = {
     },
     pos: {
       marginBottom: 12,
-    },
+    }
   };
-  
+
 class SearchCard extends Component {
 
     render() {
@@ -27,6 +27,11 @@ class SearchCard extends Component {
         return (
             <Card className="product-list-card home-card">
                 <CardContent>
+                    <img
+                      style={{height: '75px'}}
+                      src={this.props.imagePath}
+                      title={this.props.name}
+                    />
                     <Typography variant="h5" component="h2">
                         <Link to={`/Product/${this.props.product.id}`} className="product-link">{this.props.name}</Link>
                     </Typography>
