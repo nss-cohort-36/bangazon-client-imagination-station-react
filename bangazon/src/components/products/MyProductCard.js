@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import "./Product.css"
+import ProductApiManager from '../../modules/ProductApiManager'
+
 
 const styles = {
   card: {
@@ -19,9 +21,21 @@ const styles = {
     marginBottom: 12,
   },
 };
+
 function MyProductCard(props) {
   const { classes } = props;
   
+  const [totalSold, setTotalSold] = useState(0)
+
+  useEffect(() => {
+    const getTotalSold = async () => {
+      const response = await ProductApiManager.getTotalSold(props.myProductCard.id)
+      setTotalSold(response.total_sold)
+    }
+    getTotalSold()
+  }, [])
+
+
   return (
     <Card className={classes.card} id="my-product-card">
       <CardContent>
@@ -37,7 +51,7 @@ function MyProductCard(props) {
         <Typography component="p">
           Current Inventory: {props.myProductCard.quantity}
           <br />
-          Number Sold:
+          Number Sold: {totalSold}
           <br />
           Location: {props.myProductCard.location}
         </Typography>
