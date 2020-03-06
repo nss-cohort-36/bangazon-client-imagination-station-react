@@ -47,7 +47,6 @@ class ProductCreateForm extends React.Component {
         ImagePath: "./none_pic.jpg",
         ProductTypeId: null,
         producttypes: [],
-        // imageFile: [],
         checkbox: ""
     };
 
@@ -80,7 +79,6 @@ class ProductCreateForm extends React.Component {
         evt.preventDefault()
         if (this.isValid(this.state.Name) && this.isValid(this.state.Description)) {
 
-        // this.startUploadManually()
 
         const product = {
             name: this.state.Name,
@@ -92,7 +90,7 @@ class ProductCreateForm extends React.Component {
             product_type_id: Number(this.state.ProductTypeId)
         }
 
-        // Upadte price to be 2 digit float to match currency in dollars
+        // Update price to be 2 digit float to match currency in dollars
         if (product.price) {
             let oldPrice = parseFloat(product.price)
             let newPrice = oldPrice.toFixed(2)
@@ -149,17 +147,6 @@ class ProductCreateForm extends React.Component {
         .then(url => this.setState({ ImagePath: url }));
     };
 
-    // // Store selected file in the state
-    // customOnChangeHandler = event => {
-    //   const { files } = event.target;
-    //   this.setState({ imageFile: files });
-    // }
-
-    // // Start download handler using the file uploader reference
-    // startUploadManually = () => {
-    //   const { imageFile } = this.state;
-    //   this.handleUploadSuccess(imageFile);
-    // }
 
     render() {
         const { classes } = this.props;

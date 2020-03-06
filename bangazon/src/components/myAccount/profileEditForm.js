@@ -27,7 +27,6 @@ class ProfileEditForm extends Component {
                     phone_number: customer[0].phone
                 })
             })
-        // .then((response) => console.log("UserProfile response", response))
     }
 
     handleFieldChange = evt => {
@@ -38,7 +37,6 @@ class ProfileEditForm extends Component {
 
     //Make sure you notice that this object's ket=y are the exact name that the api is expecting
     updateProfile = evt => {
-        console.log("update ran")
         evt.preventDefault()
         const formUpdate = {
             first_name: this.state.first_name,

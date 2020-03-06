@@ -6,7 +6,6 @@ import React from 'react'
 
 const ThankYou = () => {
 
-    // render() {
 
         return (
             <>
@@ -22,7 +21,6 @@ const ThankYou = () => {
                 </>
             
         );
-    // }
 }
 
 export default ThankYou
