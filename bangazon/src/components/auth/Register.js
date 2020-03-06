@@ -10,7 +10,11 @@ class Register extends Component {
     lastName: "",
     password: "",
     firstName: "",
-    verifyPassword: ""
+    verifyPassword: "",
+    address: "",
+    city: "",
+    zipCode: "",
+    phoneNumber: ""
   }
 
   handleInputChange = (evt) => {
@@ -22,13 +26,18 @@ class Register extends Component {
   handleRegister = event => {
     event.preventDefault()
 
+    const { userName, firstName, lastName, email, password, address, city, zipCode, phoneNumber } = this.state;
     // Create object with values from state
     const newUser = {
-      "username": this.state.userName,
-      "first_name": this.state.firstName,
-      "last_name": this.state.lastName,
-      "email": this.state.email,
-      "password": this.state.password
+      "username": userName,
+      "first_name": firstName,
+      "last_name": lastName,
+      "email": email,
+      "password": password,
+      "address": address,
+      "city": city,
+      "zipcode": zipCode,
+      "phone": phoneNumber
     }
 
     // Make a fetch call with the object as the body of the POST request
@@ -59,7 +68,43 @@ class Register extends Component {
               type="text"
               name="firstName"
               placeholder="First name"
-              required autoFocus />
+              required />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="address"> Address </label>
+            <input onChange={this.handleInputChange}
+              id="address"
+              type="text"
+              name="address"
+              placeholder="Address"
+              required />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="city"> City </label>
+            <input onChange={this.handleInputChange}
+              id="city"
+              type="text"
+              name="city"
+              placeholder="City"
+              required />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="zipCode"> Zip Code </label>
+            <input onChange={this.handleInputChange}
+              id="zipCode"
+              type="text"
+              name="zipCode"
+              placeholder="Zip code"
+              required />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="phoneNumber"> Phone Number </label>
+            <input onChange={this.handleInputChange}
+              id="phoneNumber"
+              type="text"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              required />
           </fieldset>
           <fieldset>
             <label htmlFor="lastName"> Last Name </label>
