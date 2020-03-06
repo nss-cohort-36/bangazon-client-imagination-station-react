@@ -5,24 +5,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
-import Settings from '@material-ui/icons/Settings';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Home from '@material-ui/icons/Home'
@@ -33,7 +25,7 @@ import './Navbar.css'
 import { isAuthenticated, logout } from "../../modules/simpleAuth"
 
 
-import { Link, withRouter } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const drawerWidth = 240;
 
@@ -181,7 +173,7 @@ class NavBar extends React.Component {
   };
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 

@@ -3,7 +3,6 @@ import APIManager from '../../modules/APIManager'
 import React, { Component } from 'react'
 import PaymentList from '../payment/PaymentList';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import "./Profile.css"
 import { Link } from "react-router-dom";
@@ -127,13 +126,13 @@ class Profile extends Component {
                     <div className="payment-button-container">
                         {this.state.paymenttypes.length === 0 && this.state.isThere === true &&
 
-                            <Button id="payment-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
+                            <Button id="payment-button" variant="contained" color="inherit" className={classes.button} disabled={this.state.loadingStatus}
                                 onClick={() => this.getPaymentTypes()}>
                                 View Payment Options
                         </Button>
                         }
 
-                        <Button id="payment-button" variant="contained" color="dark" className={classes.button} disabled={this.state.loadingStatus}
+                        <Button id="payment-button" variant="contained" color="inherit" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={() => this.props.history.push('/payment/new')}>
                             Add a New Payment Option
                     </Button>
