@@ -30,15 +30,28 @@ class Profile extends Component {
 
     state = {
         paymenttypes: [],
+        first_name: "",
+        last_name: "",
+        address: "",
+        city: "",
+        zipcode: "",
+        phone_number: "",
         isThere: false
     };
 
-    handleFieldChange = evt => {
-        const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
     componentDidMount() {
+        //get User name, email, payment info
+        APIManager.getAll("customers")
+        .then((customer) => {
+            this.setState({
+                first_name: customer[0].user.first_name,
+                last_name: customer[0].user.last_name,
+                address: customer[0].address,
+                city: customer[0].city,
+                zipcode: customer[0].zipcode,
+                phone_number: customer[0].phone
+            })
+        })
         APIManager.getAll("paymenttypes")
             .then((response) => {
                 console.log(response.length)
@@ -48,7 +61,25 @@ class Profile extends Component {
                     })
                 }
             })
+        // .then((response) => console.log("UserProfile response", response))
     }
+
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+    // componentDidMount() {
+    //     APIManager.getAll("paymenttypes")
+    //         .then((response) => {
+    //             console.log(response.length)
+    //             if (response.length !== 0) {
+    //                 this.setState({
+    //                     isThere: true
+    //                 })
+    //             }
+    //         })
+    // }
 
     getPaymentTypes = () => {
         // Gets all payment types, then sets them in state to load the cards later
@@ -82,11 +113,27 @@ class Profile extends Component {
 
 
     render() {
+
+        console.log(this.state, "STATE")
+
         const { classes } = this.props;
 
         return (
             <>
                 <div className="profile-container">
+                    <div className="profile-info">
+                        <p>First Name: {this.state.first_name}</p>
+                        <p>Last Name: {this.state.last_name}</p>
+                        <p>Address: {this.state.address}</p>
+                        <p>City: {this.state.city}</p>
+                        <p>Zip Code: {this.state.zipcode}</p>
+                        <p>Phone Number: {this.state.phone_number}</p>
+                        <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
+                            >
+                            Edit Profile
+                        </Button>
+
+                    </div>
                     <div className="payment-button-container">
                         {this.state.paymenttypes.length === 0 && this.state.isThere === true &&
 

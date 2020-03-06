@@ -13,8 +13,8 @@ import PaymentCreateForm from './payment/PaymentCreateForm'
 import Profile from './myAccount/Profile'
 import CompleteOrder from './orders/CompleteOrder'
 import ThankYou from "./orders/ThankYou"
+import ProfileEditForm from "./myAccount/profileEditForm"
 import ProductCategories from './products/ProductCategories';
-
 import OrderHistory from "./orders/OrderHistory"
 import OrderHistoryDetail from "./orders/OrderHistoryDetail"
 export default class ApplicationViews extends Component {
@@ -69,10 +69,21 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
+        exact
           path="/profile"
           render={props => {
             if (isAuthenticated()) {
               return <Profile {...props} {...this.props} />;
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+         <Route
+          exact path="/profile/update"
+          render={props => {
+            if (isAuthenticated()) {
+              return <ProfileEditForm {...props} {...this.props} />;
             } else {
               return <Redirect to="/login" />;
             }

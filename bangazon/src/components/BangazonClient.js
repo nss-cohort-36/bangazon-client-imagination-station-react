@@ -4,10 +4,17 @@ import ApplicationViews from './ApplicationViews'
 import APIManager from '../modules/APIManager'
 import { withRouter } from "react-router";
 
-class BangazonClient extends Component { 
+class BangazonClient extends Component {
+
+    // fetchOrders = async () => {
+    //     const orders = await APIManager.getAll("orders", "?customer=true&open=true")
+    //     return orders.length
+    // }
+
     state = {
         user: false,
         searchResults: []
+        // cartCount: this.fetchOrders()
     }
 
     loggedIn = () => {
@@ -24,8 +31,9 @@ class BangazonClient extends Component {
 
     }
 
-    // This function is passed as props and will handle search functionality
     
+    // This function is passed as props and will handle search functionality
+
     search = async (search_terms) => {
 
 
@@ -40,9 +48,9 @@ class BangazonClient extends Component {
             search_terms_string += `?location=${search_terms.location}`
         } else if (search_terms.name) {
             search_terms_string += `?name=${search_terms.name}`
-        }       
+        }
 
-        this.setState({searchResults: await APIManager.getAll("products", search_terms_string)})
+        this.setState({ searchResults: await APIManager.getAll("products", search_terms_string) })
 
         this.props.history.push("/SearchResults")
     }
@@ -51,8 +59,8 @@ class BangazonClient extends Component {
 
         return (
             <>
-                <NavBar search={this.search} loggedOut={this.loggedOut} {...this.props}/>
-                <ApplicationViews searchResults={this.state.searchResults} loggedOut={this.loggedOut} loggedIn={this.loggedIn}/>
+                <NavBar search={this.search} loggedOut={this.loggedOut} {...this.props} />
+                <ApplicationViews searchResults={this.state.searchResults} loggedOut={this.loggedOut} loggedIn={this.loggedIn} />
             </>
         )
     }

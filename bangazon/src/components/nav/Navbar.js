@@ -27,7 +27,6 @@ import { isAuthenticated, logout } from "../../modules/simpleAuth"
 
 import { Link } from "react-router-dom"
 
-
 const drawerWidth = 240;
 
 const styles = theme => ({

@@ -58,6 +58,18 @@ export default {
     return results;
   },
 
+  async profile_update(route, editedItem) {
+    const results = await fetch(`${remoteURL}/${route}/profile_update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${sessionStorage.getItem("bangazon_token")}`
+      },
+      body: JSON.stringify(editedItem)
+    });
+    return results;
+  },
+
   async patch(route, editedItem, id) {
     const results = await fetch(`${remoteURL}/${route}/${id}`, {
       method: "PATCH",
