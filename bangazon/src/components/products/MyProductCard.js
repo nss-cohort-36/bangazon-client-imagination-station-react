@@ -28,12 +28,13 @@ function MyProductCard(props) {
   const [totalSold, setTotalSold] = useState(0)
 
   useEffect(() => {
+    // This is to update the totalSold value for this product
     const getTotalSold = async () => {
       const response = await ProductApiManager.getTotalSold(props.myProductCard.id)
       setTotalSold(response.total_sold)
     }
     getTotalSold()
-  }, [])
+  }, )
 
 
   return (
