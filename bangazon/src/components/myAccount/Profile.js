@@ -31,6 +31,7 @@ class Profile extends Component {
 
     state = {
         paymenttypes: [],
+        isThere: false
     };
 
     handleFieldChange = evt => {
@@ -38,7 +39,17 @@ class Profile extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-
+    componentDidMount() {
+        APIManager.getAll("paymenttypes")
+            .then((response) => {
+                console.log(response.length)
+                if (response.length !== 0) {
+                    this.setState({
+                        isThere: true
+                    })
+                }
+            })
+    }
 
     getPaymentTypes = () => {
         // Gets all payment types, then sets them in state to load the cards later
@@ -55,9 +66,16 @@ class Profile extends Component {
             .then(() => {
                 APIManager.getAll("paymenttypes")
                     .then((response) => {
-                        this.setState({
-                            paymenttypes: response
-                        })
+                        if (response.length === 0) {
+                            this.setState({
+                                isThere: false,
+                                paymenttypes: response
+                            })
+                        } else {
+                            this.setState({
+                                paymenttypes: response
+                            })
+                        }
                     })
             })
     }
@@ -71,27 +89,27 @@ class Profile extends Component {
             <>
                 <div className="profile-container">
                     <div className="payment-button-container">
-                        {this.state.paymenttypes.length === 0 && 
-                        
-                        <Button id="payment-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
-                            onClick={() => this.getPaymentTypes()}>
-                            View Payment Options
+                        {this.state.paymenttypes.length === 0 && this.state.isThere === true &&
+
+                            <Button id="payment-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus}
+                                onClick={() => this.getPaymentTypes()}>
+                                View Payment Options
                         </Button>
-                            }
+                        }
 
                         <Button id="payment-button" variant="contained" color="dark" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={() => this.props.history.push('/payment/new')}>
                             Add a New Payment Option
                     </Button>
-                    <Button variant="contained">
-                    <Link
-                      to={{
-                        pathname: `/orderhistory`,
-                        
-                      }} className="complete-order-button">
-                      View Order History
+                        <Button variant="contained">
+                            <Link
+                                to={{
+                                    pathname: `/orderhistory`,
+
+                                }} className="complete-order-button">
+                                View Order History
                     </Link>
-                  </Button>
+                        </Button>
                     </div>
                     <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
 
