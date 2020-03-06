@@ -52,15 +52,6 @@ class Profile extends Component {
                 phone_number: customer[0].phone
             })
         })
-        // .then((response) => console.log("UserProfile response", response))
-    }
-
-    handleFieldChange = evt => {
-        const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
-    componentDidMount() {
         APIManager.getAll("paymenttypes")
             .then((response) => {
                 console.log(response.length)
@@ -70,7 +61,25 @@ class Profile extends Component {
                     })
                 }
             })
+        // .then((response) => console.log("UserProfile response", response))
     }
+
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+    // componentDidMount() {
+    //     APIManager.getAll("paymenttypes")
+    //         .then((response) => {
+    //             console.log(response.length)
+    //             if (response.length !== 0) {
+    //                 this.setState({
+    //                     isThere: true
+    //                 })
+    //             }
+    //         })
+    // }
 
     getPaymentTypes = () => {
         // Gets all payment types, then sets them in state to load the cards later
@@ -104,6 +113,8 @@ class Profile extends Component {
 
 
     render() {
+
+        console.log(this.state, "STATE")
 
         const { classes } = this.props;
 
