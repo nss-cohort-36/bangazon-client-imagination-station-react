@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import Card from '@material-ui/core/Card';
@@ -20,7 +20,6 @@ const styles = {
 class Order extends React.Component {
     // Creates card for order
     render() {
-        const { classes } = this.props;
 
         return (
             <>
