@@ -5,17 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 // Author: Lauren Riddle
 // Purpose: To create a card for each order in order history
-// const styles = {
-//     card: {
-//         minWidth: 275,
-//     },
-//     title: {
-//         fontSize: 14,
-//     },
-//     pos: {
-//         marginBottom: 12,
-//     },
-// };
+
 class Order extends Component {
     // Creates card for order
    formatDate = (date) => {

@@ -118,7 +118,9 @@ class Profile extends Component {
                         <CardContent>
                             <img src={Steve} alt='profile' width="300" height="300"></img>
                             <p className="name">{this.state.first_name} {this.state.last_name}</p>
-                            <p className="address">Address: {this.state.address}, {this.state.city}, {this.state.zipcode}</p>
+                            <p className="address">Address: {this.state.address}</p>
+                            <p className="address">City: {this.state.city}</p>
+                            <p className="address">Zipcode: {this.state.zipcode}</p>
                             <p className="phone">Phone Number: {this.state.phone_number}</p>
                         </CardContent>
                         <CardActions>

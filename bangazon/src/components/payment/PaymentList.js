@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import Payment from "./PaymentCard"
-import CardContent from '@material-ui/core/CardContent';
-import Card from '@material-ui/core/Card';
+
 
 import './Payment.css'
 // Author: Lauren Riddle
