@@ -13,7 +13,10 @@ class BangazonClient extends Component {
 
     state = {
         user: false,
-        searchResults: []
+        searchResults: [],
+        productSearchField: "",
+        citySearchField: "",
+        productTypeId: ""
         // cartCount: this.fetchOrders()
     }
 
@@ -48,6 +51,8 @@ class BangazonClient extends Component {
             search_terms_string += `?location=${search_terms.location}`
         } else if (search_terms.name) {
             search_terms_string += `?name=${search_terms.name}`
+        } else if (search_terms.productTypeId) {
+            search_terms_string += `?type=${search_terms.productTypeId}`
         }
 
         this.setState({ searchResults: await APIManager.getAll("products", search_terms_string) })
@@ -55,12 +60,26 @@ class BangazonClient extends Component {
         this.props.history.push("/SearchResults")
     }
 
+    doSearch = productTypeId => {
+        let searchObj = {location: "", name: "", type: ""}
+        searchObj.name = this.state.productSearchField
+        searchObj.location = this.state.citySearchField
+        searchObj.type = productTypeId
+        this.search(searchObj)
+    }
+
+    handleInputChange = (evt) => {
+        let stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+
     render() {
 
         return (
             <>
-                <NavBar search={this.search} loggedOut={this.loggedOut} {...this.props} />
-                <ApplicationViews searchResults={this.state.searchResults} loggedOut={this.loggedOut} loggedIn={this.loggedIn} />
+                <NavBar doSearch={this.doSearch} loggedOut={this.loggedOut} {...this.props} />
+                <ApplicationViews doSearch={this.doSearch} handleInputChange={this.handleInputChange} searchResults={this.state.searchResults} loggedOut={this.loggedOut} loggedIn={this.loggedIn} />
             </>
         )
     }

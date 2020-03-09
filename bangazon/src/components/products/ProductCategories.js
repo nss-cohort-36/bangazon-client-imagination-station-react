@@ -23,6 +23,7 @@ class ProductCategories extends Component {
                 })
             })
     }
+
     render() {
         return (
             <>
@@ -31,7 +32,7 @@ class ProductCategories extends Component {
                     this.state.producttypes.map(producttype =>
                             <List key={producttype.id}>
                                 <Typography variant="h4" key={producttype.id}>
-                                    {producttype.name}
+                                    <a onClick={() => this.props.doSearch(producttype.id)}>{producttype.name}</a>
                                     {/* displays how many products are in that category  */}
                                     <span>({producttype.products.length})</span>
                                 </Typography>

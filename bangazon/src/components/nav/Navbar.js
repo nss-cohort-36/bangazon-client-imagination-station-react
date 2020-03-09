@@ -131,23 +131,8 @@ class NavBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
-    mobileOpen: false,
-    productSearchField: "",
-    citySearchField: ""
+    mobileOpen: false
   };
-
-  handleInputChange = (evt) => {
-    let stateToChange = {}
-    stateToChange[evt.target.id] = evt.target.value
-    this.setState(stateToChange)
-  }
-
-  doSearch = () => {
-      let searchObj = {location: "", name: ""}
-      searchObj.name = this.state.productSearchField
-      searchObj.location = this.state.citySearchField
-      this.props.search(searchObj)
-  }
 
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -165,7 +150,6 @@ class NavBar extends React.Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
-
 
   //   for drawer
   handleDrawerToggle = () => {
@@ -291,7 +275,7 @@ class NavBar extends React.Component {
               <div className={classes.search}>
                 <InputBase
                   placeholder="Product…"
-                  onChange={this.handleInputChange}
+                  onChange={this.props.handleInputChange}
                   id="productSearchField"
                   classes={{
                     root: classes.inputRoot,
@@ -301,7 +285,7 @@ class NavBar extends React.Component {
               </div>
               <div className={classes.search}>
                 <InputBase
-                  onChange={this.handleInputChange}
+                  onChange={this.props.handleInputChange}
                   id="citySearchField"
                   placeholder="City…"
                   classes={{
@@ -310,7 +294,7 @@ class NavBar extends React.Component {
                   }}
                 />
               </div>
-              <IconButton onClick={this.doSearch}>
+              <IconButton onClick={() => this.props.doSearch('')}>
                 <SearchIcon />
               </IconButton>
               </section>
