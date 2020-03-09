@@ -24,10 +24,15 @@ Bangazon Prime is an E-commerce application that allows a logged in user to do t
 ## Want to use Bangazon? Follow the instructions bellow to run the application.
 
 1. Create a new directory in your terminal. Clone down this repository by clicking the "Clone or Download" button above, copying the SSH key, and running the following command in your terminal `git clone sshKeyGoesHere`.
+
 1. `cd bangazon-client-imagination-station-react/bangazon` into the directory of the app that contains `package-lock.json` and `package.json`.
+
 1. Run `npm install` and wait for all dependencies to be installed.
+
 1. Go to https://github.com/nss-cohort-36/bangazon-api-imagination-station-api and follow the instructions to set up the API in a seperate directory from the Bangazon Client directory. Then complete the next two steps.
+
 1. Run `npm start` to verify that installation was successful and start the application.
+
 1. Go to http://localhost:3000/ to view the app. 
 
 ## Tech Stack
