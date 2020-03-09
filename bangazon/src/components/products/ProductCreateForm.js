@@ -44,7 +44,7 @@ class ProductCreateForm extends React.Component {
         Price: null,
         Quantity: null,
         Location: "",
-        ImagePath: "./none_pic.jpg",
+        ImagePath: null,
         ProductTypeId: null,
         producttypes: [],
         checkbox: ""
@@ -158,7 +158,7 @@ class ProductCreateForm extends React.Component {
                     <h2 className="sell-product-container">Sell a Product</h2>
 
                     <form className="new-product-form">
-                        {ImagePath && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} alt="img" />}
+                        {ImagePath !== null && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} alt="img" />}
                         <label style={{backgroundColor: '#3f51b5', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
                             UPLOAD PHOTO
                           <FileUploader
