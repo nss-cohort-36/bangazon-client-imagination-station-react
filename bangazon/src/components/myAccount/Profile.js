@@ -107,13 +107,12 @@ class Profile extends Component {
 
         return (
             <>
+
                 <div className="profile-container">
                     <div className="profile-info">
-                        <p>First Name: {this.state.first_name}</p>
-                        <p>Last Name: {this.state.last_name}</p>
-                        <p>Address: {this.state.address}</p>
-                        <p>City: {this.state.city}</p>
-                        <p>Zip Code: {this.state.zipcode}</p>
+                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/user-512.png" alt='profile' width="300" height="300"></img>
+                        <p>{this.state.first_name} {this.state.last_name}</p>
+                        <p>Address: {this.state.address}, {this.state.city}, {this.state.zipcode}</p>
                         <p>Phone Number: {this.state.phone_number}</p>
                         <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
                             >
@@ -144,9 +143,11 @@ class Profile extends Component {
                     </Link>
                         </Button>
                     </div>
-                    <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
 
                 </div>
+                    {this.state.paymenttypes.length !== 0 && this.state.isThere === true && <h2 className="my-payments-header">My Payment Options</h2>}
+
+                    <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
             </>
         );
     }

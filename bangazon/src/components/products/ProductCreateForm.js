@@ -155,12 +155,12 @@ class ProductCreateForm extends React.Component {
         return (
             <>
                 <div className="new-product-form-container">
-                    <h2>Sell a Product</h2>
+                    <h2 className="sell-product-container">Sell a Product</h2>
 
                     <form className="new-product-form">
                         {ImagePath && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} alt="img" />}
                         <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
-                            Upload Photo
+                            UPLOAD PHOTO
                           <FileUploader
                             hidden
                             accept="image/*"

@@ -59,3 +59,25 @@
     color: black;
     text-decoration: none;
 }
+.open-order {
+    margin: 20px;
+    /* width: 50%; */
+    padding-top: 20px;
+    text-align: center;
+}
+.open-order ul {
+    text-align: center;
+    margin: 0 auto;
+
+}
+#open-order-header {
+    text-align: center;
+    font-size: 40px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: bold;
+}
+#order-number {
+font-size: 20px;
+margin-bottom: 10px;
+margin-top: 0;
+}

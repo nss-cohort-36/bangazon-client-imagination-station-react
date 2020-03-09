@@ -26,12 +26,12 @@ class ProductCategories extends Component {
     render() {
         return (
             <>
-                <Typography id="product-categories-h1" variant="h2" component="h2">Product Categories</Typography>
+                <Typography id="product-categories-h1"  component="h2">Product Categories</Typography>
                 <section id="product-cat-container">
                     {
                         this.state.producttypes.map(producttype =>
                             <List id="product-cat-card" key={producttype.id}>
-                                <Typography variant="h4" key={producttype.id}>
+                                <Typography variant="h5" key={producttype.id}>
                                     {producttype.name}
                                     {/* displays how many products are in that category  */}
                                     <span>({producttype.products.length})</span>
@@ -39,11 +39,11 @@ class ProductCategories extends Component {
                                 {producttype.products.slice(0, 3).map(product => {
                                     return (
                                         <ListItem key={product.id}>
-                                            <Typography color="textSecondary" variant="h5" gutterBottom key={product.id}>
-                                                {product.name}
+                                            <Typography color="textSecondary" gutterBottom key={product.id}>
+                                                {product.name} 
                                             </Typography>
                                             <Typography color="textSecondary" gutterBottom >
-                                                <Link to={`/product/${product.id}`} className="product-link">Details</Link>
+                                                <Link to={`/product/${product.id}`} className="product-link"> Details</Link>
                                             </Typography>
                                         </ListItem>
                                     )

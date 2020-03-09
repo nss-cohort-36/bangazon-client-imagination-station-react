@@ -12,7 +12,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import APIManager from "../../modules/APIManager";
-import "./Order.css";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -23,6 +22,7 @@ import { ListItemText, Typography } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import "./Order.css";
 
 const OrderDetail = props => {
   const [orders, setOrders] = useState([]);
@@ -131,16 +131,17 @@ const deleteCartItem = async (orderProductId, order, productId) => {
 return isLoading ? (
   <div>Loading, please wait</div>
 ) : (
-    <Card>
+    <Card className="open-order">
       <CardContent>
-        <Typography variant="h5" component="h2">
+    <>
+        <Typography variant="h4" component="h2" id="open-order-header">
           {orders.length > 1 ? "Open Orders" : "Open Order"}{" "}
         </Typography>
         <List>
           {orders.map(order => (
             <ListItem key={order.id}>
               <List>
-                <Typography>Order #{order.id}</Typography>
+                <Typography id="order-number">Order #{order.id}</Typography>
                 {order.products.map(product => (
                   <ListItem key={product.id}>
                     <ListItemText>
@@ -188,6 +189,7 @@ return isLoading ? (
             </ListItem>
           ))}
         </List>
+        </>
         {/* </Container> */}
       </CardContent>
     </Card>

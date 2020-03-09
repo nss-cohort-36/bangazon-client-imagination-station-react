@@ -31,6 +31,7 @@ class SearchCard extends Component {
                       style={{height: '75px'}}
                       src={this.props.imagePath}
                       title={this.props.name}
+                      alt={this.props.name}
                     />
                     <Typography variant="h5" component="h2">
                         <Link to={`/Product/${this.props.product.id}`} className="product-link">{this.props.name}</Link>
