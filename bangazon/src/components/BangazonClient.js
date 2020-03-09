@@ -36,6 +36,11 @@ class BangazonClient extends Component {
 
     
     // This function is passed as props and will handle search functionality
+    handleInputChange = (evt) => {
+        let stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
 
     search = async (search_terms) => {
 
@@ -51,8 +56,8 @@ class BangazonClient extends Component {
             search_terms_string += `?location=${search_terms.location}`
         } else if (search_terms.name) {
             search_terms_string += `?name=${search_terms.name}`
-        } else if (search_terms.productTypeId) {
-            search_terms_string += `?type=${search_terms.productTypeId}`
+        } else if (search_terms.type) {
+            search_terms_string += `?type=${search_terms.type}`
         }
 
         this.setState({ searchResults: await APIManager.getAll("products", search_terms_string) })
@@ -68,11 +73,6 @@ class BangazonClient extends Component {
         this.search(searchObj)
     }
 
-    handleInputChange = (evt) => {
-        let stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
 
     render() {
 
