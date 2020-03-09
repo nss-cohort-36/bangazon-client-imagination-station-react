@@ -160,26 +160,29 @@ class Register extends Component {
           variant="outlined"
         />
 
-                  <TextField
+        <TextField
           id="outlined-name product"
           label="Password"
           className={classes.textField}
           onChange={this.handleChange('password')}
           margin="normal"
           variant="outlined"
+          type="password"
+
         />
-           
-                  <TextField
+
+        <TextField
           id="outlined-name product"
           label="Verify Password"
           className={classes.textField}
           onChange={this.handleChange('verifyPassword')}
           margin="normal"
           variant="outlined"
+          type="password"
         />
 
 
-        <Button variant="contained" color="primary" className={classes.button}  type="submit">
+        <Button variant="contained" color="primary" className={classes.button} type="submit">
           Register
             </Button>
       </form>
