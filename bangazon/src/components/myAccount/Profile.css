@@ -3,5 +3,59 @@
 }
 .payment-button-container {
     text-align: center;
+    width: 60%;
+    
+}
+.profile-info {
+    padding: 30px;
+    height: 30%;
+}
+.profile-container {
+    margin: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: space-around;
 
 }
+
+.my-payments-header {
+    text-align: center;
+    font-size: 30px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: bold;
+    margin-bottom: 26px;
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+.name {
+    font-size: 25px;
+}
+.address, .phone {
+    font-size: 15px;
+}
+
+@media screen and (max-width: 800px) {
+    #payment-button {
+        margin: 10px;
+    }
+    .payment-button-container {
+        text-align: center;
+        width: 100%;
+        
+    }
+    .profile-info {
+        padding: 30px;
+        height: 80%;
+    }
+    .profile-container {
+        margin: 20px 20px 20px 20px;
+        display: inline;
+    
+    }
+}
+
+#order-history-button {
+    color: white;
+    text-decoration: none;
+}
+

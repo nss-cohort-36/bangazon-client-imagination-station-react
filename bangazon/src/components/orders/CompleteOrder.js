@@ -103,7 +103,7 @@ class CompleteOrder extends Component {
                                 </MenuItem>
                             ))}
                         </TextField>
-                        <Button variant="contained" color="secondary" className={classes.button}
+                        <Button variant="contained" color="primary" className={classes.button}
                         onClick={() =>{ 
                             if (this.state.PaymentTypeId === null) {
                                 alert('Please select a payment type to complete your order.')

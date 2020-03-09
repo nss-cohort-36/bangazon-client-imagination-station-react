@@ -1,4 +1,31 @@
 #payment-type-card {
     margin: 20px;
-    padding: 20px;
+    /* padding: 10px; */
+    flex-basis: 30%;
+    text-align: center;
+}
+
+#payment-type-card button {
+    margin: 0 auto;
+}
+
+.paymentList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    
+}
+
+@media screen and (max-width: 800px) {
+    #payment-type-card {
+        margin: 20px;
+        /* padding: 10px; */
+        flex-basis: 100%;
+        text-align: center;
+    }
+}
+
+.add-payment-header {
+    font-size: 40px;
 }

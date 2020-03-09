@@ -6,12 +6,11 @@ import React from 'react'
 
 const ThankYou = () => {
 
-    // render() {
 
         return (
             <>
             
-                <div className="complete-order-container">
+                <div className="thank-you-container">
                     
 
                     <h1>Your order has been placed, you should receive it shortly!</h1>
@@ -22,7 +21,6 @@ const ThankYou = () => {
                 </>
             
         );
-    // }
 }
 
 export default ThankYou

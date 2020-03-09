@@ -3,6 +3,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import "../products/Product.css"
 // Author: Lauren Riddle
 // Purpose: To load form to create payment type
 const styles = theme => ({
@@ -81,11 +82,11 @@ class PaymentCreateForm extends React.Component {
         return (
             <>
                 <div className="new-product-form-container">
-                    <h2>Add a New Payment Type</h2>
+                    <h2 className="add-payment-header">Add a New Payment Type</h2>
 
-                    <form >
+                    <form className="new-product-form" >
                         <TextField
-                            id="outlined-name"
+                            id="outlined-name product"
                             label="Merchant Name"
                             className={classes.textField}
                             onChange={this.handleChange('merchantName')}
@@ -93,7 +94,7 @@ class PaymentCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            id="outlined-name"
+                            id="outlined-name product"
                             label="Account Number"
                             className={classes.textField}
                             onChange={this.handleChange('accountNumber')}
@@ -102,7 +103,7 @@ class PaymentCreateForm extends React.Component {
                             variant="outlined"
                         />
                         <TextField
-                            id="outlined-number"
+                            id="outlined-number product"
                             label="MM"
                             onChange={this.handleChange('month')}
                             className={classes.textField}
@@ -112,7 +113,7 @@ class PaymentCreateForm extends React.Component {
                             />
                         <TextField
                             inputProps={{maxLength: 4}}
-                            id="outlined-number"
+                            id="outlined-number product"
                             label="YYYY"
                             onChange={this.handleChange('year')}
                             className={classes.textField}
@@ -121,7 +122,7 @@ class PaymentCreateForm extends React.Component {
                         />
                         
                        
-                        <Button variant="contained" color="inherit" className={classes.button} disabled={this.state.loadingStatus}
+                        <Button variant="contained" color="primary" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.savePaymentType}>
                             Save
                         </Button>

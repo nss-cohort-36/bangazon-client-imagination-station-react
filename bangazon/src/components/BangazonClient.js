@@ -6,15 +6,11 @@ import { withRouter } from "react-router";
 
 class BangazonClient extends Component {
 
-    // fetchOrders = async () => {
-    //     const orders = await APIManager.getAll("orders", "?customer=true&open=true")
-    //     return orders.length
-    // }
+ 
 
     state = {
         user: false,
         searchResults: []
-        // cartCount: this.fetchOrders()
     }
 
     loggedIn = () => {
@@ -36,9 +32,6 @@ class BangazonClient extends Component {
 
     search = async (search_terms) => {
 
-
-        // console.log('this search func ran')
-        // console.log(search_terms, 'search terms obj')
 
         let search_terms_string = ""
 

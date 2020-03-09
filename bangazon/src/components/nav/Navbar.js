@@ -15,7 +15,7 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Home from '@material-ui/icons/Home'
 import AttachMoney from '@material-ui/icons/AttachMoney';
@@ -276,16 +276,16 @@ class NavBar extends React.Component {
                 <MenuIcon />
               </IconButton> */}
               <section id="desktop-nav">
-              <ListItemIcon ><Link to="/" id="shopping-link" ><Home /></Link></ListItemIcon>
+              {/* <ListItemIcon ><Link to="/" id="shopping-link" ><Home /></Link></ListItemIcon> */}
 
               <ListItemText><Link to="/" id="nav-link" >Bangazon Prime</Link></ListItemText>
 
-              <ListItemIcon><Link to="/product/new" id="shopping-link" ><AttachMoney /></Link></ListItemIcon>
+              {/* <ListItemIcon><Link to="/product/new" id="shopping-link" ><AttachMoney /></Link></ListItemIcon> */}
               <ListItemText><Link to="/product/new" id="nav-link">Sell A Product</Link></ListItemText>
 
-              <ListItemIcon><Link to="/products" id="shopping-link" ><Store /></Link></ListItemIcon>
+              {/* <ListItemIcon><Link to="/products" id="shopping-link" ><Store /></Link></ListItemIcon> */}
               <ListItemText><Link to="/products" id="nav-link">My Products</Link></ListItemText>
-              <ListItemIcon><Link to="/product_categories" id="shopping-link" ><ViewList /></Link></ListItemIcon>
+              {/* <ListItemIcon><Link to="/product_categories" id="shopping-link" ><ViewList /></Link></ListItemIcon> */}
               <ListItemText><Link to="/product_categories" id="nav-link">Product Categories</Link></ListItemText>
               
               <div className={classes.search}>

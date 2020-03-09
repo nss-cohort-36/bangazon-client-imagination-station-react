@@ -25,31 +25,30 @@ class Payment extends React.Component {
     const { classes } = this.props;
     return (
       <>
-        <section className="paymenttype" id="payment-type-card">
-          <Card>
-            <CardContent>
+        <Card id="payment-type-card">
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              {this.props.type.merchant_name}
+            </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              Account Number: {this.props.type.account_number}
+            </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              Expiration Date: {this.props.type.expiration_date}
+            </Typography>
 
-              <Typography variant="h5" component="h2">
-                Merchant: {this.props.type.merchant_name}
-              </Typography>
-              <Typography variant="h5" component="h5">
-                Account Number: {this.props.type.account_number}
-              </Typography>
-              <Typography color="textSecondary" gutterBottom>
-                Expiration Date: {this.props.type.expiration_date}
-              </Typography>
-            </CardContent>
             <CardActions>
-              <Button variant="contained" color="secondary" className={classes.button}
-                onClick={() => {
-                  this.props.deletePaymentType(this.props.type.id)
-
-                }}>
-                Delete
-          </Button>
             </CardActions>
-          </Card>
-        </section>
+            <Button variant="contained" color="secondary" className={classes.button}
+              onClick={() => {
+                this.props.deletePaymentType(this.props.type.id)
+
+              }}>
+              Delete
+          </Button>
+          </CardContent>
+        </Card>
+
       </>
     )
   }

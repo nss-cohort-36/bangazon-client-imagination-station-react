@@ -48,6 +48,7 @@
 
 .order-card {
     margin: 10px;
+    flex-basis: 40%;
 }
 
 .view-order-button:hover {
@@ -58,4 +59,55 @@
 .view-order-button {
     color: black;
     text-decoration: none;
+}
+.open-order {
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+.open-order ul {
+    text-align: center;
+    margin: 0 auto;
+
+}
+#open-order-header {
+    text-align: center;
+    font-size: 40px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: bold;
+}
+#order-number {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+/* Thank you page styles */
+.thank-you-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    margin-top: 10px;
+}
+.order-history-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.order-history-detail {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#list-item-history {
+   margin: 0 auto;
 }

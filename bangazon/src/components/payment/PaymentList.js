@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Payment from "./PaymentCard"
 
+
 import './Payment.css'
 // Author: Lauren Riddle
 // Purpose: To create payment type list
@@ -9,7 +10,8 @@ class PaymentList extends Component {
   render() {
     return (
       <>
-        
+        {/* <Card > */}
+            {/* <CardContent> */}
             <article className="paymentList">
               {
                 this.props.paymenttypes.map(type =>
@@ -19,7 +21,10 @@ class PaymentList extends Component {
                     deletePaymentType={this.props.deletePaymentType}
                   />)
               }
+
             </article>
+            {/* </CardContent>
+            </Card> */}
           
       </>
     )

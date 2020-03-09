@@ -40,9 +40,7 @@ function MyProductCard(props) {
   return (
     <Card className={classes.card} id="my-product-card">
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Product Type: {props.myProductCard.product_type.name}
-        </Typography>
+        <img src={props.myProductCard.image_path} width="75" height="75" alt="product"></img>
         <Typography variant="h5" component="h2">
           {props.myProductCard.name}
         </Typography>
@@ -58,6 +56,9 @@ function MyProductCard(props) {
         </Typography>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           Description: {props.myProductCard.description}
+        </Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          Product Type: {props.myProductCard.product_type.name}
         </Typography>
       </CardContent>
       <CardActions>

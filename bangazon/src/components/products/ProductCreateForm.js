@@ -44,10 +44,9 @@ class ProductCreateForm extends React.Component {
         Price: null,
         Quantity: null,
         Location: "",
-        ImagePath: "./none_pic.jpg",
+        ImagePath: null,
         ProductTypeId: null,
         producttypes: [],
-        // imageFile: [],
         checkbox: ""
     };
 
@@ -80,7 +79,6 @@ class ProductCreateForm extends React.Component {
         evt.preventDefault()
         if (this.isValid(this.state.Name) && this.isValid(this.state.Description)) {
 
-        // this.startUploadManually()
 
         const product = {
             name: this.state.Name,
@@ -92,7 +90,7 @@ class ProductCreateForm extends React.Component {
             product_type_id: Number(this.state.ProductTypeId)
         }
 
-        // Upadte price to be 2 digit float to match currency in dollars
+        // Update price to be 2 digit float to match currency in dollars
         if (product.price) {
             let oldPrice = parseFloat(product.price)
             let newPrice = oldPrice.toFixed(2)
@@ -149,17 +147,6 @@ class ProductCreateForm extends React.Component {
         .then(url => this.setState({ ImagePath: url }));
     };
 
-    // // Store selected file in the state
-    // customOnChangeHandler = event => {
-    //   const { files } = event.target;
-    //   this.setState({ imageFile: files });
-    // }
-
-    // // Start download handler using the file uploader reference
-    // startUploadManually = () => {
-    //   const { imageFile } = this.state;
-    //   this.handleUploadSuccess(imageFile);
-    // }
 
     render() {
         const { classes } = this.props;
@@ -168,12 +155,12 @@ class ProductCreateForm extends React.Component {
         return (
             <>
                 <div className="new-product-form-container">
-                    <h2>Sell a Product</h2>
+                    <h2 className="sell-product-container">Sell a Product</h2>
 
                     <form className="new-product-form">
-                        {ImagePath && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} alt="img" />}
-                        <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
-                            Upload Photo
+                        {ImagePath !== null && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} alt="img" />}
+                        <label style={{backgroundColor: '#3f51b5', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
+                            UPLOAD PHOTO
                           <FileUploader
                             hidden
                             accept="image/*"
@@ -250,7 +237,7 @@ class ProductCreateForm extends React.Component {
                             ))}
                         </TextField>
 
-                        <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
+                        <Button variant="contained" color="primary" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.saveProduct}>
                             Sell
                             <AttachMoney className={classes.rightIcon} />

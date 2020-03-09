@@ -50,6 +50,7 @@ class Home extends Component {
                             product={product}
                             name={product.name}
                             price={product.price}
+                            imagePath={product.image_path}
                         />
                     })}
                 </section>

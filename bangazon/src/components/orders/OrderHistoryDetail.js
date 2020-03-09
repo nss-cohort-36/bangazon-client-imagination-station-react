@@ -59,18 +59,18 @@ class OrderHistoryDetail extends Component {
     render() {
 
         return (
-            <Card>
+            <Card className="order-history-detail">
                 <CardContent>
 
-                    <List>
-                        <ListItem key={this.state.order.id}>
-                            <List>
+                    <List >
+                        <ListItem  key={this.state.order.id}>
+                            <List id="list-item-history">
                                 <Typography>Order #{this.state.order.id} ({this.state.order.created_at})</Typography>
                                 {this.state.products.map(product => (
                                     <ListItem key={product.id}>
-                                        <ListItemText>
-                                            <Typography variant="h5" component="h2">
-                                                {product.product.name}:{" "}
+                                        <ListItemText >
+                                            <Typography variant="h6" component="h6">
+                                                {product.product.name}
                                             </Typography>
 
                                             <Typography color="textSecondary" gutterBottom>
@@ -83,7 +83,7 @@ class OrderHistoryDetail extends Component {
                                 ))}
                                 <ListItem style={{ alignItems: "flex-end" }}>
                                     <ListItemText>
-                                        <Typography component="p">Total: ${this.state.total}</Typography>
+                                        <Typography variant="h6" component="h2">Order Total: ${this.state.total}</Typography>
                                     </ListItemText>
                                 </ListItem>
                                 <CardActions>

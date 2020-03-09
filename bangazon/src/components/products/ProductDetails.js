@@ -146,6 +146,7 @@ class ProductDetail extends Component {
                                 <Button
                                     size="small"
                                     variant="contained"
+                                    color="primary"
                                     onClick={this.handleAddToOrder}>Add to Order
                                 </Button>
                                 : null
