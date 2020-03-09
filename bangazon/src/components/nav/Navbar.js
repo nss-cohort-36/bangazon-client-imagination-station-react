@@ -294,7 +294,7 @@ class NavBar extends React.Component {
                   }}
                 />
               </div>
-              <IconButton onClick={() => this.props.doSearch('')}>
+              <IconButton onClick={() =>this.props.doSearch('')}>
                 <SearchIcon />
               </IconButton>
               </section>

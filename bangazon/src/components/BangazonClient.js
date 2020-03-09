@@ -10,7 +10,6 @@ class BangazonClient extends Component {
     //     const orders = await APIManager.getAll("orders", "?customer=true&open=true")
     //     return orders.length
     // }
-
     state = {
         user: false,
         searchResults: [],
@@ -33,9 +32,8 @@ class BangazonClient extends Component {
         })
 
     }
-
     
-    // This function is passed as props and will handle search functionality
+    // This functions will handle search functionality
     handleInputChange = (evt) => {
         let stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
@@ -43,9 +41,6 @@ class BangazonClient extends Component {
     }
 
     search = async (search_terms) => {
-
-
-        // console.log('this search func ran')
         // console.log(search_terms, 'search terms obj')
 
         let search_terms_string = ""
