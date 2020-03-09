@@ -26,6 +26,7 @@
 .product-list-card {
     margin: 20px;
     padding: 10px;
+    height: 100%;
 }
 .search-results-header {
     margin-left: 20px;
