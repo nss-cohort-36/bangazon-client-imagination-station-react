@@ -128,7 +128,7 @@ const deleteCartItem = async (orderProductId, order, productId) => {
   props.history.push("/order");
 };
 
-{console.log(orders)}
+
 return isLoading ? (
   <div>Loading, please wait</div>
 ) : (

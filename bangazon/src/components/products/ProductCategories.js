@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { Link } from "react-router-dom";
 import "./Product.css";
 import APIManager from '../../modules/APIManager'
+import Button from '@material-ui/core/Button';
 
 
 class ProductCategories extends Component {
@@ -26,7 +27,7 @@ class ProductCategories extends Component {
     render() {
         return (
             <>
-                <Typography id="product-categories-h1"  component="h2">Product Categories</Typography>
+                <Typography id="product-categories-h1" component="h2">Product Categories</Typography>
                 <section id="product-cat-container">
                     {
                         this.state.producttypes.map(producttype =>
@@ -34,16 +35,16 @@ class ProductCategories extends Component {
                                 <Typography variant="h5" key={producttype.id}>
                                     {producttype.name}
                                     {/* displays how many products are in that category  */}
-                                    <span>({producttype.products.length})</span>
+                                    <span> ({producttype.products.length})</span>
                                 </Typography>
                                 {producttype.products.slice(0, 3).map(product => {
                                     return (
                                         <ListItem key={product.id}>
                                             <Typography color="textSecondary" gutterBottom key={product.id}>
-                                                {product.name} 
+                                                {product.name}
                                             </Typography>
                                             <Typography color="textSecondary" gutterBottom >
-                                                <Link to={`/product/${product.id}`} className="product-link"> Details</Link>
+                                                <Link to={`/product/${product.id}`} className="product-detail-button" >Details</Link>
                                             </Typography>
                                         </ListItem>
                                     )

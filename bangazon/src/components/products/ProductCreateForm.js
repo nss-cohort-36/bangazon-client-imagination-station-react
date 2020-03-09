@@ -159,7 +159,7 @@ class ProductCreateForm extends React.Component {
 
                     <form className="new-product-form">
                         {ImagePath && <img style={{width: '100%', marginBottom: '20px'}} src={ImagePath} alt="img" />}
-                        <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
+                        <label style={{backgroundColor: '#3f51b5', color: 'white', padding: 10, display: 'block', borderRadius: 4, cursor: 'pointer'}}>
                             UPLOAD PHOTO
                           <FileUploader
                             hidden
@@ -237,7 +237,7 @@ class ProductCreateForm extends React.Component {
                             ))}
                         </TextField>
 
-                        <Button variant="contained" color="secondary" className={classes.button} disabled={this.state.loadingStatus}
+                        <Button variant="contained" color="primary" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={this.saveProduct}>
                             Sell
                             <AttachMoney className={classes.rightIcon} />

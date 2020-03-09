@@ -9,17 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import "./Product.css"
 import "../home/Home.css"
 
-// const styles = {
-//     card: {
-//       minWidth: 275,
-//     },
-//     title: {
-//       fontSize: 14,
-//     },
-//     pos: {
-//       marginBottom: 12,
-//     }
-//   };
 
 class SearchCard extends Component {
 

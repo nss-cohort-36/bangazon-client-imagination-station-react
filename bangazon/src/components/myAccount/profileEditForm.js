@@ -2,7 +2,7 @@ import APIManager from '../../modules/APIManager'
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import "../products/Product.css"
 class ProfileEditForm extends Component {
 
     state = {
@@ -57,11 +57,11 @@ class ProfileEditForm extends Component {
         return (
             <>
                 <div className="profile-container">
-                    <form className="profile-info">
+                    <form className="profile-info new-product-form-container">
                         <TextField
                             required
                             onChange={this.handleFieldChange}
-                            id="first_name"
+                            id="first_name product"
                             value={this.state.first_name}
                             label="First Name"
                             margin="normal"
@@ -70,7 +70,7 @@ class ProfileEditForm extends Component {
                         <TextField
                             required
                             onChange={this.handleFieldChange}
-                            id="last_name"
+                            id="last_name product"
                             value={this.state.last_name}
                             label="Last Name"
                             margin="normal"
@@ -79,7 +79,7 @@ class ProfileEditForm extends Component {
                         <TextField
                             required
                             onChange={this.handleFieldChange}
-                            id="address"
+                            id="address product"
                             value={this.state.address}
                             label="Address"
                             margin="normal"
@@ -88,7 +88,7 @@ class ProfileEditForm extends Component {
                         <TextField
                             required
                             onChange={this.handleFieldChange}
-                            id="city"
+                            id="city product"
                             value={this.state.city}
                             label="City"
                             margin="normal"
@@ -97,7 +97,7 @@ class ProfileEditForm extends Component {
                         <TextField
                             required
                             onChange={this.handleFieldChange}
-                            id="zipcode"
+                            id="zipcode product"
                             value={this.state.zipcode}
                             label="Zip Code"
                             margin="normal"
@@ -106,13 +106,13 @@ class ProfileEditForm extends Component {
                         <TextField
                             required
                             onChange={this.handleFieldChange}
-                            id="phone_number"
+                            id="phone_number product"
                             value={this.state.phone_number}
                             label="Phone Number"
                             margin="normal"
                             variant="outlined"
                         />
-                        <Button variant="contained" color="light"
+                        <Button variant="contained" color="primary"
                             onClick={this.updateProfile}
                         >Save Profile
                     </Button>

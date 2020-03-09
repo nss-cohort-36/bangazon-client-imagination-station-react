@@ -40,6 +40,7 @@ function MyProductCard(props) {
   return (
     <Card className={classes.card} id="my-product-card">
       <CardContent>
+        <img src={props.myProductCard.image_path} width="75" height="75"></img>
         <Typography variant="h5" component="h2">
           {props.myProductCard.name}
         </Typography>

@@ -122,7 +122,7 @@ class Profile extends Component {
                             <p className="phone">Phone Number: {this.state.phone_number}</p>
                         </CardContent>
                         <CardActions>
-                            <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
+                            <Button id="edit-details-button" variant="contained" color="primary" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
                             >
                                 Edit Profile
                         </Button>
@@ -132,22 +132,22 @@ class Profile extends Component {
                     <div className="payment-button-container">
                         {this.state.paymenttypes.length === 0 && this.state.isThere === true &&
 
-                            <Button id="payment-button" variant="contained" color="inherit" className={classes.button} disabled={this.state.loadingStatus}
+                            <Button id="payment-button" variant="contained" color="primary" className={classes.button} disabled={this.state.loadingStatus}
                                 onClick={() => this.getPaymentTypes()}>
                                 View Payment Options
                         </Button>
                         }
 
-                        <Button id="payment-button" variant="contained" color="inherit" className={classes.button} disabled={this.state.loadingStatus}
+                        <Button id="payment-button" variant="contained" color="primary" className={classes.button} disabled={this.state.loadingStatus}
                             onClick={() => this.props.history.push('/payment/new')}>
                             Add a New Payment Option
                     </Button>
-                        <Button variant="contained">
+                        <Button variant="contained" color="primary"  className={classes.button}>
                             <Link
                                 to={{
                                     pathname: `/orderhistory`,
 
-                                }} className="complete-order-button">
+                                }} id="order-history-button">
                                 View Order History
                     </Link>
                         </Button>
