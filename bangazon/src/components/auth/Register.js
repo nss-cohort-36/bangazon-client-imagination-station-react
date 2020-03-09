@@ -1,6 +1,27 @@
 import React, { Component } from "react"
 // import { withRouter } from "react-router-dom"
 import { register } from "../../modules/simpleAuth"
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import "../products/Product.css"
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+});
 
 class Register extends Component {
 
@@ -41,120 +62,129 @@ class Register extends Component {
 
     // Make a fetch call with the object as the body of the POST request
     register(newUser)
-    .then(() => {
-      this.props.loggedIn()
-      this.props.history.push("/")
-    })
+      .then(() => {
+        this.props.loggedIn()
+        this.props.history.push("/")
+      })
   }
 
+  handleChange = name => event => {
+    // Material UI field change func
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
   render() {
+    const { classes } = this.props;
+
     return (
-        <form className="form--login" onSubmit={this.handleRegister}>
-          <h1>Create your Bangazon account</h1>
-          <fieldset>
-            <label htmlFor="userName"> Username </label>
-            <input onChange={(evt) => this.handleInputChange(evt)}
-              id="userName"
-              type="text"
-              name="userName"
-              placeholder="Username"
-              required autoFocus />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="firstName"> First Name </label>
-            <input onChange={this.handleInputChange}
-              id="firstName"
-              type="text"
-              name="firstName"
-              placeholder="First name"
-              required autoFocus />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="lastName"> Last Name </label>
-            <input onChange={this.handleInputChange}
-              id="lastName"
-              type="text"
-              name="lastName"
-              placeholder="Last name"
-              required />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="inputEmail"> Email address </label>
-            <input onChange={this.handleInputChange}
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Email address"
-              required />
-          </fieldset>
-
-          <fieldset>
-            <label htmlFor="inputAddress"> Street Address </label>
-            <input onChange={this.handleInputChange}
-              id="address"
-              type="text"
-              name="address"
-              placeholder="Address"
-              required />
-          </fieldset>
-
-          <fieldset>
-            <label htmlFor="inputCity"> City </label>
-            <input onChange={this.handleInputChange}
-              id="city"
-              type="text"
-              name="city"
-              placeholder="City"
-              required />
-          </fieldset>
-
-          <fieldset>
-            <label htmlFor="inputZipcode"> Zip Code </label>
-            <input onChange={this.handleInputChange}
-              id="zipcode"
-              type="text"
-              name="zipcode"
-              placeholder="Zip Code"
-              required />
-          </fieldset>
-
-          <fieldset>
-            <label htmlFor="inputPhone"> Phone Number </label>
-            <input onChange={this.handleInputChange}
-              id="phone"
-              type="text"
-              name="phone"
-              placeholder="Phone Number"
-              required />
-          </fieldset>
+      <form className="new-product-form-container" onSubmit={this.handleRegister}>
+        <h1>Create your Bangazon Account</h1>
+        <TextField
+          id="outlined-name product"
+          label="Username"
+          className={classes.textField}
+          onChange={this.handleChange('userName')}
+          margin="normal"
+          variant="outlined"
+        />
 
 
-          <fieldset>
-            <label htmlFor="inputPassword"> Password </label>
-            <input onChange={this.handleInputChange}
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Password"
-              required />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="verifyPassword"> Verify Password </label>
-            <input onChange={this.handleInputChange}
-              id="verifyPassword"
-              type="password"
-              name="verifyPassword"
-              placeholder="Verify password"
-              required />
-          </fieldset>
-          <fieldset>
-            <button type="submit">
-              Register
-            </button>
-          </fieldset>
-        </form>
+
+        <TextField
+          id="outlined-name product"
+          label="First Name"
+          className={classes.textField}
+          onChange={this.handleChange('firstName')}
+          margin="normal"
+          variant="outlined"
+        />
+
+
+        <TextField
+          id="outlined-name product"
+          label="Last Name"
+          className={classes.textField}
+          onChange={this.handleChange('lastName')}
+          margin="normal"
+          variant="outlined"
+        />
+
+        <TextField
+          id="outlined-name product"
+          label="Email"
+          className={classes.textField}
+          onChange={this.handleChange('email')}
+          margin="normal"
+          variant="outlined"
+        />
+
+
+        <TextField
+          id="outlined-name product"
+          label="Address"
+          className={classes.textField}
+          onChange={this.handleChange('address')}
+          margin="normal"
+          variant="outlined"
+        />
+
+
+        <TextField
+          id="outlined-name product"
+          label="City"
+          className={classes.textField}
+          onChange={this.handleChange('city')}
+          margin="normal"
+          variant="outlined"
+        />
+
+
+        <TextField
+          id="outlined-name product"
+          label="Zip Code"
+          className={classes.textField}
+          onChange={this.handleChange('zipcode')}
+          margin="normal"
+          variant="outlined"
+        />
+
+
+
+        <TextField
+          id="outlined-name product"
+          label="Phone"
+          className={classes.textField}
+          onChange={this.handleChange('phone')}
+          margin="normal"
+          variant="outlined"
+        />
+
+                  <TextField
+          id="outlined-name product"
+          label="Password"
+          className={classes.textField}
+          onChange={this.handleChange('password')}
+          margin="normal"
+          variant="outlined"
+        />
+           
+                  <TextField
+          id="outlined-name product"
+          label="Verify Password"
+          className={classes.textField}
+          onChange={this.handleChange('verifyPassword')}
+          margin="normal"
+          variant="outlined"
+        />
+
+
+        <Button variant="contained" color="primary" className={classes.button}  type="submit">
+          Register
+            </Button>
+      </form>
     )
   }
 }
 
-export default Register
+export default withStyles(styles)(Register)
