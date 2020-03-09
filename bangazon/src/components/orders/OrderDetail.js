@@ -128,6 +128,7 @@ const deleteCartItem = async (orderProductId, order, productId) => {
   props.history.push("/order");
 };
 
+{console.log(orders)}
 return isLoading ? (
   <div>Loading, please wait</div>
 ) : (
@@ -135,7 +136,7 @@ return isLoading ? (
       <CardContent>
     <>
         <Typography variant="h4" component="h2" id="open-order-header">
-          {orders.length > 1 ? "Open Orders" : "Open Order"}{" "}
+          {orders.length === 0 ? "Cart is Empty" : "Open Order"}{" "}
         </Typography>
         <List>
           {orders.map(order => (

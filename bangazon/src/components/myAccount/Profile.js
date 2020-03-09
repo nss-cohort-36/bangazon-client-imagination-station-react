@@ -6,6 +6,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import "./Profile.css"
 import { Link } from "react-router-dom";
+import Steve from "./homenav.png"
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+
+import CardContent from '@material-ui/core/CardContent';
 
 // Author: Lauren Riddle
 // Purpose: To load user profile with payment types
@@ -109,17 +114,21 @@ class Profile extends Component {
             <>
 
                 <div className="profile-container">
-                    <div className="profile-info">
-                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/user-512.png" alt='profile' width="300" height="300"></img>
-                        <p className="name">{this.state.first_name} {this.state.last_name}</p>
-                        <p className="address">Address: {this.state.address}, {this.state.city}, {this.state.zipcode}</p>
-                        <p className="phone">Phone Number: {this.state.phone_number}</p>
-                        <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
-                        >
-                            Edit Profile
+                    <Card className="profile-info">
+                        <CardContent>
+                            <img src={Steve} alt='profile' width="300" height="300"></img>
+                            <p className="name">{this.state.first_name} {this.state.last_name}</p>
+                            <p className="address">Address: {this.state.address}, {this.state.city}, {this.state.zipcode}</p>
+                            <p className="phone">Phone Number: {this.state.phone_number}</p>
+                        </CardContent>
+                        <CardActions>
+                            <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
+                            >
+                                Edit Profile
                         </Button>
+                        </CardActions>
 
-                    </div>
+                    </Card>
                     <div className="payment-button-container">
                         {this.state.paymenttypes.length === 0 && this.state.isThere === true &&
 

@@ -7,18 +7,19 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import "./Product.css"
+import "../home/Home.css"
 
-const styles = {
-    card: {
-      minWidth: 275,
-    },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    }
-  };
+// const styles = {
+//     card: {
+//       minWidth: 275,
+//     },
+//     title: {
+//       fontSize: 14,
+//     },
+//     pos: {
+//       marginBottom: 12,
+//     }
+//   };
 
 class SearchCard extends Component {
 
@@ -44,4 +45,4 @@ class SearchCard extends Component {
         )
     }
 }
-export default withStyles(styles)(SearchCard);
+export default SearchCard;

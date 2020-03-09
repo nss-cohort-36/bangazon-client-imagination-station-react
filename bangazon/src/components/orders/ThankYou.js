@@ -10,7 +10,7 @@ const ThankYou = () => {
         return (
             <>
             
-                <div className="complete-order-container">
+                <div className="thank-you-container">
                     
 
                     <h1>Your order has been placed, you should receive it shortly!</h1>
