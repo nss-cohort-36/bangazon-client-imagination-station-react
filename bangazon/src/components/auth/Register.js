@@ -10,6 +10,10 @@ class Register extends Component {
     lastName: "",
     password: "",
     firstName: "",
+    address: "",
+    city: "",
+    zipcode: "",
+    phone: "",
     verifyPassword: ""
   }
 
@@ -28,7 +32,11 @@ class Register extends Component {
       "first_name": this.state.firstName,
       "last_name": this.state.lastName,
       "email": this.state.email,
-      "password": this.state.password
+      "password": this.state.password,
+      "address": this.state.address,
+      "city": this.state.city,
+      "zipcode": this.state.zipcode,
+      "phone": this.state.phone
     }
 
     // Make a fetch call with the object as the body of the POST request
@@ -79,6 +87,48 @@ class Register extends Component {
               placeholder="Email address"
               required />
           </fieldset>
+
+          <fieldset>
+            <label htmlFor="inputAddress"> Street Address </label>
+            <input onChange={this.handleInputChange}
+              id="address"
+              type="text"
+              name="address"
+              placeholder="Address"
+              required />
+          </fieldset>
+
+          <fieldset>
+            <label htmlFor="inputCity"> City </label>
+            <input onChange={this.handleInputChange}
+              id="city"
+              type="text"
+              name="city"
+              placeholder="City"
+              required />
+          </fieldset>
+
+          <fieldset>
+            <label htmlFor="inputZipcode"> Zip Code </label>
+            <input onChange={this.handleInputChange}
+              id="zipcode"
+              type="text"
+              name="zipcode"
+              placeholder="Zip Code"
+              required />
+          </fieldset>
+
+          <fieldset>
+            <label htmlFor="inputPhone"> Phone Number </label>
+            <input onChange={this.handleInputChange}
+              id="phone"
+              type="text"
+              name="phone"
+              placeholder="Phone Number"
+              required />
+          </fieldset>
+
+
           <fieldset>
             <label htmlFor="inputPassword"> Password </label>
             <input onChange={this.handleInputChange}
