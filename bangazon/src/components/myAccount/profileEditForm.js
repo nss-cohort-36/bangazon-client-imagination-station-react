@@ -3,6 +3,24 @@ import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import "../products/Product.css"
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+    },
+    dense: {
+      marginTop: 16,
+    },
+    menu: {
+      width: 200,
+    },
+  });
 class ProfileEditForm extends Component {
 
     state = {
@@ -49,10 +67,16 @@ class ProfileEditForm extends Component {
         APIManager.profile_update("customers", formUpdate)
         this.props.history.push("/profile")
     }
-
+    handleChange = name => event => {
+        // Material UI field change func
+        this.setState({
+          [name]: event.target.value,
+        });
+      };
 
 
     render() {
+        const { classes } = this.props;
 
         return (
             <>
@@ -60,7 +84,7 @@ class ProfileEditForm extends Component {
                     <form className="profile-info new-product-form-container">
                         <TextField
                             required
-                            onChange={this.handleFieldChange}
+                            onChange={this.handleChange('first_name')}
                             id="first_name product"
                             value={this.state.first_name}
                             label="First Name"
@@ -69,7 +93,7 @@ class ProfileEditForm extends Component {
                         />
                         <TextField
                             required
-                            onChange={this.handleFieldChange}
+                            onChange={this.handleChange('last_name')}
                             id="last_name product"
                             value={this.state.last_name}
                             label="Last Name"
@@ -78,7 +102,7 @@ class ProfileEditForm extends Component {
                         />
                         <TextField
                             required
-                            onChange={this.handleFieldChange}
+                            onChange={this.handleChange('address')}
                             id="address product"
                             value={this.state.address}
                             label="Address"
@@ -87,7 +111,7 @@ class ProfileEditForm extends Component {
                         />
                         <TextField
                             required
-                            onChange={this.handleFieldChange}
+                            onChange={this.handleChange('city')}
                             id="city product"
                             value={this.state.city}
                             label="City"
@@ -96,7 +120,7 @@ class ProfileEditForm extends Component {
                         />
                         <TextField
                             required
-                            onChange={this.handleFieldChange}
+                            onChange={this.handleChange('zipcode')}
                             id="zipcode product"
                             value={this.state.zipcode}
                             label="Zip Code"
@@ -105,7 +129,7 @@ class ProfileEditForm extends Component {
                         />
                         <TextField
                             required
-                            onChange={this.handleFieldChange}
+                            onChange={this.handleChange('phone_number')}
                             id="phone_number product"
                             value={this.state.phone_number}
                             label="Phone Number"
@@ -124,4 +148,4 @@ class ProfileEditForm extends Component {
     }
 }
 
-export default ProfileEditForm
+export default withStyles(styles) (ProfileEditForm)

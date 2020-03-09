@@ -15,7 +15,7 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Home from '@material-ui/icons/Home'
 import AttachMoney from '@material-ui/icons/AttachMoney';

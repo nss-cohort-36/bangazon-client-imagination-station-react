@@ -8,7 +8,6 @@ import ListItem from '@material-ui/core/ListItem';
 import { Link } from "react-router-dom";
 import "./Product.css";
 import APIManager from '../../modules/APIManager'
-import Button from '@material-ui/core/Button';
 
 
 class ProductCategories extends Component {
