@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 import Payment from "./PaymentCard"
+import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
 
 import './Payment.css'
 // Author: Lauren Riddle
@@ -9,7 +11,8 @@ class PaymentList extends Component {
   render() {
     return (
       <>
-        
+        {/* <Card > */}
+            {/* <CardContent> */}
             <article className="paymentList">
               {
                 this.props.paymenttypes.map(type =>
@@ -19,7 +22,10 @@ class PaymentList extends Component {
                     deletePaymentType={this.props.deletePaymentType}
                   />)
               }
+
             </article>
+            {/* </CardContent>
+            </Card> */}
           
       </>
     )

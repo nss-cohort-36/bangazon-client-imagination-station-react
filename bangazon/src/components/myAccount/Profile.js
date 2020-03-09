@@ -42,16 +42,16 @@ class Profile extends Component {
     componentDidMount() {
         //get User name, email, payment info
         APIManager.getAll("customers")
-        .then((customer) => {
-            this.setState({
-                first_name: customer[0].user.first_name,
-                last_name: customer[0].user.last_name,
-                address: customer[0].address,
-                city: customer[0].city,
-                zipcode: customer[0].zipcode,
-                phone_number: customer[0].phone
+            .then((customer) => {
+                this.setState({
+                    first_name: customer[0].user.first_name,
+                    last_name: customer[0].user.last_name,
+                    address: customer[0].address,
+                    city: customer[0].city,
+                    zipcode: customer[0].zipcode,
+                    phone_number: customer[0].phone
+                })
             })
-        })
         APIManager.getAll("paymenttypes")
             .then((response) => {
                 if (response.length !== 0) {
@@ -67,7 +67,7 @@ class Profile extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-    
+
 
     getPaymentTypes = () => {
         // Gets all payment types, then sets them in state to load the cards later
@@ -111,11 +111,11 @@ class Profile extends Component {
                 <div className="profile-container">
                     <div className="profile-info">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/user-512.png" alt='profile' width="300" height="300"></img>
-                        <p>{this.state.first_name} {this.state.last_name}</p>
-                        <p>Address: {this.state.address}, {this.state.city}, {this.state.zipcode}</p>
-                        <p>Phone Number: {this.state.phone_number}</p>
+                        <p className="name">{this.state.first_name} {this.state.last_name}</p>
+                        <p className="address">Address: {this.state.address}, {this.state.city}, {this.state.zipcode}</p>
+                        <p className="phone">Phone Number: {this.state.phone_number}</p>
                         <Button id="edit-details-button" variant="contained" color="light" className={classes.button} disabled={this.state.loadingStatus} onClick={() => this.props.history.push("/profile/update")}
-                            >
+                        >
                             Edit Profile
                         </Button>
 
@@ -142,12 +142,14 @@ class Profile extends Component {
                                 View Order History
                     </Link>
                         </Button>
-                    </div>
-
-                </div>
+                <div className="profile-payments">
                     {this.state.paymenttypes.length !== 0 && this.state.isThere === true && <h2 className="my-payments-header">My Payment Options</h2>}
 
                     <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
+                </div>
+                    </div>
+
+                </div>
             </>
         );
     }
