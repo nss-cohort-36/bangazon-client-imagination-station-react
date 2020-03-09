@@ -54,7 +54,6 @@ class Profile extends Component {
         })
         APIManager.getAll("paymenttypes")
             .then((response) => {
-                console.log(response.length)
                 if (response.length !== 0) {
                     this.setState({
                         isThere: true
@@ -113,8 +112,6 @@ class Profile extends Component {
 
 
     render() {
-
-        console.log(this.state, "STATE")
 
         const { classes } = this.props;
 
