@@ -1,16 +1,17 @@
 #payment-type-card {
     margin: 10px;
     padding: 20px;
-    /* flex-basis: 25%; */
+    flex-basis: 50%;
     text-align: center;
 }
-.paymentList {
-    /* display: flex;
-    flex-wrap: wrap; */
-    /* margin: 0px 20px  0 20px; */
-    /* box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12); */
 
-}
 #payment-type-card button {
     margin: 0 auto;
+}
+
+.paymentList {
+    display: flex;
+    /* flex-wrap: wrap-reverse; */
+    justify-content: space-around;
+    flex-direction: row;
 }

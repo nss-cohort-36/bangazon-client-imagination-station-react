@@ -25,9 +25,7 @@ class Payment extends React.Component {
     const { classes } = this.props;
     return (
       <>
-        {/* <section className="paymenttype" id="payment-type-card">
-          <Card>
-            <CardContent> */}
+       
         <span id="payment-type-card">
           <Typography variant="h5" component="h2">
             {this.props.type.merchant_name}
@@ -49,8 +47,7 @@ class Payment extends React.Component {
           </Button>
           </CardActions>
         </span>
-        {/* //   </Card> */}
-        {/* // </section> */}
+       
       </>
     )
   }

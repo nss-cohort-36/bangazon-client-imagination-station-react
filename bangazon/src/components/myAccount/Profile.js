@@ -142,11 +142,11 @@ class Profile extends Component {
                                 View Order History
                     </Link>
                         </Button>
-                <div className="profile-payments">
-                    {this.state.paymenttypes.length !== 0 && this.state.isThere === true && <h2 className="my-payments-header">My Payment Options</h2>}
+                        <div className="profile-payments">
+                            {this.state.paymenttypes.length !== 0 && this.state.isThere === true && <h2 className="my-payments-header">My Payment Options</h2>}
 
-                    <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
-                </div>
+                            <PaymentList paymenttypes={this.state.paymenttypes} deletePaymentType={this.deletePaymentType} />
+                        </div>
                     </div>
 
                 </div>
